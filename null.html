@@ -1,0 +1,15 @@
+<html>
+<body>
+<div data-bind="foreach:null_saturday"><br>
+<span data-bind="text:questionTitle"></span> - 
+<span data-bind="text:questionBody"></span>
+</div>
+<form data-bind="submit:null_saturday_create">
+Question title 
+<input data-bind="value:null_saturday_questionTitle"><br>
+Question body 
+<input data-bind="value:null_saturday_questionBody"></br>
+<input type="submit" value="add question">
+</form>
+</body>
+</html>
