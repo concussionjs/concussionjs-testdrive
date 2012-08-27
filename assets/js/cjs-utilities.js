@@ -16,7 +16,7 @@
 
 			function getUUID(callback) {
     			// http://www.ietf.org/rfc/rfc4122.txt
-    			//alert("inside getUUID");
+    			alert("inside getUUID");
     			$.get("http://testdrive.concussionjs.com/getUUID",function(res)
     			{
     				alert(res);
@@ -34,7 +34,7 @@
 				}
 				else var expires = "";
 				document.cookie = name+"="+value+expires+"; path=/";
-				//alert(document.cookie);
+				alert(document.cookie);
 			}
 
 			function readCookie(name) {

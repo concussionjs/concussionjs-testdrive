@@ -21,11 +21,12 @@ $.getScript("http://testdrive.concussionjs.com/assets/js/cjs-utilities.js", func
 				//alert(vars["sid"]);
 				if(!vars["sid"] && !readCookie("sessionId"))
 				{
-					alert("getUUID");
+					//alert("getUUID");
 					getUUID(function(id){
+						//
 						alert("inside no cookie " + id);
 						createCookie("sessionId",id,1);
-						//alert(readCookie("sessionId"));
+						alert(readCookie("sessionId"));
 					});
 				}
 				page= {};

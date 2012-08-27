@@ -429,13 +429,14 @@ try{
 			self.nextera_admin_current_object_name(this.name());
 			this.nextera_selected(true);
 			self.nextera_admin_current_selected_object(this);
-			//alert("just selected");
+			alert("just selected, " + self.nextera_admin_current_object_name());
 			$.ajax(
 			{
 				url:"/nextera_objects_models/"+self.nextera_admin_current_object_name(),
 				dataType:"json",
 				data:'',
 				success:function(data){
+					alert(JSON.stringify(data));
 					var mapped = $.map(data[0].fields,function(item){return new fields(item)});
         			self.nextera_admin_current_object_fields(mapped);
 					loadObjects(false, function(){

@@ -87,13 +87,14 @@ addNewObjects = function(objects,callback)
 
 var generateRoutes = function(req,res,next){		
 	skipNext=false;
-	
+	console.log("req.url: generateroutes: ", req.url)
 	nta.getEntries("nextera_objects",function(err,result){
 		if(err)
 		{
 			res.end(err);
 			return;	
 		}
+		///console.log("objects: ", JSON.stringify(result));
 		loopThroughObjects(result,req,res,next);
 	});
 }
@@ -124,8 +125,8 @@ loopThroughObjects = function(objects,req,res,next)
 		}
 		
         var newObject = {};
-	    var searchTerm = req.url.split("/")[2].split("?")[0];
-	    
+	    var searchTerm = req.url.split(".com")[1].split("/")[2].split("?")[0];
+	    console.log("searchTerm: ", searchTerm, req.url);
 		nta.getEntriesWhere({"name":searchTerm},"nextera_objects",function(err,result){
 				if(err)
 				{
@@ -137,11 +138,12 @@ loopThroughObjects = function(objects,req,res,next)
 		});
 		return;		
 	}
-	console.log("updatePage: url",req.url);
+	//console.log("updatePage: url",req.url);
 
 	for(counter=0;counter<objects.length;counter++)
 	{
-		if(req.url.split("?")[0] == "/"+objects[counter].name)
+		//console.log("inside loop: ", counter , " /", objects[counter].name, " ", req.url.split("?")[0].split(".com")[1] );
+		if(req.url.split("?")[0].split(".com")[1] == "/"+objects[counter].name)
 		{	
 			nta.getEntries(objects[counter].name,function(err,documents){
 				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
@@ -152,7 +154,7 @@ loopThroughObjects = function(objects,req,res,next)
 		}
 		else if(req.url.search("/getUUID")>-1)
 		{
-			//res.writeHeader(200);
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
 			nta.createEntry({expiration_date: new Date(),test:444},"sessions",function(msg,obj){
 				console.log(JSON.stringify(obj));
 				res.end(""+obj[0]._id);
@@ -248,6 +250,7 @@ loopThroughObjects = function(objects,req,res,next)
 								console.log(JSON.stringify(myObjects));
 								//var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
 								//console.log("getPage: ",mergedJSandHTML);
+								//res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
 								res.end(ejs.render(scriptonly,{locals:{"myObjects":myObjects}}));
 								//res.end(mergedJSandHTML);
 							});
@@ -314,7 +317,7 @@ loopThroughObjects = function(objects,req,res,next)
                 return;
             }
 				
-            var objectId = req.url.split("/")[3].split("?")[0];
+            var objectId = req.url.split(".com")[1].split("/")[3].split("?")[0];
 
             nta.deleteEntry(objectId,objects[counter].name,function(err,documents){
             	if(err)
@@ -341,7 +344,8 @@ loopThroughObjects = function(objects,req,res,next)
                         }
                         
                         updatedRow = JSON.parse((""+req.rawBody).replace("_id","_id_mock"));
-                        var oId = req.url.split("/")[3].split("?")[0];
+                        var oId = req.url.split(".com")[1].split("/")[3].split("?")[0];
+                        console.log("oId: ",oId);
                         searchKey = [];
                         for(j=0;j<objects[counter].fields.length;j++)
 						{	
