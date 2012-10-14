@@ -12,6 +12,58 @@
 	<script>
 		var myId="";
 		var editor;
+
+		 (function(d){
+ 		    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+ 		    if (d.getElementById(id)) {return;}
+ 		    js = d.createElement('script'); js.id = id; js.async = true;
+ 		    js.src = "//connect.facebook.net/en_US/all.js";
+ 		    ref.parentNode.insertBefore(js, ref);
+ 		  }(document));
+
+ 		window.fbAsyncInit = function() {
+ 		   FB.init({
+		 	 appId      : '231629423618271', // App ID
+ 		     //channelUrl : 'http://concussionjs.COM/channel.html', // Channel File
+ 		     status     : true, // check login status
+ 		     cookie     : true, // enable cookies to allow the server to access the session
+ 		     xfbml      : true  // parse XFBML
+ 		   });
+		
+ 		   // Additional initialization code here
+
+ 		 // Load the SDK Asynchronously
+ 		
+
+ 		    // listen for and handle auth.statusChange events
+        FB.Event.subscribe('auth.statusChange', function(response) {
+        	//alert(JSON.stringify(response));
+          if (response.authResponse) {
+            // user has auth'd your app and is logged into Facebook
+            FB.api('/me', function(me){
+         		//alert(JSON.stringify(me));
+				myId = me.id;
+				//alert(myId);
+				if (me.name) {
+					document.getElementById('auth-displayname').innerHTML = me.name;
+				}
+				getPage(myId,"index",submitFormData);
+            })
+            document.getElementById('auth-loggedout').style.display = 'none';
+            document.getElementById('auth-loggedin').style.display = 'block';
+          } else {
+            // user has not auth'd your app, or is not logged into Facebook
+            document.getElementById('auth-loggedout').style.display = 'block';
+            document.getElementById('auth-loggedin').style.display = 'none';
+          }
+        });
+
+        // respond to clicks on the login and logout links
+        $('#masthead-icon-facebook').click(function(){FB.login();});
+        $('#auth-logoutlink').click(function(){FB.logout();}); 
+      } 
+
+		
 		$(document).ready(function(){
 			editor = ace.edit("editor");
 			editor.setTheme("ace/theme/idle_fingers");
@@ -24,7 +76,10 @@
 
 			if(!myId)
 			{	
-				editor.getSession().setValue("<html>\n\t<body>\n\t\t<div data-bind=\"foreach:saturday\"><br>\n\t\t\t<span data-bind=\"text:questionTitle\"></span> - \n\t\t\t<span data-bind=\"text:questionBody\"></span>\n\t\t</div>\n\t\t<form data-bind=\"submit:saturday_create\">\n\t\t\tQuestion title\n\t\t\t<input data-bind=\"value:saturday_questionTitle\"><br>\n\t\t\tQuestion body \n\t\t\t<input data-bind=\"value:saturday_questionBody\"></br>\n\t\t\t<input type=\"submit\" value=\"add question\">\n\t\t</form>\n\t</body>\n</html>");
+				editor.getSession().setValue("<html>\n<head>\n    <title>Contacts</title>\n\t<meta charset=\"utf-8\">\n\t<link rel=\"stylesheet\" href=\"contacts-style.css\">\n</head>\n\t<body>\n        <div id=\"contact-editor\">\n    \t<form data-bind=\"submit:tide_create\">\n        <label>\n\t\t\tPlayer Name\n\t\t\t<input type=\"text\" value=\"Sally\" data-bind=\"value:tide_playerName\">\n\t\t</label>\n\t\t<label>\n\t\t\tPlayer Number\n\t\t\t<input type=\"text\" value=\"Ride\" data-bind=\"value:tide_playerNumber\">\n\t\t</label>\n        <button type=\"submit\" value=\"Save\">save</button>    \n        </form>\n\t</div>\n        \n\t    <div id=\"contacts\" data-bind=\"foreach:tide\">\n    \t<div class=\"vcard\">\n\t\t\t<div class=\"fn\" data-bind=\"text:playerName\">Sally Ride</div>\n\t\t\t<div class=\"tel\" data-bind=\"text:playerNumber\">+1.818.555.1212</div>\n\t\t</div>\n\t</body>\n</html>");
+
+
+					/*"<html>\n\t<body>\n\t\t<div data-bind=\"foreach:saturday\"><br>\n\t\t\t<span data-bind=\"text:questionTitle\"></span> - \n\t\t\t<span data-bind=\"text:questionBody\"></span>\n\t\t</div>\n\t\t<form data-bind=\"submit:saturday_create\">\n\t\t\tQuestion title\n\t\t\t<input data-bind=\"value:saturday_questionTitle\"><br>\n\t\t\tQuestion body \n\t\t\t<input data-bind=\"value:saturday_questionBody\"></br>\n\t\t\t<input type=\"submit\" value=\"add question\">\n\t\t</form>\n\t</body>\n</html>");*/
 
 				submitFormData(readCookie("sessionId"));
 			}
@@ -78,9 +133,16 @@ function getPage(userId,filename,callback)
 			{	 
 				//alert(result);
 				$("#preview").attr({"src":"http://testdrive.concussionjs.com/getPage?id="+ myId + "&pagename=index"});
+				$("#admin-app").attr({"src":"http://testdrive.concussionjs.com/admin?id="+ myId});
 			}
 		});
-}
+	}
+
+	function openUpPreviewWindow()
+	{
+		window.open("http://testdrive.concussionjs.com/getPage?id="+ myId + "&pagename=index");
+	}
+
 	</script>
 
 	<link rel="stylesheet" href="main.css">
@@ -225,7 +287,7 @@ function getPage(userId,filename,callback)
 								<header class="panel-header">
 									<div class="panel-header-primary"></div>
 									<div class="panel-header-title">Preview</div>
-									<div class="panel-header-secondary"><a class="panel-header-icon" id="panel-header-icon-new-window" title="Open in a new window"></a></div>
+									<div class="panel-header-secondary"><a class="panel-header-icon" id="panel-header-icon-new-window" title="Open in a new window" onclick="openUpPreviewWindow()"></a></div>
 								</header>
 								<div class="panel-body">
 									<iframe src="contacts.html" id="preview"></iframe>
