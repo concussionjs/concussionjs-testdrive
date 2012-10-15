@@ -589,6 +589,34 @@ try{
                                 });
                 };
 
+        <%=objects[i].name%>_delete = function() {
+                                $.ajax("/<%=objects[i].name%>/delete/"+this._id(), {
+                                        data: '',
+                                        type: "get", contentType: "application/json",
+                                        success: function(result)
+                                        {
+                                                $.getJSON("/<%=objects[i].name%>", function(allData) {
+                                                        var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
+                                                        self.<%=objects[i].name%>(mapped);
+                                                });
+                                        }
+                                });
+                };
+
+         <%=objects[i].name%>_update = function() {
+                            $.ajax("/<%=objects[i].name%>/update/" + this._id() , {
+            				data: ko.toJSON(this),
+            				type: "post", contentType: "application/json",
+            				success: function(result) 
+							{ 
+                                $.getJSON("/<%=objects[i].name%>", function(allData) {
+                                    var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
+                                    self.<%=objects[i].name%>(mapped);
+                                });
+                            }
+                        });
+         };
+
 		<%=objects[i].name%>_search = function() {
 				//alert(self.<%=objects[i].name%>_search_term());
 				$.getJSON("/<%=objects[i].name%>/search/"+self.<%=objects[i].name%>_search_term(), function(allData) {
