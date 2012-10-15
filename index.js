@@ -212,7 +212,8 @@ loopThroughObjects = function(objects,req,res,next)
 							addNewObjects(myObjects, function(){
 								console.log("getPage: addNewObjects");
 								console.log(JSON.stringify(myObjects));
-								var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
+								var myregexp2 = new RegExp(": *"+myName,"ig");
+								var mergedJSandHTML = (""+objects[0].html).replace(myregexp2, ":"+myObjects[0].name);
 								console.log("getPage: ",mergedJSandHTML);
 								res.write(ejs.render(html,{locals:{"myObjects":myObjects}}));
 								res.end(mergedJSandHTML);
