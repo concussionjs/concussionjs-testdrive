@@ -19,7 +19,7 @@
     			alert("inside getUUID");
     			$.get("http://testdrive.concussionjs.com/getUUID",function(res)
     			{
-    				alert(res);
+    				//alert(res);
     				callback(res);
     			});
     			//alert(uuid);
@@ -34,7 +34,7 @@
 				}
 				else var expires = "";
 				document.cookie = name+"="+value+expires+"; path=/";
-				alert(document.cookie);
+				// alert(document.cookie);
 			}
 
 			function readCookie(name) {
