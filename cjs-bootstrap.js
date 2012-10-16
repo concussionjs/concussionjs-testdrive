@@ -1,3 +1,7 @@
+/*
+	Library to leverage power of concussion platform from anywhere
+*/
+
 //$.getScript("http://testdrive.concussionjs.com/assets/js/libs/jquery-1.7.1.min.js",function(){
 $.getScript("http://testdrive.concussionjs.com/assets/js/cjs-utilities.js", function(){
 	$.getScript("http://testdrive.concussionjs.com/assets/js/libs/knockout-2.0.0.js", function(){   									
