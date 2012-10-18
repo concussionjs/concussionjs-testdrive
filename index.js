@@ -125,7 +125,17 @@ loopThroughObjects = function(objects,req,res,next)
 		}
 		
         var newObject = {};
-	    var searchTerm = req.url.split(".com")[1].split("/")[2].split("?")[0];
+        var searchTerm="";
+        if(req.url.search(".com")>-1)
+        {
+	    	searchTerm = req.url.split(".com")[1].split("/")[2].split("?")[0];
+		}
+	    else
+	    {
+	    	searchTerm = req.url.split("/")[2].split("?")[0];
+	    	console.log("searchTerm: 3", searchTerm);
+	    }
+
 	    console.log("searchTerm: ", searchTerm, req.url);
 		nta.getEntriesWhere({"name":searchTerm},"nextera_objects",function(err,result){
 				if(err)
@@ -143,7 +153,9 @@ loopThroughObjects = function(objects,req,res,next)
 	for(counter=0;counter<objects.length;counter++)
 	{
 		//console.log("inside loop: ", counter , " /", objects[counter].name, " ", req.url.split("?")[0].split(".com")[1] );
-		if(req.url.split("?")[0].split(".com")[1] == "/"+objects[counter].name)
+		if(req.url.split("?")[0].split(".com")[1] == "/"+objects[counter].name 
+			||
+			req.url.split("?")[0] == "/"+objects[counter].name)
 		{	
 			nta.getEntries(objects[counter].name,function(err,documents){
 				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
@@ -312,24 +324,30 @@ loopThroughObjects = function(objects,req,res,next)
 		
 		else if(req.url.search("/"+objects[counter].name +"/delete")>-1)
         {
+            
             if(req.url.split("/").length < 3)
             {
             	//console.log("no search term provided");
                 return;
             }
-				
-            var objectId = req.url.split(".com")[1].split("/")[3].split("?")[0];
-
-            nta.deleteEntry(objectId,objects[counter].name,function(err,documents){
-            	if(err)
-            	{
-            		res.end("failure");
-            	}
-            	else
-            	{
-	            	res.end("success");
-	            }
-            });
+        	if(req.url.search(".com")>-1)
+        	{
+            	var objectId = req.url.split(".com")[1].split("/")[3].split("?")[0];
+            }
+            else
+            {
+            	var objectId = req.url.split("/")[3].split("?")[0];
+            }	
+            	nta.deleteEntry(objectId,objects[counter].name,function(err,documents){
+            		if(err)
+            		{
+            			res.end("failure");
+            		}
+            		else
+            		{
+	            		res.end("success");
+	            	}
+            	});
                         
 			return;
         }
@@ -345,7 +363,18 @@ loopThroughObjects = function(objects,req,res,next)
                         }
                         
                         updatedRow = JSON.parse((""+req.rawBody).replace("_id","_id_mock"));
-                        var oId = req.url.split(".com")[1].split("/")[3].split("?")[0];
+                        var oId;
+
+                        if(req.url.search(".com")>-1)
+        				{
+            				var oId = req.url.split(".com")[1].split("/")[3].split("?")[0];
+            			}
+            			else
+            			{
+            				var oId = req.url.split("/")[3].split("?")[0];
+            			}	
+
+
                         console.log("oId: ",oId);
                         searchKey = [];
                         for(j=0;j<objects[counter].fields.length;j++)
