@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<script src="ace.js"></script>
 	<script src="mode-html.js"></script>
-	<script src="theme-idle_fingers.js"></script>
+	<script src="theme-concussion.js"></script>
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
 	<script src="jquery-1.8.1.min.js"></script>
 	<script src="assets/js/cjs-utilities.js" type="text/javascript"></script>
