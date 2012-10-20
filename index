@@ -227,30 +227,37 @@ function getPage(userId,filename,callback)
     &lt;input type="submit"&gt;
 &lt;/form&gt;
 </pre>
+							<p><label for="step2">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 2.</header>
 								<p>Add bindings for list and fields and save (editor and preview)</p>
+								<p><label for="step3">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 3.</header>
 								<p>Create records in preview and watch the contacts appear (editor and preview)</p>
+								<p><label for="step4">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 4.</header>
 								<p>Go to admin and see objects, records, and fields (admin)</p>
+								<p><label for="step5">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 5.</header>
 								<p>Add new field and bindings, and save (editor and preview).</p>
+								<p><label for="step6">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 6.</header>
 								<p>Go back to admin and see the change (admin)</p>
+								<p><label for="step7">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 7.</header>
 								<p>Add/update records to use the new field</p>
+								<p><label for="step8">Continue &raquo;</label></p>
 							</article>
 							<article>
 								<header>These are the instructions for step 8.</header>
