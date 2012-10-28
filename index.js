@@ -87,7 +87,7 @@ addNewObjects = function(objects,callback)
 
 var generateRoutes = function(req,res,next){		
 	skipNext=false;
-	console.log("req.url: generateroutes: ", req.url)
+	console.log("req.url: generateroutes: ", req.url, req.rawBody)
 	nta.getEntries("nextera_objects",function(err,result){
 		if(err)
 		{
@@ -143,7 +143,7 @@ loopThroughObjects = function(objects,req,res,next)
 					res.end(err);
 					return;
 				}
-				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'application/json'});
 				res.end(JSON.stringify(result));
 		});
 		return;		
@@ -158,7 +158,7 @@ loopThroughObjects = function(objects,req,res,next)
 			req.url.split("?")[0] == "/"+objects[counter].name)
 		{	
 			nta.getEntries(objects[counter].name,function(err,documents){
-				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'application/json'});
 				res.end(""+JSON.stringify(documents));
 			})
 			skipNext=true;
@@ -166,7 +166,7 @@ loopThroughObjects = function(objects,req,res,next)
 		}
 		else if(req.url.search("/getUUID")>-1)
 		{
-			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 			nta.createEntry({expiration_date: new Date(),test:444},"sessions",function(msg,obj){
 				console.log(JSON.stringify(obj));
 				res.end(""+obj[0]._id);
@@ -178,6 +178,7 @@ loopThroughObjects = function(objects,req,res,next)
 			var searchKey = [];
 			var object = {};
 			//console.log(req.rawBody);
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 			var sessionId=req.url.split("/")[req.url.split("/").length-1];
 			console.log("session id: ",sessionId);	
 				parse.runGenerateStructureHTML(req.rawBody,function(myObjects){
@@ -204,7 +205,7 @@ loopThroughObjects = function(objects,req,res,next)
 		{
 			var searchKey = [];
 			var object = {};
-			
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 			console.log("querystring: ",req.url.split("?").length);
 			var args = qs.parse(req.url.split("?")[1]);
 			var id=args.id;
@@ -279,6 +280,7 @@ loopThroughObjects = function(objects,req,res,next)
         {
 				var searchKey = [];
 				var object = {};
+				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'application/json'});
 				setupObject(searchKey,0,objects,counter,req,object,function(newObject){
 					nta.createEntry(newObject,objects[counter].name,function(msg){
 						res.end(msg);
@@ -293,7 +295,7 @@ loopThroughObjects = function(objects,req,res,next)
 			{
 				return;  
 			}
-			
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 	        var searchTerm = req.url.split("/")[3];
             nta.searchEntries(searchTerm,objects[counter].name,function(err,documents){                     
 				res.end(JSON.stringify(documents));
@@ -304,6 +306,7 @@ loopThroughObjects = function(objects,req,res,next)
         {	
 	        var where = qs.parse(req.url.split("?")[1]);
 	        console.log(JSON.stringify(where));
+	        res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
             nta.getEntryWhere(where,objects[counter].name,function(err,documents){  
             	//console.log(documents.length);                   
 				res.end(JSON.stringify(documents[0]));
@@ -314,7 +317,7 @@ loopThroughObjects = function(objects,req,res,next)
         {	
 	        var args = qs.parse(req.url.split("?")[1]);
 	        var where = args.where;
-
+	        res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
             nta.getEntriesByName(where,objects[counter].name,function(err,documents){  
             	//console.log(documents.length);                   
 				res.end(JSON.stringify(documents));
@@ -324,7 +327,7 @@ loopThroughObjects = function(objects,req,res,next)
 		
 		else if(req.url.search("/"+objects[counter].name +"/delete")>-1)
         {
-            
+            res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'application/json'});
             if(req.url.split("/").length < 3)
             {
             	//console.log("no search term provided");
@@ -355,7 +358,7 @@ loopThroughObjects = function(objects,req,res,next)
 		else if(req.url.search("/"+objects[counter].name +"/update/")>-1)
         {
                 		console.log("updatePage: ",req.rawBody);
-                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
                         if(req.url.split("/").length < 3)
                         {
                                 //console.log("no search term provided");
@@ -403,7 +406,7 @@ loopThroughObjects = function(objects,req,res,next)
         else if(req.url.search("/"+objects[counter].name +"/updateWhere/?")>-1)
         {
                 		console.log("updatePage:x ",req.rawBody," url",req.url);
-                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
                         if(req.url.split("/").length < 3)
                         {
                                 //console.log("no search term provided");
@@ -462,12 +465,13 @@ var setupObject = function(searchKey,fieldIndex,objects,counter,req,newObject,ca
 			var text = "newObject." + objects[counter].fields[j].name + " = JSON.parse(req.rawBody)." + objects[counter].name + "_" + objects[counter].fields[j].name;				
 		else
 			var text = "newObject." + objects[counter].fields[j].name + " = ''";
-		//console.log("create: text:",text);
+		console.log("create: rawBody: ", req.rawBody);
+		console.log("create: text: ",text);
 		eval(text);
 		//console.log("create: eval",eval("newObject." + objects[counter].fields[j].name));
 		
-		//console.log("create: newObject: ", JSON.stringify(newObject));
-		searchKey.push(eval("newObject." + objects[counter].fields[j].name));
+		console.log("create: newObject: ", JSON.stringify(newObject));
+		searchKey.push(eval("newObject." + objects[counter].fields[j].varname));
 		newObject._search_keys=searchKey;
 		setupObject(searchKey,fieldIndex+1,objects,counter,req,newObject,callback);
 	}			
