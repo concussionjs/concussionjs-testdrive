@@ -247,24 +247,24 @@ loopThroughObjects = function(objects,req,res,next)
 			var args = qs.parse(req.url.split("?")[1]);
 			var id=args.id;
 			var pagename=args.pagename;
-			console.log("getPage: session id: ",id," ",pagename);
+			console.log("getScript: session id: ",id," ",pagename);
 			
 			nta.getEntriesWhere({"id":id,"name":pagename},"pages",function(err,objects){
-				console.log(JSON.stringify(objects));
+				console.log("getScript: ",JSON.stringify(objects));
 				if(objects && objects.length>0 && objects[0].html)
 				{
 					parse.runGenerateStructureHTML(objects[0].html,function(myObjects){
 						var myName = myObjects[0].name;
 						setSessionId(myObjects, "id_" + id, 0,function(myObjects){
-							console.log(id," ",JSON.stringify(myObjects));
-							console.log(objects[0].html);
-							console.log("getPage: setSessionId");
+							console.log("getScript: setSession",id," ",JSON.stringify(myObjects));
+							console.log("getScript: ",objects[0].html);
+							console.log("getScript: setSessionId");
 							addNewObjects(myObjects, function(){
-								console.log("getPage: addNewObjects");
-								console.log(JSON.stringify(myObjects));
+								console.log("getScript: addNewObjects");
+								console.log("getScript: ", JSON.stringify(myObjects));
 								//var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
 								//console.log("getPage: ",mergedJSandHTML);
-								//res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With'});
+								//res.writeHeader(200,{'Access-Control-Allow-Origin':'*'});
 								res.end(ejs.render(scriptonly,{locals:{"myObjects":myObjects}}));
 								//res.end(mergedJSandHTML);
 							});
