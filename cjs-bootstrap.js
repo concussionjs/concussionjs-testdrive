@@ -9,11 +9,12 @@ $.getScript("http://testdrive.concussionjs.com/assets/js/cjs-utilities.js", func
 		$(document).ready(function(){
 			
 
-			function getPage()
+			function getPage(callback)
 			{
 				
 				var vars = [], hash;
 			    var q = document.URL.split('?')[1];
+			    page= {};
 			    if(q != undefined){
 			        q = q.split('&');
 			        for(var i = 0; i < q.length; i++){
@@ -31,25 +32,36 @@ $.getScript("http://testdrive.concussionjs.com/assets/js/cjs-utilities.js", func
 					//alert("inside no cookie " + id);
 						//createCookie("sessionId",id,1);
 						localStorage.setItem("sessionId",id);
-						//alert(localStorage.getItem("sessionId"));
+							//alert(localStorage.getItem("sessionId"));
+						page.id=localStorage.getItem("sessionId");
+						page.html=$('html')[0].innerHTML;
+						page.name='index';
+						//alert(page.id);	
+						callback(page);	
 					});
 				}
-				page= {};
-				page.id=localStorage.getItem("sessionId");
-				page.html=$('html')[0].innerHTML;
-				page.name='index';
-				//alert(page.html);			
-				return page;
+				else
+				{
+					page.id=localStorage.getItem("sessionId");
+						page.html=$('html')[0].innerHTML;
+						page.name='index';
+						//alert("else ",page.id);	
+						callback(page);	
+				}
+				
+				
 
 			}
 			//JSON.stringify(document.));
-			$.ajax({
+			getPage(function(html)
+			{
+					$.ajax({
 							
 							//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
             				url: "http://testdrive.concussionjs.com/pages/updateWhere/?id="+localStorage.getItem("sessionId"),
-            				data: JSON.stringify(getPage()),
-            				crossDomain:true,
-            				cache:false,
+            				data: JSON.stringify(html),
+            				//crossDomain:true,
+            				//cache:false,
             				type: "post", 
             				success: function(result) 
 							{ 
@@ -61,7 +73,8 @@ $.getScript("http://testdrive.concussionjs.com/assets/js/cjs-utilities.js", func
 								$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.concussionjs.com/admin?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
 								//$("#preview").attr({"src":"http://testdrive.concussionjs.com/getPage?id="+ myId + "&pagename=index"});
 							}
-        		});
+        			});
+        	});
 		});
 	});
 });
