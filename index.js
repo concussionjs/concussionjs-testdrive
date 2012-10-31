@@ -35,10 +35,10 @@ function escapeSpecialCharacters(text)
 
 addNewObjects = function(objects,callback)
 {
-	console.log("getPage: inside addNewObjects",objects.length);
+	console.log("addNewObjects: inside addNewObjects",objects.length);
 	for(i=0;i<objects.length;i++)
 	{
-		console.log(objects[i].name);
+		console.log("addNewObjects: ",objects[i].name);
 		try{
 		var currentObj = objects[i];
 		var currentName = ""+currentObj.name;
@@ -48,7 +48,7 @@ addNewObjects = function(objects,callback)
 		nta.getEntriesWhere({"name":currentName},"nextera_objects",function(err,result)
 		{
 			//console.log("addNewObjects,","inside find ", "result: ", result.length, ", ", currentObj.name);
-			console.log("getPage: inside getEntriesWhere");
+			console.log("addNewObjects: inside getEntriesWhere");
 			if(err)
 			{
 				console.log("addNewObjects,",err);
@@ -68,7 +68,7 @@ addNewObjects = function(objects,callback)
 			}	
 			else
 			{
-				console.log("getPage: object does not exist")
+				console.log("addNewObjects: object does not exist")
 				nta.createEntry(currentObj,"nextera_objects",function(msg){
 						console.log("add new ",msg);
 						callback();
@@ -76,11 +76,11 @@ addNewObjects = function(objects,callback)
 			}
 				
 		});
-		console.log("getPage: i: ",i, " objects.length: ", objects.length);
+		console.log("addNewObjects: i: ",i, " objects.length: ", objects.length);
 		if(i==objects.length-1)
 			callback();
 	}
-		}catch(e){console.log("big error",e);}
+		}catch(e){console.log("addNewObjects:big error",e);}
 	}
 	
 }
@@ -213,10 +213,11 @@ loopThroughObjects = function(objects,req,res,next)
 			console.log("getPage: session id: ",id," ",pagename);
 			
 			nta.getEntriesWhere({"id":id,"name":pagename},"pages",function(err,objects){
-				console.log(JSON.stringify(objects));
+				console.log("why double:, number of matching pages ", objects.length);
 				if(objects && objects.length>0 && objects[0].html)
 				{
 					parse.runGenerateStructureHTML(objects[0].html,function(myObjects){
+						console.log("why double:, number of objects parsed", myObjects.length);
 						var myName = myObjects[0].name;
 						setSessionId(myObjects, "id_" + id, 0,function(myObjects){
 							console.log(id," ",JSON.stringify(myObjects));
@@ -226,9 +227,13 @@ loopThroughObjects = function(objects,req,res,next)
 								console.log("getPage: addNewObjects");
 								console.log(JSON.stringify(myObjects));
 								var myregexp2 = new RegExp(": *"+myName,"ig");
-								var mergedJSandHTML = (""+objects[0].html).replace(myregexp2, ":"+myObjects[0].name);
+								var mergedJSandHTML=""+objects[0].html;
+								for(i=0;i<myObjects.length;i++)
+								{	
+									mergedJSandHTML = mergedJSandHTML.replace(myregexp2, ":"+myObjects[i].name);
+								}
 								console.log("getPage: ",mergedJSandHTML);
-								res.write(ejs.render(html,{locals:{"myObjects":myObjects}}));
+								res.write(ejs.render(scriptonly,{locals:{"myObjects":dedupe(myObjects)}}));
 								res.end(mergedJSandHTML);
 							});
 						});						

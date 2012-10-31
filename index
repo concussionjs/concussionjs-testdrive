@@ -283,7 +283,7 @@ function getPage(userId,filename,callback)
 						<section id="front-end">
 							<section id="markup" class="panel">
 								<header class="panel-header">
-									<div class="panel-header-primary"><a class="panel-header-icon" id="panel-header-icon-save" title="Save"></a></div>
+									<div class="panel-header-primary"><a class="panel-header-icon" id="panel-header-icon-save" title="Save" name="Save"></a></div>
 									<div class="panel-header-title">Editor</div>
 									<div class="panel-header-secondary"></div>
 								</header>
