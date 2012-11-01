@@ -7,10 +7,11 @@ var mvm;
 $(function() {
 <%
 try{
-	
+	var debug=false;
 	objects = myObjects[0];
 	sessionId = myObjects[1];
-	console.log("inside kotemplate-admin.ejs: ",sessionId);
+	if(debug)
+		console.log("inside kotemplate-admin.ejs: ",sessionId);
 	%>
 	function fields(data)
 			{
@@ -32,10 +33,12 @@ try{
 		if(!myObject)
 			return;
 
-		if(myObject.name.search("_search")>-1)
+		if(myObject.name && myObject.name.search("_search")>-1)
 		{
-			console.log("inside handleChildren where myObject.name contains _search");
-                        nextFunction(objects[counter+1],counter+1,handleChildren);
+			
+			if(debug)
+				console.log("inside handleChildren where myObject.name contains _search");
+            nextFunction(objects[counter+1],counter+1,handleChildren);
 			return;
 		}
 
@@ -54,7 +57,8 @@ try{
 			{
 				//alert(data);
 				<%
-					console.log("myobject name: ", myObject.name, " varname: ", myObject.varname)
+					if(debug)
+						console.log("myobject name: ", myObject.name, " varname: ", myObject.varname)
 				%>
 				var self = this;
 				var nextera_selected = ko.observable(false);
@@ -460,7 +464,7 @@ try{
 	for(i=0;i<objects.length;i++)
 	{
 		//console.log("tee: ", objects[i], " ", objects[i].type, " ", objects[i].fields.length);
-		if(objects[i].name.search("_search")>-1)
+		if(objects[i].name && objects[i].name.search("_search")>-1)
 			continue;
 		if(objects[i].name)
 		{
@@ -514,10 +518,10 @@ try{
 	//initial load
 	<%
 
-	//objects= objects.filter(function(element,index, array){return element.name.search("id_xxx")>-1 || element.name=="nextera_objects"});
+	//objects= objects.filter(function(element,index, array){return (element.name && element.name.search("id_xxx")>-1) || element.name=="nextera_objects"});
 	for(i=0;i<objects.length;i++)
 	{
-		 if(objects[i].name.search("_search")>-1)
+		 if(objects[i].name && objects[i].name.search("_search")>-1)
                         continue;	
 		//console.log(objects[i].name.search("id_xxx"));
 		//if(objects[i].name.search("id_xxx")>-1)
@@ -534,7 +538,7 @@ try{
         			self.<%=objects[i].name%>(mapped);
         			<%if(objects[i].name=="nextera_objects")
         			{%>
-        				self.<%=objects[i].name%>(self.<%=objects[i].name%>().filter(function(element,index,array){return element.name().search("<%=sessionId%>")>-1}));
+        				self.<%=objects[i].name%>(self.<%=objects[i].name%>().filter(function(element,index,array){return (element.name() && element.name().search("<%=sessionId%>")>-1)}));
         			<%}%>
         		<%
         			if(objects[i].name=="nextera_objects")
@@ -553,11 +557,13 @@ try{
 	%>
 	// create code
 	<%
-	console.log("objectName: just before loop ", objects.length);
+	if(debug)
+		console.log("objectName: just before loop ", objects.length);
 	for(i=0;i<objects.length;i++)
 	{
-		console.log("objectName: ",objects[i].name);
-		 if(objects[i].name.search("_search")>-1)
+		if(debug)
+			console.log("objectName: ",objects[i].name);
+		 if(objects[i].name && objects[i].name.search("_search")>-1)
                         continue;	
 	%>
 		<%=objects[i].name%>_create = function() {
@@ -628,4 +634,4 @@ try{
 	var latebind = "#latebind";
 });
 </script>
-<%}catch(error){console.log("\n\n\n***",error.stack," ",error.message,"****\n\n\n");}%>
+<%}catch(error){console.error("\n\n\n***",error.stack," ",error.message,"****\n\n\n");}%>

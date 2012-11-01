@@ -9,7 +9,7 @@ var ejs = require("ejs");
 var qs = require("querystring");
 var http = require("http");
 var parse = require("./testParse.js");
-
+var util = require("util");
 var s = settings();
 
 objects = [];
@@ -35,23 +35,27 @@ function escapeSpecialCharacters(text)
 
 addNewObjects = function(objects,callback)
 {
-	console.log("addNewObjects: inside addNewObjects",objects.length);
+	if(nta.debug)
+		util.debug("addNewObjects: inside addNewObjects",objects.length);
 	for(i=0;i<objects.length;i++)
 	{
-		console.log("addNewObjects: ",objects[i].name);
+		if(nta.debug)
+			util.debug("addNewObjects: ",objects[i].name);
 		try{
 		var currentObj = objects[i];
 		var currentName = ""+currentObj.name;
-		console.log("addNewObjects: currentName",currentName," ",currentObj.fields.length, JSON.stringify(currentObj));	
+		if(nta.debug)
+			util.debug("addNewObjects: currentName",currentName," ",currentObj.fields.length, JSON.stringify(currentObj));	
 		if(currentName.search("_search")<0)
 		{
 		nta.getEntriesWhere({"name":currentName},"nextera_objects",function(err,result)
 		{
 			//console.log("addNewObjects,","inside find ", "result: ", result.length, ", ", currentObj.name);
-			console.log("addNewObjects: inside getEntriesWhere");
+			if(nta.debug)
+				util.debug("addNewObjects: inside getEntriesWhere");
 			if(err)
 			{
-				console.log("addNewObjects,",err);
+				console.error("Error when getting entries in addNewObjects, err:",err);
 				return;
 			}
 			
@@ -61,37 +65,45 @@ addNewObjects = function(objects,callback)
 				nta.updateEntry(""+result[0]._id,{$set:currentObj},"nextera_objects",function(err){
 						if(err)
 						{
-							console.log("addNewObjects err: ",err);
+							console.error("addNewObjects err: ",err);
 						}	
 				});
 				return;
 			}	
 			else
 			{
-				console.log("addNewObjects: object does not exist")
+				if(nta.debug)
+					util.debug("addNewObjects: object does not exist");
 				nta.createEntry(currentObj,"nextera_objects",function(msg){
-						console.log("add new ",msg);
+						if(nta.debug)
+							util.debug("add new ",msg);
 						callback();
 				});	
 			}
 				
 		});
-		console.log("addNewObjects: i: ",i, " objects.length: ", objects.length);
+		if(nta.debug)
+			util.debug("addNewObjects: i: ",i, " objects.length: ", objects.length);
+		
 		if(i==objects.length-1)
 			callback();
 	}
-		}catch(e){console.log("addNewObjects:big error",e);}
+		}catch(e){console.error("addNewObjects:big error",e);}
 	}
 	
 }
 
 var generateRoutes = function(req,res,next){		
 	skipNext=false;
-	console.log("req.url: generateroutes: ", req.url, req.rawBody)
+	
+	if(nta.debug)
+		util.debug("req.url: generateroutes: ", req.url, req.rawBody)
+	
 	nta.getEntries("nextera_objects",function(err,result){
 		if(err)
 		{
 			res.end(err);
+			console.error("getEntries err: ", err);
 			return;	
 		}
 		///console.log("objects: ", JSON.stringify(result));
@@ -109,7 +121,8 @@ function setSessionId(myObjects,sessionId,i,callback)
 	}
 	else
 	{
-		console.log("getPage: ",i);
+		if(nta.debug)
+			util.debug("getPage: ",i);
 		callback(myObjects);
 	}
 }
@@ -133,14 +146,17 @@ loopThroughObjects = function(objects,req,res,next)
 	    else
 	    {
 	    	searchTerm = req.url.split("/")[2].split("?")[0];
-	    	console.log("searchTerm: 3", searchTerm);
+	    	if(nta.debug)
+				util.debug("searchTerm: 3", searchTerm);
 	    }
 
-	    console.log("searchTerm: ", searchTerm, req.url);
+	    if(nta.debug)
+			util.debug("searchTerm: ", searchTerm, req.url);
 		nta.getEntriesWhere({"name":searchTerm},"nextera_objects",function(err,result){
 				if(err)
 				{
 					res.end(err);
+					console.error("getEntriesWhere err: ", err);
 					return;
 				}
 				res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'application/json'});
@@ -168,7 +184,8 @@ loopThroughObjects = function(objects,req,res,next)
 		{
 			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 			nta.createEntry({expiration_date: new Date(),test:444},"sessions",function(msg,obj){
-				console.log(JSON.stringify(obj));
+				if(nta.debug)
+					util.debug(JSON.stringify(obj));
 				res.end(""+obj[0]._id);
 			});
 			return;
@@ -178,17 +195,20 @@ loopThroughObjects = function(objects,req,res,next)
 			var searchKey = [];
 			var object = {};
 			//console.log(req.rawBody);
-			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
 			var sessionId=req.url.split("/")[req.url.split("/").length-1];
-			console.log("session id: ",sessionId);	
+			
+				if(nta.debug)
+					util.debug("session id: ",sessionId);	
 				parse.runGenerateStructureHTML(req.rawBody,function(myObjects){
 					//objects = objects.concat(myObjects);
 					var myName = myObjects[0].name;
 					//myObjects[0].name=sessionId+"_"+myObjects[0].name;
 					setSessionId(myObjects, sessionId, 0,function(myObjects){
-						console.log(sessionId," ",JSON.stringify(myObjects));
+						if(nta.debug)
+							util.debug(sessionId," ",JSON.stringify(myObjects));
 						addNewObjects(myObjects, function(){
-							console.log(JSON.stringify(myObjects));
+							if(nta.debug)
+								util.debug(JSON.stringify(myObjects));
 							//ejs.render(html,{locals:{myObjects:myObjects}}) 	
 							var mergedJSandHTML = (""+req.rawBody).split(myName).join(myObjects[0].name);
 							res.write(mergedJSandHTML);
@@ -206,34 +226,46 @@ loopThroughObjects = function(objects,req,res,next)
 			var searchKey = [];
 			var object = {};
 			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
-			console.log("querystring: ",req.url.split("?").length);
+			if(nta.debug)
+				util.debug("querystring: ",req.url.split("?").length);
 			var args = qs.parse(req.url.split("?")[1]);
 			var id=args.id;
 			var pagename=args.pagename;
-			console.log("getPage: session id: ",id," ",pagename);
+			if(nta.debug)
+				util.debug("getPage: session id: ",id," ",pagename);
 			
 			nta.getEntriesWhere({"id":id,"name":pagename},"pages",function(err,objects){
-				console.log("why double:, number of matching pages ", objects.length);
+				if(nta.debug)
+					util.debug("why double:, number of matching pages ", objects.length);
 				if(objects && objects.length>0 && objects[0].html)
 				{
 					parse.runGenerateStructureHTML(objects[0].html,function(myObjects){
-						console.log("why double:, number of objects parsed", myObjects.length);
+						if(nta.debug)
+							util.debug("why double:, number of objects parsed", myObjects.length);
 						var myName = myObjects[0].name;
 						setSessionId(myObjects, "id_" + id, 0,function(myObjects){
-							console.log(id," ",JSON.stringify(myObjects));
-							console.log(objects[0].html);
-							console.log("getPage: setSessionId");
+							if(nta.debug)
+							{
+								util.debug(id," ",JSON.stringify(myObjects));
+								util.debug(objects[0].html);
+								util.debug("getPage: setSessionId");
+							}
 							addNewObjects(myObjects, function(){
-								console.log("getPage: addNewObjects");
-								console.log(JSON.stringify(myObjects));
+								if(nta.debug)
+								{
+									util.debug("getPage: addNewObjects");
+									util.debug(JSON.stringify(myObjects));
+								}
 								var myregexp2 = new RegExp(": *"+myName,"ig");
 								var mergedJSandHTML=""+objects[0].html;
 								for(i=0;i<myObjects.length;i++)
 								{	
 									mergedJSandHTML = mergedJSandHTML.replace(myregexp2, ":"+myObjects[i].name);
 								}
-								console.log("getPage: ",mergedJSandHTML);
-								res.write(ejs.render(scriptonly,{locals:{"myObjects":dedupe(myObjects)}}));
+								
+								if(nta.debug)
+									util.debug("getPage: ",mergedJSandHTML);
+								res.write(ejs.render(html,{locals:{"myObjects":dedupe(myObjects)}}));
 								res.end(mergedJSandHTML);
 							});
 						});						
@@ -247,30 +279,38 @@ loopThroughObjects = function(objects,req,res,next)
 		{
 			var searchKey = [];
 			var object = {};
-			
+			res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Content-Type': 'text/javascript'});
 			//console.log(req.rawBody);
 			var args = qs.parse(req.url.split("?")[1]);
 			var id=args.id;
 			var pagename=args.pagename;
-			console.log("getScript: session id: ",id," ",pagename);
+			if(nta.debug)
+				util.debug("getScript: session id: ",id," ",pagename);
 			
 			nta.getEntriesWhere({"id":id,"name":pagename},"pages",function(err,objects){
-				console.log("getScript: ",JSON.stringify(objects));
+				if(nta.debug)
+					util.debug("getScript: ",JSON.stringify(objects));
 				if(objects && objects.length>0 && objects[0].html)
 				{
 					parse.runGenerateStructureHTML(objects[0].html,function(myObjects){
 						var myName = myObjects[0].name;
 						setSessionId(myObjects, "id_" + id, 0,function(myObjects){
-							console.log("getScript: setSession",id," ",JSON.stringify(myObjects));
-							console.log("getScript: ",objects[0].html);
-							console.log("getScript: setSessionId");
+							if(nta.debug)
+							{
+								util.debug("getScript: setSession",id," ",JSON.stringify(myObjects));
+								util.debug("getScript: ",objects[0].html);
+								util.debug("getScript: setSessionId");
+							}
 							addNewObjects(myObjects, function(){
-								console.log("getScript: addNewObjects");
-								console.log("getScript: ", JSON.stringify(myObjects));
+								if(nta.debug)
+								{
+									util.debug("getScript: addNewObjects");
+									util.debug("getScript: ", JSON.stringify(myObjects));
+								}
 								//var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
 								//console.log("getPage: ",mergedJSandHTML);
 								//res.writeHeader(200,{'Access-Control-Allow-Origin':'*'});
-								res.end(ejs.render(scriptonly,{locals:{"myObjects":myObjects}}));
+								res.end(ejs.render(scriptonly,{locals:{"myObjects":dedupe(myObjects)}}));
 								//res.end(mergedJSandHTML);
 							});
 						});						
@@ -310,7 +350,8 @@ loopThroughObjects = function(objects,req,res,next)
         else if(req.url.search("/"+objects[counter].name +"/getEntryWhere/")>-1)
         {	
 	        var where = qs.parse(req.url.split("?")[1]);
-	        console.log(JSON.stringify(where));
+	        if(nta.debug)
+				util.debug(JSON.stringify(where));
 	        res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
             nta.getEntryWhere(where,objects[counter].name,function(err,documents){  
             	//console.log(documents.length);                   
@@ -362,7 +403,8 @@ loopThroughObjects = function(objects,req,res,next)
 	
 		else if(req.url.search("/"+objects[counter].name +"/update/")>-1)
         {
-                		console.log("updatePage: ",req.rawBody);
+                		if(nta.debug)
+							util.debug("updatePage: ",req.rawBody);
                 		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
                         if(req.url.split("/").length < 3)
                         {
@@ -383,7 +425,8 @@ loopThroughObjects = function(objects,req,res,next)
             			}	
 
 
-                        console.log("oId: ",oId);
+                        if(nta.debug)
+							util.debug("oId: ",oId);
                         searchKey = [];
                         for(j=0;j<objects[counter].fields.length;j++)
 						{	
@@ -403,15 +446,16 @@ loopThroughObjects = function(objects,req,res,next)
                        				res.end("success");
                        			}
                        		});
-                    	}catch(e){console.log("e:",e);}
+                    	}catch(e){console.error("err:",e);}
 
                     	return;
         }
 
         else if(req.url.search("/"+objects[counter].name +"/updateWhere/?")>-1)
         {
-                		console.log("updatePage:x ",req.rawBody," url",req.url);
-                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'X-Requested-With','Access-Control-Allow-Headers': 'application/json'});
+                		if(nta.debug)
+							util.debug("updatePage:x ",req.rawBody," url",req.url);
+                		res.writeHeader(200,{'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers': 'application/json'});
                         if(req.url.split("/").length < 3)
                         {
                                 //console.log("no search term provided");
@@ -422,7 +466,8 @@ loopThroughObjects = function(objects,req,res,next)
                         
                         var where = qs.parse(req.url.split("?")[1]);
                         
-                        console.log("updatePage: where: ",JSON.stringify(where));
+                        if(nta.debug)
+							util.debug("updatePage: where: ",JSON.stringify(where));
                         searchKey = [];
                         for(j=0;j<objects[counter].fields.length;j++)
 						{	
@@ -442,7 +487,7 @@ loopThroughObjects = function(objects,req,res,next)
                        				res.end("success");
                        			}
                        		});
-                    	}catch(e){console.log("e:",e);}
+                    	}catch(e){console.error("err:",e);}
 
                     	return;
         }
@@ -470,12 +515,16 @@ var setupObject = function(searchKey,fieldIndex,objects,counter,req,newObject,ca
 			var text = "newObject." + objects[counter].fields[j].name + " = JSON.parse(req.rawBody)." + objects[counter].name + "_" + objects[counter].fields[j].name;				
 		else
 			var text = "newObject." + objects[counter].fields[j].name + " = ''";
-		console.log("create: rawBody: ", req.rawBody);
-		console.log("create: text: ",text);
+		if(nta.debug)
+			util.debug("create: rawBody: ", req.rawBody);
+		if(nta.debug)
+			util.debug("create: text: ",text);
+		
 		eval(text);
 		//console.log("create: eval",eval("newObject." + objects[counter].fields[j].name));
 		
-		console.log("create: newObject: ", JSON.stringify(newObject));
+		if(nta.debug)
+			util.debug("create: newObject: ", JSON.stringify(newObject));
 		searchKey.push(eval("newObject." + objects[counter].fields[j].varname));
 		newObject._search_keys=searchKey;
 		setupObject(searchKey,fieldIndex+1,objects,counter,req,newObject,callback);
@@ -520,7 +569,7 @@ fs.watchFile('index.html', function(curr,prev) {
 				nta.getEntriesWhere({name:currentName},"nextera_objects",function(err,result){
 					if(err)
 					{
-						console.log('WatchFile err: ',err);
+						console.error('WatchFile err: ',err);
 						res.end(err);
 						return;
 					}
@@ -558,7 +607,7 @@ fs.watchFile('index.html', function(curr,prev) {
 						nta.createEntry(newObject,"nextera_objects",function(err,docs){
 							if(err)
 							{
-								//console.log("WatchFile err: ",err);
+								console.error("WatchFile err: ",err);
 								return;
 							}
 
@@ -566,7 +615,7 @@ fs.watchFile('index.html', function(curr,prev) {
 							nta.getEntries("nextera_objects",function(err,result){
 								if(err)
 								{
-									//console.log('gen structure: ,err: ',err);
+									console.error('gen structure: ,err: ',err);
 									res.end(err);
 									return;	
 								}
@@ -579,17 +628,18 @@ fs.watchFile('index.html', function(curr,prev) {
 			}
 			}					
 		});
-		}catch(e){console.log("WatchFile: testParse:",e);}
+		}catch(e){console.error("WatchFile: testParse:",e);}
 	}  
 });
 
 var server = connect.createServer(
-	connect.logger({ format: ':method :url' }),
+	//connect.logger({ format: ':method :url' }),
 	connect.cookieParser(),
 	connect.session({ secret:"test"}),
 	connect.bodyParser(),
 	generateRoutes,
-	nta.serveStaticFilesNoWriteHead
+	nta.serveStaticFilesNoWriteHead//,
+	//connect.static(__dirname)
 );
 
 nta.listen(server,s.id);

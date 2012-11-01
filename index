@@ -72,7 +72,10 @@
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
-				createCookie("sessionId",createUUID(),1);
+				createUUID(function(uuid)
+				{
+					createCookie("sessionId",uuid,1);
+				});
 			}
 
 			if(!myId)
