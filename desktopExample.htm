@@ -1,0 +1,45 @@
+
+<html>
+	<head>
+		<!--script src="http://testdrive.concussionjs.com/assets/js/cjs-utilities.js"></script-->
+		<script src="http://testdrive.concussionjs.com/jquery-1.8.1.min.js"></script>
+		<script language="JavaScript" src="http://testdrive.concussionjs.com/cjs-bootstrap.js"></script>
+    	<title>Contacts</title>
+    	<meta charset="utf-8">
+    	<link rel="stylesheet" href="http://testdrive.concussionjs.com/contacts-style.css">
+	</head>
+	<body>
+        <form data-bind="submit:contacts_create">
+        <div class="new-contact">
+			<input class="fn" name="fn" type="text" placeholder="Contact Names" data-bind="value:contacts_Name">
+			<input class="tel" name="tel" type="text" placeholder="Phone Number" data-bind="value:contacts_phoneNumber">
+			<input class="email" name="email" type="text" placeholder="Email Address" data-bind="value:contacts_emailAddress">
+            <button type="submit" value="Save">Add record</button>    
+	    </div>
+        </form>
+	    <div id="contacts" data-bind="foreach:contacts">
+            <div class="vcard" onclick="selectVcard(this)">
+    			<input class="fn" data-bind="value:Name">
+    			<input class="tel" data-bind="value:phoneNumber">
+                <input class="email" data-bind="value:emailAddress">
+                <button data-bind="click:contacts_update">Save</button><button data-bind="click:contacts_delete">Delete</button>
+    		</div>
+        </div>
+ </body>
+
+ <script>
+        function selectVcard(me)
+        {
+            $(".new-contact, .vcard").removeClass("selected");
+            $(me).addClass("selected");
+            event.stopPropagation();
+        }
+        
+        $(document).ready(function(){
+            $("body").on("click", function(event){
+               //alert("clicked body");
+                $(".new-contact, .vcard").removeClass("selected");
+            });
+        });
+     </script>
+</html>
