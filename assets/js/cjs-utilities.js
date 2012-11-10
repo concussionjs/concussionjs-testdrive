@@ -1,6 +1,5 @@
 			function createUUID() {
-    			// http://www.ietf.org/rfc/rfc4122.txt
-    			alert("**ALERT: in createUUID**");
+    		
     			var s = [];
     			var hexDigits = "0123456789abcdef";
     			for (var i = 0; i < 36; i++) {
@@ -16,8 +15,6 @@
 			}
 
 			function createUUID(callback) {
-    			// http://www.ietf.org/rfc/rfc4122.txt
-    			//alert("**ALERT: in createUUID**");
     			var s = [];
     			var hexDigits = "0123456789abcdef";
     			for (var i = 0; i < 36; i++) {
@@ -33,15 +30,10 @@
 			}
 
 			function getUUID(callback) {
-    			// http://www.ietf.org/rfc/rfc4122.txt
-				alert("**ALERT:in getUUID**");
     			$.get("http://testdrive.concussionjs.com/getUUID",function(res)
     			{
-    				alert("**ALERT:in response** " + res);
     				callback(res);
-    			});
-    			//alert(uuid);
-    			
+    			});	
 			}
 
 			function createCookie(name,value,days) {
@@ -52,7 +44,6 @@
 				}
 				else var expires = "";
 				document.cookie = name+"="+value+expires+"; path=/";
-				// alert(document.cookie);
 			}
 
 			function readCookie(name) {

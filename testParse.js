@@ -91,14 +91,14 @@ function recurseStructure(window,node,parentChildList,my_prefix)
 			else if(currentObject.type=="array")
                         {
                                 //console.log("children for each");
-                                currentObject.fields.push({"name":window.$(listOfChildren[i]).attr("data-bind").split(":")[1]});
+                                currentObject.fields.push({"name":window.$(listOfChildren[i]).attr("data-bind").split(",")[0].split(":")[1]});
                         }
 			else if(window.$(listOfChildren[i]).attr("data-bind").split(":")[1]=="$data")
 			{
 				//console.log("do not add as field");
 			}	
 			else if(getChildren(window,listOfChildren[i]).length == 0)
-				currentObject.fields.push({"name":window.$(listOfChildren[i]).attr("data-bind").split(":")[1]});
+				currentObject.fields.push({"name":window.$(listOfChildren[i]).attr("data-bind").split(",")[0].split(":")[1]});
 			else
 			{
 				recurseStructure(window,listOfChildren[i],currentObject.children,prefix);
@@ -166,7 +166,7 @@ function processHTML(errors,window){
 			//}
 			else if(getChildren(window,listOfChildren[i]).length == 0)
 			{
-				var name = window.$(listOfChildren[i]).attr("data-bind").split(":"+prefix)[1];
+				var name = window.$(listOfChildren[i]).attr("data-bind").split(",")[0].split(":"+prefix)[1];
 				currentObject.fields.push({"name":name});
 				//console.log("testParse: v", name);
 			}

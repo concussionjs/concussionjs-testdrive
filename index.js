@@ -325,6 +325,8 @@ loopThroughObjects = function(objects,req,res,next)
     {
 				var searchKey = [];
 				var object = {};
+				if (nta.debug)
+					util.debug('create: rawBody: ', req.rawBody);
 				res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
 				setupObject(searchKey, 0, objects, counter, req, object, function(newObject) {
 					nta.createEntry(newObject, objects[counter].name, function(msg) {
@@ -499,7 +501,9 @@ loopThroughObjects = function(objects,req,res,next)
 var setupObject = function(searchKey,fieldIndex,objects,counter,req,newObject,callback)
     {
 	var j = fieldIndex;
-
+	if (nta.debug)
+		util.debug('create: rawBody: ', req.rawBody);
+	
 	if (fieldIndex == objects[counter].fields.length)
 	{
 		try {
