@@ -1,11 +1,11 @@
 // Set up the ace editor
 var editor = ace.edit("editor");
-editor.setTheme("ace/theme/idle_fingers");
+editor.setTheme("ace/theme/concussion");
 editor.getSession().setMode("ace/mode/html");
 editor.setShowPrintMargin(false);
 
 // Define the inital content of the editor
-editor.setValue('<!DOCTYPE html><html>\n<head><title>Contacts</title><meta charset="utf-8"><link rel="stylesheet" href="contacts-style.css"></head>\n<body>\n    <div class="new-contact">\n        <input type="text" class="fn" placeholder="Name">\n        <input type="email" class="email" placeholder="E-Mail">\n        <input type="tel" class="tel" placeholder="Phone">\n        <button>Add contact</button>\n    </div>\n    <div id="contacts">\n        <div class="vcard">\n            <input class="fn" value="Sally Ride">\n            <input class="email" value="sally@example.com">\n            <input class="tel" value="+1.818.555.1212">\n            <button>Save</button><button>Delete</button>\n        </div>\n    </div>\n</body>\n</html>\n',-1); 
+editor.setValue('<!DOCTYPE html><html>\n<head><title>Contacts</title><meta charset="utf-8"><link rel="stylesheet" href="contacts-style.css"></head>\n<body>\n    <div class="new-contact">\n        <input class="fn" placeholder="Name">\n        <input class="email" placeholder="E-Mail">\n        <input class="tel" placeholder="Phone">\n        <button>Add contact</button>\n    </div>\n    <div id="contacts">\n        <div class="vcard">\n            <input class="fn" value="Sally Ride">\n            <input class="email" value="sally@example.com">\n            <input class="tel" value="+1.818.555.1212">\n            <button>Save</button><button>Delete</button>\n        </div>\n    </div>\n</body>\n</html>\n',-1); 
 
 // Resize the editor and iframes when the browser resizes
 function getSizables() {
