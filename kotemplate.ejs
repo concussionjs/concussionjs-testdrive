@@ -197,7 +197,7 @@ try{
                         continue;	
 	%>
 		$.ajax(
-			{url:"http://testdrive.concussionjs.com/<%=objects[i].name%>",
+			{url:"/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>",
 			dataType:"json",
 			data:'',
 			success:function(data){
@@ -221,12 +221,12 @@ try{
 		
 	<%=objects[i].name%>_create = function() {
 					//alert(ko.toJSON(self));
-        			$.ajax("/<%=objects[i].name%>/create", {
+        			$.ajax("/<%=objects[i].name%>/instanceCreate", {
             				data: ko.toJSON(self),
             				type: "post", contentType: "application/json",
             				success: function(result) 
 					{ 
-						$.getJSON("/<%=objects[i].name%>", function(allData) {
+						$.getJSON("/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>", function(allData) {
         						var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
         						self.<%=objects[i].name%>(mapped);
 						});
@@ -247,12 +247,12 @@ try{
     		};
     	 
     	<%=objects[i].name%>_delete = function() {
-                                $.ajax("/<%=objects[i].name%>/delete/"+this.id(), {
+                                $.ajax("/instances/delete/"+this.id(), {
                                         data: '',
                                         type: "get", contentType: "application/json",
                                         success: function(result)
                                         {
-                                                $.getJSON("/<%=objects[i].name%>", function(allData) {
+                                                $.getJSON("/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>", function(allData) {
                                                         var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
                                                         self.<%=objects[i].name%>(mapped);
                                                 });
@@ -261,12 +261,12 @@ try{
                 };
 
          <%=objects[i].name%>_update = function() {
-                            $.ajax("/<%=objects[i].name%>/update/" + this.id() , {
+                            $.ajax("/<%=objects[i].name%>/instanceUpdate/" + this.id() , {
             				data: ko.toJSON(this),
             				type: "post", contentType: "application/json",
             				success: function(result) 
 							{ 
-                                $.getJSON("/<%=objects[i].name%>", function(allData) {
+                                $.getJSON("/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>", function(allData) {
                                     var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
                                     self.<%=objects[i].name%>(mapped);
                                 });

@@ -116,6 +116,7 @@ function setSessionId(myObjects,sessionId,i,callback)
 
 	if (i < myObjects.length)
 	{
+		myObjects[i].tenant_id= sessionId;
 		myObjects[i].name = sessionId + '_' + myObjects[i].name;
 		setSessionId(myObjects, sessionId, i + 1, callback);
 	}
@@ -325,6 +326,8 @@ loopThroughObjects = function(objects,req,res,next)
     {
 				var searchKey = [];
 				var object = {};
+				if(req.url.split("/create/").length>1)
+
 				if (nta.debug)
 					util.debug('create: rawBody: ', req.rawBody);
 				res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
@@ -335,7 +338,22 @@ loopThroughObjects = function(objects,req,res,next)
             	});
       return;
     }
-
+    else if (req.url.search('/' + objects[counter].name + '/instanceCreate') > -1)
+    {
+				var searchKey = [];
+				var object = {};
+				
+				if (nta.debug)
+					util.debug('create: rawBody: ', req.rawBody);
+				res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
+				setupObject(searchKey, 0, objects, counter, req, object, function(newObject) {
+					newObject.tenant_object_id = objects[counter].name;
+					nta.createEntry(newObject, "instances", function(msg) {
+						res.end(msg);
+					});
+            	});
+      return;
+    }
 	else if (req.url.search('/' + objects[counter].name + '/search') > -1)
     {
 			if (req.url.split('/').length < 3)
@@ -351,149 +369,211 @@ loopThroughObjects = function(objects,req,res,next)
     }
     else if (req.url.search('/' + objects[counter].name + '/getEntryWhere/') > -1)
     {
-	        var where = qs.parse(req.url.split('?')[1]);
-	        if (nta.debug)
-				util.debug(JSON.stringify(where));
-	        res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
-      nta.getEntryWhere(where, objects[counter].name, function(err,documents) {
-            	//console.log(documents.length);
-				res.end(JSON.stringify(documents[0]));
-      });
+		var where = qs.parse(req.url.split('?')[1]);
+		if (nta.debug)
+			util.debug(JSON.stringify(where));
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
+		nta.getEntryWhere(where, objects[counter].name, function(err,documents) {
+			//console.log(documents.length);
+			res.end(JSON.stringify(documents[0]));
+      	});
 			return;
     }
     else if (req.url.search('/' + objects[counter].name + '/getEntriesByName/') > -1)
     {
-	        var args = qs.parse(req.url.split('?')[1]);
-	        var where = args.where;
-	        res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
-      nta.getEntriesByName(where, objects[counter].name, function(err,documents) {
+		var args = qs.parse(req.url.split('?')[1]);
+		var where = args.where;
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
+		nta.getEntriesByName(where, objects[counter].name, function(err,documents) {
+        	//console.log(documents.length);
+			res.end(JSON.stringify(documents));
+		});
+		
+		return;
+    }
+	else if (req.url.search('/' + objects[counter].name + '/getEntriesByTenantObjectId/') > -1)
+    {
+		var args = qs.parse(req.url.split('?')[1]);
+		var where = args.where;
+	       
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
+    	nta.getEntriesByTenantObjectId(where, "instances", function(err,documents) {
             	//console.log(documents.length);
 				res.end(JSON.stringify(documents));
-      });
-			return;
+		});
+		return;
     }
-
-		else if (req.url.search('/' + objects[counter].name + '/delete') > -1)
+	else if (req.url.search('/' + objects[counter].name + '/delete') > -1)
     {
-      res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
-      if (req.url.split('/').length < 3)
-      {
-            	//console.log("no search term provided");
-        return;
-      }
-        	if (req.url.search('.com') > -1)
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
+		if (req.url.split('/').length < 3)
+		{
+			//console.log("no search term provided");
+			return;
+		}
+		if (req.url.search('.com') > -1)
+		{
+			var objectId = req.url.split('.com')[1].split('/')[3].split('?')[0];
+		}
+		else
+		{
+        	var objectId = req.url.split('/')[3].split('?')[0];
+		}
+        
+        nta.deleteEntry(objectId, objects[counter].name, function(err,documents) {
+        	if (err)
         	{
-            	var objectId = req.url.split('.com')[1].split('/')[3].split('?')[0];
-      }
-      else
-      {
-            	var objectId = req.url.split('/')[3].split('?')[0];
-      }
-            	nta.deleteEntry(objectId, objects[counter].name, function(err,documents) {
-            		if (err)
-            		{
-            			res.end('failure');
-            		}
-            		else
-            		{
-	            		res.end('success');
-	            	}
-            	});
+        		res.end('failure');
+        	}
+        	else
+        	{
+	    		res.end('success');
+	   		}
+        });
 
-			return;
+		return;
     }
 
-		else if (req.url.search('/' + objects[counter].name + '/update/') > -1)
+	else if (req.url.search('/' + objects[counter].name + '/update/') > -1)
     {
-                		if (nta.debug)
-							util.debug('updatePage: ', req.rawBody);
-                		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
-      if (req.url.split('/').length < 3)
-      {
-        //console.log("no search term provided");
-        return;
-      }
+    	if (nta.debug)
+			util.debug('updatePage: ', req.rawBody);
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
+      	if (req.url.split('/').length < 3)
+      	{
+      		//console.log("no search term provided");
+        	return;
+      	}
 
-      updatedRow = JSON.parse(('' + req.rawBody).replace('_id', '_id_mock'));
-      var oId;
+      	updatedRow = JSON.parse(('' + req.rawBody).replace('_id', '_id_mock'));
+      	var oId;
 
-      if (req.url.search('.com') > -1)
-        				{
-            				var oId = req.url.split('.com')[1].split('/')[3].split('?')[0];
-            			}
-            			else
-            			{
-            				var oId = req.url.split('/')[3].split('?')[0];
-            			}
+      	if (req.url.search('.com') > -1)
+        {
+        	var oId = req.url.split('.com')[1].split('/')[3].split('?')[0];
+		}
+        else
+        {
+        	var oId = req.url.split('/')[3].split('?')[0];
+        }
 
+		if (nta.debug)
+			util.debug('oId: ', oId);
+		
+		searchKey = [];
+		for (j = 0; j < objects[counter].fields.length; j++)
+		{
+			searchKey.push(eval('updatedRow.' + objects[counter].fields[j].name));
+		}
 
-      if (nta.debug)
-							util.debug('oId: ', oId);
-      searchKey = [];
-      for (j = 0; j < objects[counter].fields.length; j++)
-						{
-							searchKey.push(eval('updatedRow.' + objects[counter].fields[j].name));
-						}
+      	updatedRow._search_keys = searchKey;
 
-      updatedRow._search_keys = searchKey;
+		try {
+        	nta.updateEntry(oId, updatedRow, objects[counter].name, function(err,documents) {
+            	if (err)
+            	{
+            		res.end('failure');
+				}
+				else
+				{
+					res.end('success');
+				}
+			});
+		}catch (e) {console.error('err:', e);}
 
-      try {
-                       		nta.updateEntry(oId, updatedRow, objects[counter].name, function(err,documents) {
-                       			if (err)
-                       			{
-                       				res.end('failure');
-                       			}
-                       			else
-                       			{
-                       				res.end('success');
-                       			}
-                       		});
-                    	}catch (e) {console.error('err:', e);}
-
-                    	return;
+		return;
     }
+	else if (req.url.search('/' + objects[counter].name + '/instanceUpdate/') > -1)
+    {
+        if (nta.debug)
+			util.debug('updatePage: ', req.rawBody);
+        res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'X-Requested-With', 'Access-Control-Allow-Headers': 'application/json'});
+      	if (req.url.split('/').length < 3)
+      	{
+        	//console.log("no search term provided");
+        	return;
+      	}
 
+      	updatedRow = JSON.parse(('' + req.rawBody).replace('_id', '_id_mock'));
+      	updatedRow.tenant_object_id = objects[counter].name;
+      	
+      	var oId;
+
+      	if (req.url.search('.com') > -1)
+        {
+        	var oId = req.url.split('.com')[1].split('/')[3].split('?')[0];
+        }
+        else
+        {
+        	var oId = req.url.split('/')[3].split('?')[0];
+        }
+
+
+      	if (nta.debug)
+			util.debug('oId: ', oId);
+      	searchKey = [];
+    	for (j = 0; j < objects[counter].fields.length; j++)
+	  	{
+			searchKey.push(eval('updatedRow.' + objects[counter].fields[j].name));
+		}
+
+      	updatedRow._search_keys = searchKey;
+
+      	try {
+        	nta.updateEntry(oId, updatedRow, "instances", function(err,documents) {
+        		if (err)
+            	{
+            		res.end('failure');
+            	}
+            	else
+            	{
+            		res.end('success');
+            	}
+            });
+		}catch (e) {console.error('err:', e);}
+		
+		return;
+    }
     else if (req.url.search('/' + objects[counter].name + '/updateWhere/?') > -1)
     {
-                		if (nta.debug)
-							util.debug('updatePage:x ', req.rawBody, ' url', req.url);
-                		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
-      if (req.url.split('/').length < 3)
-      {
-        //console.log("no search term provided");
-        return;
-      }
+		if (nta.debug)
+			util.debug('updatePage:x ', req.rawBody, ' url', req.url);
+		res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': 'application/json'});
+		if (req.url.split('/').length < 3)
+		{
+			//console.log("no search term provided");
+			return;
+		}
 
-      updatedRow = JSON.parse(('' + req.rawBody).replace('_id', '_id_mock'));
+		updatedRow = JSON.parse(('' + req.rawBody).replace('_id', '_id_mock'));
 
-      var where = qs.parse(req.url.split('?')[1]);
+		var where = qs.parse(req.url.split('?')[1]);
 
-      if (nta.debug)
-							util.debug('updatePage: where: ', JSON.stringify(where));
-      searchKey = [];
-      for (j = 0; j < objects[counter].fields.length; j++)
-						{
-							searchKey.push(eval('updatedRow.' + objects[counter].fields[j].name));
-						}
+		if (nta.debug)
+			util.debug('updatePage: where: ', JSON.stringify(where));
+		
+		searchKey = [];
+		for (j = 0; j < objects[counter].fields.length; j++)
+		{
+			searchKey.push(eval('updatedRow.' + objects[counter].fields[j].name));
+		}
 
-      updatedRow._search_keys = searchKey;
+		updatedRow._search_keys = searchKey;
 
-      try {
-                       		nta.updateEntryWhere(where, updatedRow, objects[counter].name, function(err,documents) {
-                       			if (err)
-                       			{
-                       				res.end('failure');
-                       			}
-                       			else
-                       			{
-                       				res.end('success');
-                       			}
-                       		});
-                    	}catch (e) {console.error('err:', e);}
-
-                    	return;
+      	try {
+        	nta.updateEntryWhere(where, updatedRow, objects[counter].name, function(err,documents) {
+				if (err)
+				{
+					res.end('failure');
+				}
+				else
+				{
+					res.end('success');
+				}
+			});
+		}catch (e) {console.error('err:', e);}
+		return;
     }
-
 	}
 		next();
 };
@@ -534,6 +614,15 @@ var setupObject = function(searchKey,fieldIndex,objects,counter,req,newObject,ca
 		setupObject(searchKey, fieldIndex + 1, objects, counter, req, newObject, callback);
 	}
 };
+
+var extractObj=function(name)
+{
+	var arr = name.split("_");
+	if(arr[0]=="id" && arr.length>2)
+		return {id:arr[1],obj_name: arr[2]};
+	else
+		return null;
+}
 
 var dedupe = function(arr)
     {
