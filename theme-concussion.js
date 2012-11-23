@@ -1,183 +1,146 @@
-/* ***** BEGIN LICENSE BLOCK *****
- * Version: MPL 1.1/GPL 2.0/LGPL 2.1
- *
- * The contents of this file are subject to the Mozilla Public License Version
- * 1.1 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- * http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS" basis,
- * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
- * for the specific language governing rights and limitations under the
- * License.
- *
- * The Original Code is Ajax.org Code Editor (ACE).
- *
- * The Initial Developer of the Original Code is
- * Ajax.org B.V.
- * Portions created by the Initial Developer are Copyright (C) 2010
- * the Initial Developer. All Rights Reserved.
- *
- * Contributor(s):
- *      Fabian Jakobs <fabian AT ajax DOT org>
- *
- * Alternatively, the contents of this file may be used under the terms of
- * either the GNU General Public License Version 2 or later (the "GPL"), or
- * the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
- * in which case the provisions of the GPL or the LGPL are applicable instead
- * of those above. If you wish to allow use of your version of this file only
- * under the terms of either the GPL or the LGPL, and not to allow others to
- * use your version of this file under the terms of the MPL, indicate your
- * decision by deleting the provisions above and replace them with the notice
- * and other provisions required by the GPL or the LGPL. If you do not delete
- * the provisions above, a recipient may use your version of this file under
- * the terms of any one of the MPL, the GPL or the LGPL.
- *
- * ***** END LICENSE BLOCK ***** */
-
-define('ace/theme/idle_fingers', ['require', 'exports', 'module', 'ace/lib/dom'], function(require, exports, module) {
+define('ace/theme/concussion', ['require', 'exports', 'module', 'ace/lib/dom'], function(require, exports, module) {
 
 exports.isDark = true;
-exports.cssClass = "ace-idle-fingers";
+exports.cssClass = "ace-concussion";
 exports.cssText = "\
-.ace-idle-fingers .ace_editor {\
+.ace-concussion .ace_editor {\
   border: 2px solid rgb(159, 159, 159);\
 }\
 \
-.ace-idle-fingers .ace_editor.ace_focus {\
+.ace-concussion .ace_editor.ace_focus {\
   border: 2px solid #327fbd;\
 }\
 \
-.ace-idle-fingers .ace_gutter {\
+.ace-concussion .ace_gutter {\
   background: none;\
   color: rgba(255,255,255,.1);\
 }\
 \
-.ace-idle-fingers .ace_print_margin {\
+.ace-concussion .ace_print_margin {\
   width: 1px;\
   background: #3b3b3b;\
 }\
 \
-.ace-idle-fingers .ace_scroller {\
+.ace-concussion .ace_scroller {\
   background-color: none;\
 }\
 \
-.ace-idle-fingers .ace_text-layer {\
+.ace-concussion .ace_text-layer {\
   color: rgba(255,255,255,.75);\
 }\
 \
-.ace-idle-fingers .ace_cursor {\
-  border-left: 2px solid #54AD81;\
+.ace-concussion .ace_cursor {\
+  border-left: 2px solid #6499CC;\
 }\
 \
-.ace-idle-fingers .ace_cursor.ace_overwrite {\
+.ace-concussion .ace_cursor.ace_overwrite {\
   border-left: 0px;\
-  border-bottom: 1px solid #91FF00;\
+  border-bottom: 1px solid #6499CC;\
 }\
 \
-.ace-idle-fingers .ace_marker-layer .ace_selection {\
+.ace-concussion .ace_marker-layer .ace_selection {\
   background: rgba(90, 100, 126, 0.88);\
 }\
 \
-.ace-idle-fingers.multiselect .ace_selection.start {\
+.ace-concussion.multiselect .ace_selection.start {\
   box-shadow: 0 0 3px 0px #323232;\
   border-radius: 2px;\
 }\
 \
-.ace-idle-fingers .ace_marker-layer .ace_step {\
+.ace-concussion .ace_marker-layer .ace_step {\
   background: rgb(102, 82, 0);\
 }\
 \
-.ace-idle-fingers .ace_marker-layer .ace_bracket {\
+.ace-concussion .ace_marker-layer .ace_bracket {\
   margin: -1px 0 0 -1px;\
   border: 1px solid #404040;\
 }\
 \
-.ace-idle-fingers .ace_marker-layer .ace_active_line {\
+.ace-concussion .ace_marker-layer .ace_active_line {\
   background: #353637;\
 }\
 \
-.ace-idle-fingers .ace_gutter_active_line {\
+.ace-concussion .ace_gutter_active_line {\
   background-color: #353637;\
 }\
 \
-.ace-idle-fingers .ace_marker-layer .ace_selected_word {\
+.ace-concussion .ace_marker-layer .ace_selected_word {\
   border: 1px solid rgba(90, 100, 126, 0.88);\
 }\
 \
-.ace-idle-fingers .ace_invisible {\
+.ace-concussion .ace_invisible {\
   color: #404040;\
 }\
 \
-.ace-idle-fingers .ace_keyword, .ace-idle-fingers .ace_meta {\
+.ace-concussion .ace_keyword, .ace-concussion .ace_meta {\
   color:rgba(255,255,255,.5);\
 }\
 \
-.ace-idle-fingers .ace_constant, .ace-idle-fingers .ace_constant.ace_other {\
+.ace-concussion .ace_constant, .ace-concussion .ace_constant.ace_other {\
   color:#6C99BB;\
 }\
 \
-.ace-idle-fingers .ace_constant.ace_character,  {\
+.ace-concussion .ace_constant.ace_character,  {\
   color:#6C99BB;\
 }\
 \
-.ace-idle-fingers .ace_constant.ace_character.ace_escape,  {\
+.ace-concussion .ace_constant.ace_character.ace_escape,  {\
   color:#6C99BB;\
 }\
 \
-.ace-idle-fingers .ace_invalid {\
+.ace-concussion .ace_invalid {\
   color:#FFFFFF;\
 background-color:#FF0000;\
 }\
 \
-.ace-idle-fingers .ace_support.ace_constant {\
+.ace-concussion .ace_support.ace_constant {\
   color:#6C99BB;\
 }\
 \
-.ace-idle-fingers .ace_fold {\
+.ace-concussion .ace_fold {\
     background-color: #CC7833;\
     border-color: #FFFFFF;\
 }\
 \
-.ace-idle-fingers .ace_support.ace_function {\
+.ace-concussion .ace_support.ace_function {\
   color:#B83426;\
 }\
 \
-.ace-idle-fingers .ace_variable.ace_parameter {\
+.ace-concussion .ace_variable.ace_parameter {\
   font-style:italic;\
 }\
 \
-.ace-idle-fingers .ace_string {\
+.ace-concussion .ace_string {\
   color:#69c;\
 }\
 \
-.ace-idle-fingers .ace_string.ace_regexp {\
+.ace-concussion .ace_string.ace_regexp {\
   color:#CCCC33;\
 }\
 \
-.ace-idle-fingers .ace_comment {\
+.ace-concussion .ace_comment {\
   font-style:italic;\
 color:#BC9458;\
 }\
 \
-.ace-idle-fingers .ace_meta.ace_tag {\
+.ace-concussion .ace_meta.ace_tag {\
   color:rgba(255,255,255,.5);\
 }\
 \
-.ace-idle-fingers .ace_entity.ace_name {\
+.ace-concussion .ace_entity.ace_name {\
   color:#FFC66D;\
 }\
 \
-.ace-idle-fingers .ace_markup.ace_underline {\
+.ace-concussion .ace_markup.ace_underline {\
     text-decoration:underline;\
 }\
 \
-.ace-idle-fingers .ace_collab.ace_user1 {\
+.ace-concussion .ace_collab.ace_user1 {\
   color:#323232;\
   background-color:#FFF980;\
 }\
 \
-.ace-idle-fingers .ace_indent-guide {\
+.ace-concussion .ace_indent-guide {\
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWMwMjL6zzBz5sz/ABEUBGCqhK6UAAAAAElFTkSuQmCC) right repeat-y;\
 }";
 
