@@ -30,8 +30,8 @@ try{
 		
 		if(!myObject)
 			return;
-
-		if(myObject.name && myObject.name.search("_search")>-1)
+	
+		if(myObject && myObject.name && myObject.name.search("_search")>-1)
 		{
 			
 			if(debug)
@@ -50,6 +50,7 @@ try{
 				handleChildren(myObject.children[i]);
 			}
 		}
+		console.log("myObject.name: " + myObject.name);
 		%>
 			function <%=myObject.name%>(data)
 			{
@@ -121,8 +122,7 @@ try{
 				}
 
 		%>
-			}
-			
+			}	
 		<%
 			//console.log("before calling next function ");
 		
@@ -185,6 +185,7 @@ try{
 
 		var loadObjects = function(resetCurrentSelectedInstance,callback)
 		{
+			console.log("inside loadObject: " + self.nextera_admin_current_object_name());
 			$.ajax(
 			{
 				url:"/instances/getEntriesByTenantObjectId/?where=" + self.nextera_admin_current_object_name(),
@@ -195,7 +196,7 @@ try{
 					eval("var mapped = $.map(data,function(item)\{return new " + self.nextera_admin_current_object_name() + "(item)\});");
         			eval("self." + self.nextera_admin_current_object_name() + "(mapped)");
         			//alert(self.nextera_admin_current_object_fields().length);
-        			//alert(self.users().length);
+        			console.log("length: " + eval("self." + self.nextera_admin_current_object_name() + "().length"));
         			for(j=0;j<eval("self." + self.nextera_admin_current_object_name() + "().length");j++)
         			{
 						       					
@@ -205,7 +206,7 @@ try{
         					//if(self.nextera_admin_current_object_fields()[i].type())
         					//alert(self.nextera_admin_current_object_fields()[i].name + " " + self.nextera_admin_current_object_fields()[i].type());
         					var string4Eval = "self." + self.nextera_admin_current_object_name() + "()[" + j + "]." + self.nextera_admin_current_object_fields()[i].name() + "()";
-       						//alert("eval: ",eval(string4Eval)); 					
+       						console.log("eval: " + string4Eval); 					
         					
         					
 
@@ -529,8 +530,8 @@ try{
 	%>
 		<%if(objects[i].name=="nextera_objects")
         {%>
-		$.ajax(
-			{url:"/<%=objects[i].name%>",
+			$.ajax(
+			{url:"/nextera_objects",
 			dataType:"json",
 			data:'',
 			success:function(data){
@@ -538,8 +539,32 @@ try{
 				var mapped = $.map(data, function(item) { return new <%=objects[i].name%>(item) });
         			self.<%=objects[i].name%>(mapped);
         			self.<%=objects[i].name%>(self.<%=objects[i].name%>().filter(function(element,index,array){return (element.name() && element.name().search("<%=sessionId%>")>-1)}));
+        			self.nextera_admin_current_object_name(self.nextera_objects()[0].name());
+        			console.log("current object name " + self.nextera_admin_current_object_name());
         			self.nextera_objects()[0].nextera_selected(true);
 					self.nextera_admin_current_selected_object(self.nextera_objects()[0]);
+					
+					$.ajax(
+					{
+						url:"/nextera_objects_models/"+self.nextera_admin_current_object_name(),
+						dataType:"json",
+						data:'',
+						success:function(data){
+							//alert(JSON.stringify(data));
+							var mapped = $.map(data[0].fields,function(item){return new fields(item)});
+        					self.nextera_admin_current_object_fields(mapped);
+							loadObjects(false, function(){
+								if(self.nextera_admin_current_selected_instance())
+								{
+									self.nextera_admin_current_selected_instance().nextera_selected(false);
+								}	
+								
+								self.nextera_admin_current_selected_instance(self.nextera_admin_current_object_instances()[0]);
+								self.nextera_admin_current_selected_instance().nextera_selected(true);
+								
+							});
+						}			
+					});
 			}			
 		});
 		<%}else
@@ -597,7 +622,7 @@ try{
         		});
     		};
 
-		 <%=objects[i].varname%>_delete = function() {
+		 <%=objects[i].name%>_delete = function() {
                                 $.ajax("/instances/delete/"+this._id(), {
                                         data: '',
                                         type: "get", dataType: "text",
