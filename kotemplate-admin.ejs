@@ -189,7 +189,7 @@ try{
 		{
 			$.ajax(
 			{
-				url:"/" + self.nextera_admin_current_object_name(),
+				url:"/instances/getEntriesByTenantObjectId/?where=" + self.nextera_admin_current_object_name(),
 				dataType:"json",
 				async:'false',
 				data:'',
@@ -322,7 +322,7 @@ try{
 			//updateRowHelper(0,inputs,labels,function(){
 
 				//alert("/" + self.nextera_admin_current_object_name() + "/update/" + self.nextera_admin_current_selected_instance()._id() );
-				$.ajax("/" + self.nextera_admin_current_object_name() + "/update/" + self.nextera_admin_current_selected_instance()._id() , {
+				$.ajax("/" + self.nextera_admin_current_object_name() + "/instanceUpdate/" + self.nextera_admin_current_selected_instance()._id() , {
             				data: ko.toJSON(self.nextera_admin_current_selected_instance()),
             				type: "post", contentType: "application/json",
             				success: function(result) 
@@ -360,7 +360,7 @@ try{
 				}
 			
 
-				$.ajax("/" + self.nextera_admin_current_object_name() + "/create", {
+				$.ajax("/" + self.nextera_admin_current_object_name() + "/instanceCreate", {
             				data: ko.toJSON(self.nextera_admin_current_selected_instance()),
             				type: "post", contentType: "application/json",
             				success: function(result) 
@@ -378,7 +378,7 @@ try{
         	}
         	else
         	{
-        		$.ajax("/" + self.nextera_admin_current_object_name() + "/create", {
+        		$.ajax("/" + self.nextera_admin_current_object_name() + "/instanceCreate", {
             				data: "",
             				type: "post", contentType: "application/json",
             				success: function(result) 
@@ -399,7 +399,7 @@ try{
 		deleteRow = function()
 		{
 				
-			$.ajax("/" + self.nextera_admin_current_object_name() + "/delete/" + self.nextera_admin_current_selected_instance()._id(), {
+			$.ajax("/instances/delete/" + self.nextera_admin_current_selected_instance()._id(), {
             				data: '',
             				contentType: "application/json",
             				success: function(result) 
@@ -445,10 +445,11 @@ try{
         			self.nextera_admin_current_object_fields(mapped);
 					loadObjects(false, function(){
 						if(self.nextera_admin_current_selected_instance())
+						{
 							self.nextera_admin_current_selected_instance().nextera_selected(false);
-						self.nextera_admin_current_selected_instance(self.nextera_admin_current_object_instances()[0]);
-						self.nextera_admin_current_selected_instance().nextera_selected(true);
-
+							self.nextera_admin_current_selected_instance(self.nextera_admin_current_object_instances()[0]);
+							self.nextera_admin_current_selected_instance().nextera_selected(true);
+						}
 					});
 				}			
 			});
@@ -528,6 +529,8 @@ try{
 		//{
 				//continue;
 	%>
+		<%if(objects[i].name=="nextera_objects")
+        {%>
 		$.ajax(
 			{url:"/<%=objects[i].name%>",
 			dataType:"json",
@@ -536,21 +539,24 @@ try{
 				//alert(JSON.stringify(data));
 				var mapped = $.map(data, function(item) { return new <%=objects[i].name%>(item) });
         			self.<%=objects[i].name%>(mapped);
-        			<%if(objects[i].name=="nextera_objects")
-        			{%>
-        				self.<%=objects[i].name%>(self.<%=objects[i].name%>().filter(function(element,index,array){return (element.name() && element.name().search("<%=sessionId%>")>-1)}));
-        			<%}%>
-        		<%
-        			if(objects[i].name=="nextera_objects")
-        			{
-        		%>
-        				self.nextera_objects()[0].nextera_selected(true);
-						self.nextera_admin_current_selected_object(self.nextera_objects()[0]);
-        		<%
-        			}
-        		%>	
+        			self.<%=objects[i].name%>(self.<%=objects[i].name%>().filter(function(element,index,array){return (element.name() && element.name().search("<%=sessionId%>")>-1)}));
+        			self.nextera_objects()[0].nextera_selected(true);
+					self.nextera_admin_current_selected_object(self.nextera_objects()[0]);
 			}			
 		});
+		<%}else
+        {%>
+		$.ajax(
+			{url:"/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>",
+			dataType:"json",
+			data:'',
+			success:function(data){
+				//alert(JSON.stringify(data));
+				var mapped = $.map(data, function(item) { return new <%=objects[i].name%>(item) });
+        		self.<%=objects[i].name%>(mapped);
+			}			
+		});
+		<%}%>
 	<%
 		//}
 	}
@@ -568,12 +574,12 @@ try{
 	%>
 		<%=objects[i].name%>_create = function() {
 					//alert(ko.toJSON(self));
-        			$.ajax("/<%=objects[i].name%>/create", {
+        			$.ajax("/<%=objects[i].name%>/instanceCreate", {
             				data: ko.toJSON(self),
             				type: "post", contentType: "application/json",
             				success: function(result) 
 					{ 
-						$.getJSON("/<%=objects[i].name%>", function(allData) {
+						$.getJSON("/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>", function(allData) {
         						var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
         						self.<%=objects[i].name%>(mapped);
 						});
@@ -593,15 +599,16 @@ try{
         		});
     		};
 
-		<%=objects[i].name%>_delete = function(id) {
-                                $.ajax("/<%=objects[i].name%>/delete/"+id, {
+		 <%=objects[i].varname%>_delete = function() {
+                                $.ajax("/instances/delete/"+this._id(), {
                                         data: '',
-                                        type: "get", contentType: "application/json",
+                                        type: "get", dataType: "text",
                                         success: function(result)
                                         {
-                                                $.getJSON("/<%=objects[i].name%>", function(allData) {
+                                        	//alert("inside of delete result");
+                                                $.getJSON("/instances/getEntriesByTenantObjectId/?where=<%=objects[i].name%>", function(allData) {
                                                         var mapped = $.map(allData, function(item) { return new <%=objects[i].name%>(item) });
-                                                        self.<%=objects[i].name%>(mapped);
+                                                        self.<%=objects[i].varname%>(mapped);
                                                 });
                                         }
                                 });
