@@ -388,20 +388,148 @@ function getPage(userId,filename,callback)
 
 			<section id="documentation" class="page">
 				<div class="page-body">
-					<h1>Header 1</h1>
-					<h2>Header 2</h2>
-					<h3>Header 3</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tellus lacus, porttitor eu pretium a, volutpat vel turpis. Duis et justo lorem, at mollis mi. Cras nulla urna, feugiat ac placerat non, porta mattis tortor. Fusce dictum blandit elit at pharetra. Quisque porta leo at neque laoreet sodales. Sed lacinia rhoncus magna, a pharetra nulla sollicitudin adipiscing. Cras pulvinar varius rutrum. Integer lobortis vestibulum dui, vel lobortis massa dignissim ut. Ut at arcu tortor. Nulla facilisi. Aliquam eget mauris eros, nec iaculis orci. Suspendisse placerat lacinia nisl, vitae euismod lorem tempus a. Quisque dui tortor, aliquam tempor tincidunt in, rhoncus at lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-					<p>Etiam porttitor nisi et risus luctus sed ullamcorper enim vulputate. Suspendisse non nunc ipsum, vel cursus massa. Vivamus eget risus quis libero egestas elementum. Nulla facilisi. Nulla sodales elementum leo a malesuada. Mauris at mauris massa. Curabitur vel enim nec nunc varius rutrum sit amet eget odio. Vivamus rhoncus, libero eu porttitor tempus, sem enim placerat tortor, at vulputate nibh erat et justo. Fusce consequat laoreet adipiscing. Ut laoreet pharetra quam, non imperdiet risus lacinia sit amet.</p>
-					<p>Sed in justo eget mi placerat porttitor sit amet commodo ipsum. Vivamus diam nisi, iaculis nec posuere non, pulvinar a urna. Vestibulum tincidunt posuere semper. Suspendisse potenti. Vestibulum nec metus et nisi laoreet fringilla. Vestibulum eleifend, lacus eget facilisis placerat, mi dolor sodales leo, aliquam aliquet leo magna sed arcu. Suspendisse erat justo, commodo et pretium a, accumsan sit amet lectus. Nam a mi odio, et hendrerit turpis. Nulla facilisi. Integer tempor volutpat eros auctor vehicula. In hac habitasse platea dictumst. Proin sed mi sem, id auctor velit. Praesent ornare sodales massa vel pretium. Nulla venenatis ultricies felis, ac commodo magna semper et. Etiam hendrerit, mi non euismod gravida, mauris neque adipiscing libero, eget consectetur lorem urna at nisl. Aenean ullamcorper blandit hendrerit.</p>
-					<ul>
-						<li>List item one
-						<li>List item two
-						<li>List item three
-					</ul>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tellus lacus, porttitor eu pretium a, volutpat vel turpis. Duis et justo lorem, at mollis mi. Cras nulla urna, feugiat ac placerat non, porta mattis tortor. Fusce dictum blandit elit at pharetra. Quisque porta leo at neque laoreet sodales. Sed lacinia rhoncus magna, a pharetra nulla sollicitudin adipiscing. Cras pulvinar varius rutrum. Integer lobortis vestibulum dui, vel lobortis massa dignissim ut. Ut at arcu tortor. Nulla facilisi. Aliquam eget mauris eros, nec iaculis orci. Suspendisse placerat lacinia nisl, vitae euismod lorem tempus a. Quisque dui tortor, aliquam tempor tincidunt in, rhoncus at lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-					<p>Etiam porttitor nisi et risus luctus sed ullamcorper enim vulputate. Suspendisse non nunc ipsum, vel cursus massa. Vivamus eget risus quis libero egestas elementum. Nulla facilisi. Nulla sodales elementum leo a malesuada. Mauris at mauris massa. Curabitur vel enim nec nunc varius rutrum sit amet eget odio. Vivamus rhoncus, libero eu porttitor tempus, sem enim placerat tortor, at vulputate nibh erat et justo. Fusce consequat laoreet adipiscing. Ut laoreet pharetra quam, non imperdiet risus lacinia sit amet.</p>
-					<p>Sed in justo eget mi placerat porttitor sit amet commodo ipsum. Vivamus diam nisi, iaculis nec posuere non, pulvinar a urna. Vestibulum tincidunt posuere semper. Suspendisse potenti. Vestibulum nec metus et nisi laoreet fringilla. Vestibulum eleifend, lacus eget facilisis placerat, mi dolor sodales leo, aliquam aliquet leo magna sed arcu. Suspendisse erat justo, commodo et pretium a, accumsan sit amet lectus. Nam a mi odio, et hendrerit turpis. Nulla facilisi. Integer tempor volutpat eros auctor vehicula. In hac habitasse platea dictumst. Proin sed mi sem, id auctor velit. Praesent ornare sodales massa vel pretium. Nulla venenatis ultricies felis, ac commodo magna semper et. Etiam hendrerit, mi non euismod gravida, mauris neque adipiscing libero, eget consectetur lorem urna at nisl. Aenean ullamcorper blandit hendrerit.</p>
+					<h1>Documentation</h1>
+							
+<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and a just a little bit about database to get started.</p>
+		
+<!-- Navigation -->				
+<h2>Navigation</h2>
+
+<ul>
+  <li><a href="#gettingStarted">Getting Started</a></li>
+	<li><a href="#create">Creating Data</a></li>
+	<li><a href="#read">Reading Data</a></li>
+	<li><a href="#update">Updating Data</a></li>
+	<li><a href="#delete">Deleting Data</a></li>
+	<li><a href="#knockout">Knockout</a></li>
+</ul>
+
+<!-- Getting Started -->
+<a name="gettingStarted">
+<article>
+	<h2>Getting Started</h2>
+	<h3>Login</h3>
+	<p>Getting started is easy. Just login via your Facebook account in the top right corner of the page and your done.</p>
+	<img src="images/documentation-fb-login.png"> 
+	<p>Once you have signed in you will get a link to your admin console. The admin console lets you view everything that is in your database. To start, there is not much in the database...</p>
+	<img src="images/documentation-admin.png">
+	<h3>Reference the Script</h3>
+	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
+	<pre>
+		&lt;script src=“http://concussionjs.com/concussion.js”&gt;
+	</pre>
+</article>
+
+<!-- Creating Data Object -->
+<a name="create">
+<article>
+	<h2>Creating Data</h2>
+	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
+	<pre>					
+		&lt;form&gt;
+		    &lt;input placeholder="Name"&gt;
+		    &lt;input placeholder="Email"&gt;
+		    &lt;input placeholder="Phone"&gt;
+		    &lt;input type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Hook this static form up to a database by adding the following data-binds:</p>
+	<pre>					
+		&lt;form data-bind="submit:contacts-create"&gt;
+		    &lt;input data-bind="value:contacts_name"&gt;
+		    &lt;input data-bind="value:contacts_email"&gt;
+		    &lt;input data-bind="value:contacts_phone"&gt;
+		    &lt;input data-bind="submit:contacts-create" type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Reading Data Object -->
+<a name="read">
+<article>
+	<h2>Reading Data</h2>
+	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;ul&gt;
+		    &lt;li&gt;Name&lt;/li&gt;
+		    &lt;li&gt;Email&lt;/li&gt;
+		    &lt;li&gt;Phone&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Reading data of the database by adding the following data-binds:</p>
+		<pre>					
+		&lt;ul data-bind="foreach:contacts"&gt;
+		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Updating Data Object -->
+<a name="update">
+<article>
+	<h2>Updating Data</h2>
+	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;form&gt;
+		    &lt;input placeholder="Name"&gt;
+		    &lt;input placeholder="Email"&gt;
+		    &lt;input placeholder="Phone"&gt;
+		    &lt;input type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Updating data in the database by adding the following data-binds:</p>
+	<pre>					
+		&lt;form data-bind="submit:contacts-create"&gt;
+		    &lt;input data-bind="value:contacts_name"&gt;
+		    &lt;input data-bind="value:contacts_email"&gt;
+		    &lt;input data-bind="value:contacts_phone"&gt;
+		    &lt;input data-bind="submit:contacts-update" type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Delete Object -->
+<a name="delete">
+<article>
+	<h2>Deleting Data</h2>
+	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;ul&gt;
+		    &lt;li&gt;Name&lt;/li&gt;
+		    &lt;li&gt;Email&lt;/li&gt;
+		    &lt;li&gt;Phone&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Deleting data of the database by adding the following data-binds:</p>
+		<pre>					
+		&lt;ul data-bind="foreach:contacts"&gt;
+		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+		     &lt;button data-bind="click:contacts-delete"&gt;Delete&lt;button&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Knockout -->
+<a name="knockout">
+<article>
+	<h2>Knockout</h2>
+	<p>desc</p>
+	<pre>
+	
+	</pre>
+</article>	
 				</div>
 			</section>
 
