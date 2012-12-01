@@ -163,18 +163,18 @@ function getPage(userId,filename,callback)
 	<input type="radio" name="menu-control" id="menu5">
 
 	<section id="masthead">
-		<header id="logo">concussion<span>js<span></header>
+		<header id="logo">concussion<span>js</span></header>
 		<nav id="main-menu">
 			<label for="menu1">Tutorial</label>
 			<label for="menu2">How it works</label>
-			<label for="menu3">Documentation</label>
-			<label for="menu4">Getting started</label>
+			<label for="menu3">Getting started</label>
+			<label for="menu4">Documentation</label>
 			<label for="menu5">About</label>
 			<div id="menu-indicator"></div>
 		</nav>
 		<div id="auth-status">
 			<div id="auth-loggedout">
-				Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>
+				Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><!--<a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>-->
 			</div>
 			<div id="auth-loggedin" class="auth-hide">
 				<span id="auth-displayname"></span>
@@ -224,7 +224,7 @@ function getPage(userId,filename,callback)
 						<div id="step-wrapper">
 				<!-- Step 1 -->
 <article>
-	<header><span id="lede">The web app platform for the impatient hacker.<span></header>
+	<header><span id="lede">The web app platform for the impatient hacker.</span></header>
 	<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
 	<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
 	<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
@@ -396,155 +396,9 @@ function getPage(userId,filename,callback)
 			</section>
 
 			<section id="howitworks" class="page">
-				<img src="infographic.png">
+				<img src="infographic.png" alt="How it works infographic">
 			</section>
-
-			<section id="documentation" class="page">
-				<div class="page-body">
-					<h1>Documentation</h1>
-							
-<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and a just a little bit about database to get started.</p>
-		
-<!-- Navigation -->				
-<h2>Navigation</h2>
-
-<ul>
-  <li><a href="#gettingStarted">Getting Started</a></li>
-	<li><a href="#create">Creating Data</a></li>
-	<li><a href="#read">Reading Data</a></li>
-	<li><a href="#update">Updating Data</a></li>
-	<li><a href="#delete">Deleting Data</a></li>
-	<li><a href="#knockout">Knockout</a></li>
-</ul>
-
-<!-- Getting Started -->
-<a name="gettingStarted">
-<article>
-	<h2>Getting Started</h2>
-	<h3>Login</h3>
-	<p>Getting started is easy. Just login via your Facebook account in the top right corner of the page and your done.</p>
-	<img src="images/documentation-fb-login.png"> 
-	<p>Once you have signed in you will get a link to your admin console. The admin console lets you view everything that is in your database. To start, there is not much in the database...</p>
-	<img src="images/documentation-admin.png">
-	<h3>Reference the Script</h3>
-	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
-	<pre>
-		&lt;script src=“http://concussionjs.com/concussion.js”&gt;
-	</pre>
-</article>
-
-<!-- Creating Data Object -->
-<a name="create">
-<article>
-	<h2>Creating Data</h2>
-	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
-	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
-	<pre>					
-		&lt;form&gt;
-		    &lt;input placeholder="Name"&gt;
-		    &lt;input placeholder="Email"&gt;
-		    &lt;input placeholder="Phone"&gt;
-		    &lt;input type="submit"&gt;
-		&lt;/form&gt;
-	</pre>
-	<p>Hook this static form up to a database by adding the following data-binds:</p>
-	<pre>					
-		&lt;form data-bind="submit:contacts-create"&gt;
-		    &lt;input data-bind="value:contacts_name"&gt;
-		    &lt;input data-bind="value:contacts_email"&gt;
-		    &lt;input data-bind="value:contacts_phone"&gt;
-		    &lt;input data-bind="submit:contacts-create" type="submit"&gt;
-		&lt;/form&gt;
-	</pre>
-	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
-</article>
-
-<!-- Reading Data Object -->
-<a name="read">
-<article>
-	<h2>Reading Data</h2>
-	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
-		&lt;ul&gt;
-		    &lt;li&gt;Name&lt;/li&gt;
-		    &lt;li&gt;Email&lt;/li&gt;
-		    &lt;li&gt;Phone&lt;/li&gt;
-		&lt;/ul&gt;
-	</pre>
-	<p>Reading data of the database by adding the following data-binds:</p>
-		<pre>					
-		&lt;ul data-bind="foreach:contacts"&gt;
-		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
-		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
-		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
-		&lt;/ul&gt;
-	</pre>
-	<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
-</article>
-
-<!-- Updating Data Object -->
-<a name="update">
-<article>
-	<h2>Updating Data</h2>
-	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
-		&lt;form&gt;
-		    &lt;input placeholder="Name"&gt;
-		    &lt;input placeholder="Email"&gt;
-		    &lt;input placeholder="Phone"&gt;
-		    &lt;input type="submit"&gt;
-		&lt;/form&gt;
-	</pre>
-	<p>Updating data in the database by adding the following data-binds:</p>
-	<pre>					
-		&lt;form data-bind="submit:contacts-create"&gt;
-		    &lt;input data-bind="value:contacts_name"&gt;
-		    &lt;input data-bind="value:contacts_email"&gt;
-		    &lt;input data-bind="value:contacts_phone"&gt;
-		    &lt;input data-bind="submit:contacts-update" type="submit"&gt;
-		&lt;/form&gt;
-	</pre>
-	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
-</article>
-
-<!-- Delete Object -->
-<a name="delete">
-<article>
-	<h2>Deleting Data</h2>
-	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
-		&lt;ul&gt;
-		    &lt;li&gt;Name&lt;/li&gt;
-		    &lt;li&gt;Email&lt;/li&gt;
-		    &lt;li&gt;Phone&lt;/li&gt;
-		&lt;/ul&gt;
-	</pre>
-	<p>Deleting data of the database by adding the following data-binds:</p>
-		<pre>					
-		&lt;ul data-bind="foreach:contacts"&gt;
-		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
-		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
-		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
-		     &lt;button data-bind="click:contacts-delete"&gt;Delete&lt;button&gt;
-		&lt;/ul&gt;
-	</pre>
-	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
-</article>
-
-<!-- Knockout -->
-<a name="knockout">
-<article>
-	<h2>Knockout</h2>
-	<p>desc</p>
-	"}
-	P:"
-</article>	
-				</div>
-			</section>
-
+			
 			<section id="download" class="page">
 				<div class="page-body">
 					<h1>Getting started</h1>		
@@ -594,6 +448,202 @@ function getPage(userId,filename,callback)
 					</article>
 					<!-- Getting Started -->
 					<a name="AWSAMIimage">
+						<h2>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS
+						</h2>
+						<article>
+						<p>
+							AMI ID: xxxxxxxxxxx
+						</p>
+						</article>
+				</div>
+			</section>
+
+
+			<section id="documentation" class="page">
+				<div class="page-body">
+					<h1>Documentation</h1>
+							
+<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and a just a little bit about database to get started.</p>
+		
+<!-- Navigation -->				
+<h2>Navigation</h2>
+
+<ul>
+  <li><a href="#gettingStarted">Getting Started</a></li>
+	<li><a href="#create">Creating Data</a></li>
+	<li><a href="#read">Reading Data</a></li>
+	<li><a href="#update">Updating Data</a></li>
+	<li><a href="#delete">Deleting Data</a></li>
+	<li><a href="#knockout">Knockout</a></li>
+</ul>
+
+<!-- Getting Started -->
+<article>
+	<h2>Getting Started</h2>
+	<h3>Login</h3>
+	<p>Getting started is easy. Just login via your Facebook account in the top right corner of the page and your done.</p>
+	<img src="images/documentation-fb-login.png"> 
+	<p>Once you have signed in you will get a link to your admin console. The admin console lets you view everything that is in your database. To start, there is not much in the database...</p>
+	<img src="images/documentation-admin.png">
+	<h3>Reference the Script</h3>
+	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
+	<pre>
+		&lt;script src=“http://concussionjs.com/concussion.js”&gt;
+	</pre>
+</article>
+
+<!-- Creating Data Object -->
+<article>
+	<h2>Creating Data</h2>
+	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
+	<pre>					
+		&lt;form&gt;
+		    &lt;input placeholder="Name"&gt;
+		    &lt;input placeholder="Email"&gt;
+		    &lt;input placeholder="Phone"&gt;
+		    &lt;input type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Hook this static form up to a database by adding the following data-binds:</p>
+	<pre>					
+		&lt;form data-bind="submit:contacts-create"&gt;
+		    &lt;input data-bind="value:contacts_name"&gt;
+		    &lt;input data-bind="value:contacts_email"&gt;
+		    &lt;input data-bind="value:contacts_phone"&gt;
+		    &lt;input data-bind="submit:contacts-create" type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Reading Data Object -->
+<article>
+	<h2>Reading Data</h2>
+	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;ul&gt;
+		    &lt;li&gt;Name&lt;/li&gt;
+		    &lt;li&gt;Email&lt;/li&gt;
+		    &lt;li&gt;Phone&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Reading data of the database by adding the following data-binds:</p>
+		<pre>					
+		&lt;ul data-bind="foreach:contacts"&gt;
+		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Updating Data Object -->
+<article>
+	<h2>Updating Data</h2>
+	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;form&gt;
+		    &lt;input placeholder="Name"&gt;
+		    &lt;input placeholder="Email"&gt;
+		    &lt;input placeholder="Phone"&gt;
+		    &lt;input type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Updating data in the database by adding the following data-binds:</p>
+	<pre>					
+		&lt;form data-bind="submit:contacts-create"&gt;
+		    &lt;input data-bind="value:contacts_name"&gt;
+		    &lt;input data-bind="value:contacts_email"&gt;
+		    &lt;input data-bind="value:contacts_phone"&gt;
+		    &lt;input data-bind="submit:contacts-update" type="submit"&gt;
+		&lt;/form&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Delete Object -->
+<article>
+	<h2>Deleting Data</h2>
+	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+	<pre>					
+		&lt;ul&gt;
+		    &lt;li&gt;Name&lt;/li&gt;
+		    &lt;li&gt;Email&lt;/li&gt;
+		    &lt;li&gt;Phone&lt;/li&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Deleting data of the database by adding the following data-binds:</p>
+		<pre>					
+		&lt;ul data-bind="foreach:contacts"&gt;
+		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+		     &lt;button data-bind="click:contacts-delete"&gt;Delete&lt;button&gt;
+		&lt;/ul&gt;
+	</pre>
+	<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Knockout -->
+<article>
+	<h2>Knockout</h2>
+	<p>desc</p>
+	"}
+	P:"
+</article>	
+				</div>
+			</section>
+
+			<section id="download" class="page">
+				<div class="page-body">
+					<h1>Getting started</h1>		
+					<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
+		
+					<!-- Navigation 				
+					<h2>Deployment options</h2>
+
+					<ul>
+					 	<li><a href="#hostedInclude">Hosted Concussion JS include</a></li>
+						<li><a href="#localInclude"> Downloadable Concussion JS include</a></li>
+						<li><a href="#virtualBoxDownload">Virtual appliance download</a></li>
+						<li><a href="#AWSAMIimage">AWS AMI image</a></li>
+					</ul>-->
+
+					<!-- hosted include -->
+					<article>
+						<h2>Hosted Concussion JS include</h2>
+						<p>Include this hosted Concussion script in your HTML file</p>
+						<pre>
+&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;
+						</pre>
+					</article>
+					<!-- local include -->
+
+						<article>
+						<h2> Local Concussion JS include</h2>
+						<p>
+							Download Concussion include to host on your servers, then include in your HTML files.
+						</p>
+						<p>
+							<a href="http://testdrive.concussionjs.com/concussion.js"> Download </a>
+						</p>
+					</article>
+					<!-- virtual box download -->
+					<article>
+						<h2>Virtual appliance download</h2>
+						<p>
+							Download Virtual Box image to run a local copy of the Concussion platform.
+						</p>
+						<p>
+							<a href="http://concussionjs.com/concussion.js"> Download </a>
+						</p>
+					</article>
+					<!-- Getting Started -->
 						<h2>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS
 						</h2>
 						<article>
