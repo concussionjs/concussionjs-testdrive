@@ -725,7 +725,7 @@ body > input[type="radio"] {
 
 				#steps article .action a {
 					color: rgba(102, 153, 204, 1);
-					cursor: default;
+					cursor: pointer;
 				}
 
 				#steps article pre {
