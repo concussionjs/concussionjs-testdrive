@@ -71,7 +71,7 @@ $.ajax({
 													$.getScript("http://testdrive.concussionjs.com/getScript?id="+localStorage.getItem("sessionId")+"&pagename=index", function(){
 													});
 													
-													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.concussionjs.com/admin?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
+													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.concussionjs.com/admin.html?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
 												}
         									});
         								});
