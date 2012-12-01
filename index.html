@@ -139,7 +139,7 @@ function getPage(userId,filename,callback)
 			{	 
 				//alert(result);
 				$("#preview").attr({"src":"/getPage?id="+ myId + "&pagename=index"});
-				$("#admin-app").attr({"src":"/admin?id="+ myId});
+				$("#admin-app").attr({"src":"/admin.html?id="+ myId});
 			}
 		});
 	}
@@ -176,7 +176,7 @@ function getPage(userId,filename,callback)
 				Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>
 			</div>
 			<div id="auth-loggedin" class="auth-hide">
-				<span id="auth-displayname">Benjamin Frenkel</span>
+				<span id="auth-displayname"></span>
 				<div id="auth-logoutlink" class="fb-login-button" data-width="200" data-max-rows="1"><a class="fb_button fb_button_medium"><span class="fb_button_text">Log Out</span></a></div>
 			</div>
 		</div>
