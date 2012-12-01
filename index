@@ -167,7 +167,7 @@ function getPage(userId,filename,callback)
 			<label for="menu1">Tutorial</label>
 			<label for="menu2">How it works</label>
 			<label for="menu3">Documentation</label>
-			<label for="menu4">Download</label>
+			<label for="menu4">Getting started</label>
 			<label for="menu5">About</label>
 			<div id="menu-indicator"></div>
 		</nav>
@@ -526,32 +526,31 @@ function getPage(userId,filename,callback)
 <article>
 	<h2>Knockout</h2>
 	<p>desc</p>
-	<pre>
-	
-	</pre>
+	"}
+	P:"
 </article>	
 				</div>
 			</section>
 
 			<section id="download" class="page">
 				<div class="page-body">
-					<h1>Download</h1>		
-					<p>You can use Concussion as a hosted service, as locally deployable virtual box image, and as AWS deployable AMI.</p>
+					<h1>Get Started</h1>		
+					<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
 		
 					<!-- Navigation -->				
 					<h2>Download options</h2>
 
 					<ul>
-					 	<li><a href="#hostedInclude">Hosted Concussion library include</a></li>
-						<li><a href="#localInclude">Local Concussion library include</a></li>
-						<li><a href="#virtualBoxDownload">Virtual Box download</a></li>
+					 	<li><a href="#hostedInclude">Hosted Concussion JS include</a></li>
+						<li><a href="#localInclude"> Downloadable Concussion JS include</a></li>
+						<li><a href="#virtualBoxDownload">Virtual appliance download</a></li>
 						<li><a href="#AWSAMIimage">AWS AMI image</a></li>
 					</ul>
 
 					<!-- hosted include -->
 					<a name="hostedInclude">
 					<article>
-						<h2>Hosted Concussion library include</h2>
+						<h2>Hosted Concussion JS include</h2>
 						<p>Include this hosted Concussion script in your HTML file</p>
 						<pre>
 &lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;
@@ -561,28 +560,29 @@ function getPage(userId,filename,callback)
 
 					<a name="localInclude">
 						<article>
-						<h2> Local Concussion library include</h2>
+						<h2> Local Concussion JS include</h2>
 						<p>
-							Download Concussion include to host on your servers.
+							Download Concussion include to host on your servers, then include in your HTML files.
 						</p>
 						<p>
-							<a href="http://testdrive.concussionjs.com/concussion.js"> download </a>
+							<a href="http://testdrive.concussionjs.com/concussion.js"> Download </a>
 						</p>
 					</article>
 					<!-- virtual box download -->
 					<a name="virtualBoxDownload">
 					<article>
-						<h2>Virtual box download</h2>
+						<h2>Virtual appliance download</h2>
 						<p>
-							Download virtual box image to run a local copy of the Concussion platform.
+							Download Virtual Box image to run a local copy of the Concussion platform.
 						</p>
 						<p>
-							<a href="http://concussionjs.com/concussion.js"> download </a>
+							<a href="http://concussionjs.com/concussion.js"> Download </a>
 						</p>
 					</article>
 					<!-- Getting Started -->
 					<a name="AWSAMIimage">
-						<h2>AWS AMI</h2>
+						<h2>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS
+						</h2>
 						<article>
 						<p>
 							AMI ID: xxxxxxxxxxx
