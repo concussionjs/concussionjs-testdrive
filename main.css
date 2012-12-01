@@ -471,10 +471,10 @@ body > input[type="radio"] {
 	#menu3:checked ~ #masthead #menu-indicator { left: 228px; }
 	
 	#menu4:checked ~ #masthead label:nth-child(4) { color: rgb(102,153,204); }
-	#menu4:checked ~ #masthead #menu-indicator { left: 332px; }
+	#menu4:checked ~ #masthead #menu-indicator { left: 350px; }
 	
 	#menu5:checked ~ #masthead label:nth-child(5) { color: rgb(102,153,204); }
-	#menu5:checked ~ #masthead #menu-indicator { left: 404px; }
+	#menu5:checked ~ #masthead #menu-indicator { left: 436px; }
 
 	/* Authorization */
 	#auth-status {
