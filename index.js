@@ -238,8 +238,18 @@ loopThroughObjects = function(objects,req,res,next)
 			nta.getEntriesWhere({'id': id, 'name': pagename},'pages', function(err,objects) {
 				if (nta.debug)
 					util.debug('why double:, number of matching pages ', objects.length);
-				if (objects && objects.length > 0 && objects[0].html)
+				if (nta.debug)
+					console.log("objects.length :" + objects.length);
+				if(objects && objects.length > 0 && (!objects[0].html || objects[0].html.search("html")==-1 || objects[0].html.search("body")==-1 || objects[0].html.search("data-bind")==-1))
 				{
+					if (nta.debug)
+						util.debug("objects :" + objects[0].html);
+					res.end(objects[0].html);
+				}
+				else if (objects && objects.length > 0 && objects[0].html)
+				{
+					if (nta.debug)
+						console.log("objects :" + objects[0].html);
 					parse.runGenerateStructureHTML(objects[0].html, function(myObjects) {
 						if (nta.debug)
 							util.debug('why double:, number of objects parsed', myObjects.length);

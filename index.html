@@ -71,7 +71,6 @@
 			editor.setTheme("ace/theme/concussion");
 			editor.getSession().setMode("ace/mode/html");
 			editor.setShowPrintMargin(false);
-			editor.setReadOnly(true);
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -83,7 +82,7 @@
 
 			if(!myId)
 			{	
-				editor.getSession().setValue("<html>\r\n<head>\r\n    <title>Contacts</title>\r\n    <meta charset=\"utf-8\">\r\n\t<link rel=\"stylesheet\" href=\"contacts-style.css\">\r\n</head>\r\n\t<body>\r\n        <form data-bind=\"submit:contacts_create\">\r\n        <div class=\"new-contact\">\r\n\t\t\t<input class=\"fn\" type=\"text\" placeholder=\"Contact Name\" data-bind=\"value:contacts_Name\">\r\n\t\t\t<input class=\"phone\" type=\"text\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phoneNumber\">\r\n\t\t\t<input class=\"email\" type=\"text\" placeholder=\"Email Address\" data-bind=\"value:contacts_emailAddress\">\r\n            <button type=\"submit\" value=\"Save\">Add record</button>    \r\n\t    </div>\r\n        </form>\r\n\t    <div id=\"contacts\" data-bind=\"foreach:contacts\">\r\n        \t<div class=\"vcard\">\r\n    \t\t\t<input class=\"fn\" data-bind=\"value:Name\">\r\n    \t\t\t<input class=\"tel\" data-bind=\"value:phoneNumber\">\r\n                <input class=\"tel\" data-bind=\"value:emailAddress\">\r\n                <button data-bind=\"click:contacts_update\">Save</button><button data-bind=\"click:contacts_delete\">Delete</button>\r\n    \t\t</div>\r\n        </div>\r\n </body>\r\n</html>");
+				editor.getSession().setValue("");/*<html>\r\n<head>\r\n    <title>Contacts</title>\r\n    <meta charset=\"utf-8\">\r\n\t<link rel=\"stylesheet\" href=\"contacts-style.css\">\r\n</head>\r\n\t<body>\r\n        <form data-bind=\"submit:contacts_create\">\r\n        <div class=\"new-contact\">\r\n\t\t\t<input class=\"fn\" type=\"text\" placeholder=\"Contact Name\" data-bind=\"value:contacts_Name\">\r\n\t\t\t<input class=\"phone\" type=\"text\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phoneNumber\">\r\n\t\t\t<input class=\"email\" type=\"text\" placeholder=\"Email Address\" data-bind=\"value:contacts_emailAddress\">\r\n            <button type=\"submit\" value=\"Save\">Add record</button>    \r\n\t    </div>\r\n        </form>\r\n\t    <div id=\"contacts\" data-bind=\"foreach:contacts\">\r\n        \t<div class=\"vcard\">\r\n    \t\t\t<input class=\"fn\" data-bind=\"value:Name\">\r\n    \t\t\t<input class=\"tel\" data-bind=\"value:phoneNumber\">\r\n                <input class=\"tel\" data-bind=\"value:emailAddress\">\r\n                <button data-bind=\"click:contacts_update\">Save</button><button data-bind=\"click:contacts_delete\">Delete</button>\r\n    \t\t</div>\r\n        </div>\r\n </body>\r\n</html>");*/
 
 					
 					/*"<html>\n\t<body>\n\t\t<div data-bind=\"foreach:saturday\"><br>\n\t\t\t<span data-bind=\"text:questionTitle\"></span> - \n\t\t\t<span data-bind=\"text:questionBody\"></span>\n\t\t</div>\n\t\t<form data-bind=\"submit:saturday_create\">\n\t\t\tQuestion title\n\t\t\t<input data-bind=\"value:saturday_questionTitle\"><br>\n\t\t\tQuestion body \n\t\t\t<input data-bind=\"value:saturday_questionBody\"></br>\n\t\t\t<input type=\"submit\" value=\"add question\">\n\t\t</form>\n\t</body>\n</html>");*/
@@ -255,9 +254,9 @@ function getPage(userId,filename,callback)
 <pre>
   &lt;div id="contacts" data-bind="foreach:contacts"&gt;
     &lt;div class="vcard"&gt;
-      &lt;input class="fn" data-bind="value:Full Name"&gt;
-      &lt;input class="email" data-bind="value:Email"&gt;
-      &lt;input class="tel" data-bind="value:Phone"&gt;
+      &lt;input class="fn" data-bind="value:contacts_Name"&gt;
+      &lt;input class="email" data-bind="value:contacts_Email"&gt;
+      &lt;input class="tel" data-bind="value:contacts_Phone"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 </pre>
@@ -415,7 +414,6 @@ function getPage(userId,filename,callback)
 					</ul>
 
 					<!-- hosted include -->
-					<a name="hostedInclude">
 					<article>
 						<h2>Hosted Concussion JS include</h2>
 						<p>Include this hosted Concussion script in your HTML file</p>
@@ -424,8 +422,6 @@ function getPage(userId,filename,callback)
 						</pre>
 					</article>
 					<!-- local include -->
-
-					<a name="localInclude">
 						<article>
 						<h2> Local Concussion JS include</h2>
 						<p>
@@ -436,7 +432,6 @@ function getPage(userId,filename,callback)
 						</p>
 					</article>
 					<!-- virtual box download -->
-					<a name="virtualBoxDownload">
 					<article>
 						<h2>Virtual appliance download</h2>
 						<p>
@@ -447,7 +442,6 @@ function getPage(userId,filename,callback)
 						</p>
 					</article>
 					<!-- Getting Started -->
-					<a name="AWSAMIimage">
 						<h2>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS
 						</h2>
 						<article>
@@ -457,7 +451,6 @@ function getPage(userId,filename,callback)
 						</article>
 				</div>
 			</section>
-
 
 			<section id="documentation" class="page">
 				<div class="page-body">
@@ -482,9 +475,9 @@ function getPage(userId,filename,callback)
 	<h2>Getting Started</h2>
 	<h3>Login</h3>
 	<p>Getting started is easy. Just login via your Facebook account in the top right corner of the page and your done.</p>
-	<img src="images/documentation-fb-login.png"> 
+	<img src="images/documentation-fb-login.png" alt="Login Image"> 
 	<p>Once you have signed in you will get a link to your admin console. The admin console lets you view everything that is in your database. To start, there is not much in the database...</p>
-	<img src="images/documentation-admin.png">
+	<img src="images/documentation-admin.png" alt="Admin Image">
 	<h3>Reference the Script</h3>
 	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
 	<pre>
@@ -596,61 +589,6 @@ function getPage(userId,filename,callback)
 	"}
 	P:"
 </article>	
-				</div>
-			</section>
-
-			<section id="download" class="page">
-				<div class="page-body">
-					<h1>Getting started</h1>		
-					<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
-		
-					<!-- Navigation 				
-					<h2>Deployment options</h2>
-
-					<ul>
-					 	<li><a href="#hostedInclude">Hosted Concussion JS include</a></li>
-						<li><a href="#localInclude"> Downloadable Concussion JS include</a></li>
-						<li><a href="#virtualBoxDownload">Virtual appliance download</a></li>
-						<li><a href="#AWSAMIimage">AWS AMI image</a></li>
-					</ul>-->
-
-					<!-- hosted include -->
-					<article>
-						<h2>Hosted Concussion JS include</h2>
-						<p>Include this hosted Concussion script in your HTML file</p>
-						<pre>
-&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;
-						</pre>
-					</article>
-					<!-- local include -->
-
-						<article>
-						<h2> Local Concussion JS include</h2>
-						<p>
-							Download Concussion include to host on your servers, then include in your HTML files.
-						</p>
-						<p>
-							<a href="http://testdrive.concussionjs.com/concussion.js"> Download </a>
-						</p>
-					</article>
-					<!-- virtual box download -->
-					<article>
-						<h2>Virtual appliance download</h2>
-						<p>
-							Download Virtual Box image to run a local copy of the Concussion platform.
-						</p>
-						<p>
-							<a href="http://concussionjs.com/concussion.js"> Download </a>
-						</p>
-					</article>
-					<!-- Getting Started -->
-						<h2>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS
-						</h2>
-						<article>
-						<p>
-							AMI ID: xxxxxxxxxxx
-						</p>
-						</article>
 				</div>
 			</section>
 						
