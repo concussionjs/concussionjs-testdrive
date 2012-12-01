@@ -853,7 +853,7 @@ body > input[type="radio"] {
 
 	/* animate the page indicator */
 	#page-indicator label {
-		-webkit-transform: translateZ(0);
+		/* -webkit-transform: translateZ(0); - this seems to be clipping the circles */
 		-webkit-transition: all 0.2s ease-out;
 		-moz-transition: all 0.2s ease-out;
 		-o-transition: all 0.2s ease-out;
