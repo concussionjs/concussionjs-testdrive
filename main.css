@@ -432,6 +432,7 @@ body > input[type="radio"] {
 
 	#main-menu label:hover {
 		color: rgb(123,188,249);
+		cursor: pointer;
 	}
 	
 	#menu-indicator {
