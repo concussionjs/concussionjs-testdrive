@@ -8,7 +8,7 @@ var scriptonly = fs.readFileSync('kotemplate-scriptonly.ejs', 'utf-8');
 var ejs = require('ejs');
 var qs = require('querystring');
 var http = require('http');
-var parse = require('./testParse.js');
+var parse = require('./inferObjects.js');
 var util = require('util');
 var s = settings();
 
