@@ -534,11 +534,11 @@ function getPage(userId,filename,callback)
 
 			<section id="download" class="page">
 				<div class="page-body">
-					<h1>Get Started</h1>		
+					<h1>Getting started</h1>		
 					<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
 		
 					<!-- Navigation -->				
-					<h2>Download options</h2>
+					<h2>Deployment options</h2>
 
 					<ul>
 					 	<li><a href="#hostedInclude">Hosted Concussion JS include</a></li>
