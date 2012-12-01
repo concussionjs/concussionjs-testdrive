@@ -71,6 +71,7 @@
 			editor.setTheme("ace/theme/concussion");
 			editor.getSession().setMode("ace/mode/html");
 			editor.setShowPrintMargin(false);
+			editor.setReadOnly(true);
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -241,8 +242,9 @@ function getPage(userId,filename,callback)
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>You should see a sample contact appear in the preview.</p>
-	<p class="continue"><label for="step2" class="primary">Continue &raquo;</label><label for="step2" class="secondary">Just do it for me &raquo;</label></p>
+	<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 2-->
@@ -259,8 +261,9 @@ function getPage(userId,filename,callback)
     &lt;/div&gt;
   &lt;/div&gt;
 </pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
-	<p class="continue"><label for="step3" class="primary">Continue &raquo;</label><label for="step3" class="secondary">Just do it for me &raquo;</label></p>
+	<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 3 -->
@@ -269,7 +272,7 @@ function getPage(userId,filename,callback)
 	<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
 	<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
 	<p>Add 2 or 3 more records to show more data in the contacts app.</p>
-	<p class="continue"><label for="step4" class="primary">Continue &raquo;</label><label for="step4" class="secondary">Just do it for me &raquo;</label></p>
+	<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 4 -->
@@ -278,16 +281,17 @@ function getPage(userId,filename,callback)
 	<p>You should see the contacts that were added from the admin.</p>
 	<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
 <pre>
-  &lt;div class="new-contact"&gt;
-    &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_Name"&gt;
-    &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_Email"&gt;
-    &lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_Phone"&gt;
-    &lt;button data-bind="submit:contacts_create"&gt;Add record&lt;/button&gt;    
-  &lt;/div&gt;
+&lt;div class="new-contact"&gt;
+  &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_Name"&gt;
+  &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_Email"&gt;
+  &lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_Phone"&gt;
+  &lt;button data-bind="submit:contacts_create"&gt;Add record&lt;/button&gt;    
+&lt;/div&gt;
 </pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>You should see the add contacts form in the preview.</p>
 	<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
-	<p class="continue"><label for="step5" class="primary">Continue &raquo;</label><label for="step5" class="secondary">Just do it for me &raquo;</label></p>
+	<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 5 -->
@@ -295,30 +299,39 @@ function getPage(userId,filename,callback)
 	<header>Add a new field</header>
 	<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
 <pre>
-    &lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
+&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
 </pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>You should see the new field in the add contact form</p>
 	<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
 <pre>
-      &lt;input class="bday" data-bind="value:Birthday"&gt;
+&lt;input class="bday" data-bind="value:Birthday"&gt;
 </pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
 	<p>Add a few contacts using the new field. These should display all the data.</p>
-	<p class="continue"><label for="step6" class="primary">Continue &raquo;</label><label for="step6" class="secondary">Just do it for me &raquo;</label></p>
+	<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 6 -->
 <article>
-	<header>These are the instructions for step 6.</header>
-	<p>Go back to admin and see the change (admin)</p>
-	<p class="continue"><label for="step7" class="primary">Continue &raquo;</label><label for="step7" class="secondary">Just do it for me &raquo;</label></p>
+	<header>Update contacts in admin</header>
+	<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
+	<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 7 -->
 <article>
-	<header>These are the instructions for step 7.</header>
-	<p>Add/update records to use the new field</p>
-	<p class="continue"><label for="step8" class="primary">Continue &raquo;</label><label for="step8" class="secondary">Just do it for me &raquo;</label></p>
+	<header>Update contacts directly from the app</header>
+	<p>You should see the updates to the contacts made in admin.</p>
+	<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
+	<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
+<pre>
+&lt;button&gt;Save&lt;/button&gt;&lt;button&gt;Delete&lt;/button&gt;
+</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
+	<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
 </article>
 
 <!-- Step 8 -->

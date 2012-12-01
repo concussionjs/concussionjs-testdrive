@@ -718,6 +718,15 @@ body > input[type="radio"] {
 				#steps article p {
 				}
 
+				#steps article .action {
+					margin-top: -15px;
+				}
+
+				#steps article .action a {
+					color: rgba(102, 153, 204, 1);
+					cursor: default;
+				}
+
 				#steps article pre {
 					border-radius: 3px;
 					padding: 10px;
@@ -743,9 +752,6 @@ body > input[type="radio"] {
 					background: rgba(102, 153, 204, .85);
 				}
 
-				#steps article .secondary {
-					color: rgba(102, 153, 204, 1);
-				}
 
 	/* Page indicator discs */
 	#page-indicator {
@@ -878,7 +884,7 @@ body > input[type="radio"] {
 	#step3:checked ~ #workspace #workspace-wrapper { margin-left: -100% }
 	#step4:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
 	#step5:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
-	#step6:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step6:checked ~ #workspace #workspace-wrapper { margin-left: -100% }
 	#step7:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
 	#step8:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
 
