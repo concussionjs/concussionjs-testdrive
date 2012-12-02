@@ -290,20 +290,23 @@ input[type="search"] {
 
 button {
   min-width: 80px;
-  height: 32px;
   margin: 6px 12px 0 0;
-  border: 1px solid #3F3F3F;
+  border-radius: 3px;
+  border: none;
   border-radius: 4px;
-  padding: 0 8px;
-  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6), 0px 1px 0px gba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  background: none;
   font-size: 1rem;
-  color: #fff;
-  background: -webkit-linear-gradient(#adadad, #6b6b6b);
+  color: rgba(102, 153, 204, .85);
+}
+
+button:hover {
+	cursor: pointer;
 }
 
 .primary {
-  border-color: #012e4f;
-  background: -webkit-linear-gradient(#014677, #012e4f);
+  background: rgba(102, 153, 204, .85);
+  color: #fff;
 }
 
 .form-body {
@@ -510,13 +513,14 @@ div > legend {
   top: -3px;
   min-width: 60px;
   height: 24px;
-  margin: 0;
-  border: 1px solid rgb(112,112,112);
-  border-radius: 4px;
-  padding: 0 8px;
-  box-shadow: 0px -1px 0px rgba(0,0,0,0.2), 0px 1px 0px rgba(255,255,255,0.2);
-  font-size: .875rem;
-  color: rgba(255,255,255,.8);
+  margin: 0; 
+  padding: 4px; 
+  background-image:-webkit-linear-gradient(-90deg,rgb(63,66,67) 0%,rgb(47,52,53) 15%,rgb(26,30,31) 99%,rgb(26,30,31) 100%);
+	border: 1px solid rgb(27,29,29);
+	border-radius: 4px;
+	box-shadow:0px -1px 0px rgba(0,0,0,.5), 0px 1px 0px rgb(61,67,68);
+	font-size: .875rem;
+	color: rgba(255,255,255,.8);
 }
 
 
