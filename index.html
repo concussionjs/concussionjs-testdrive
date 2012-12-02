@@ -66,7 +66,8 @@
       } 
 
 		
-		$(document).ready(function(){
+		$(document).ready(function() {
+
 			editor = ace.edit("editor");
 			editor.setTheme("ace/theme/concussion");
 			editor.getSession().setMode("ace/mode/html");
@@ -98,7 +99,7 @@
 					//alert("clicked");
 					submitFormData();
 			});	
-		});
+		});//close ready
 function getPage(userId,filename,callback)
 {
 	$.ajax({
@@ -221,12 +222,14 @@ function getPage(userId,filename,callback)
 					</div>
 					<div id="steps">
 						<div id="step-wrapper">
-				<!-- Step 1 -->
+<!-- Step 1 -->
 <article>
-	<header><span id="lede">The web app platform for the impatient hacker.</span></header>
-	<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
-	<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
-	<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
+
+<header><span id="lede">The web app platform for the impatient hacker.</span></header>
+<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
+<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
+<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
+<!--<div id="s1-1" class="editor"></div>-->
 <pre>
 &lt;!DOCTYPE html&gt;&lt;html&gt;
 &lt;head&gt;&lt;title&gt;Contacts&lt;/title&gt;&lt;meta charset="utf-8"&gt;&lt;link rel="stylesheet" href="contacts-style.css"&gt;&lt;/head&gt;
@@ -241,16 +244,21 @@ function getPage(userId,filename,callback)
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>You should see a sample contact appear in the preview.</p>
-	<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
-</article>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>You should see a sample contact appear in the preview.</p>
+<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
 
-<!-- Step 2-->
-<article>
-	<header>Add concussion data-binds</header>
-	<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
-	<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
+</article>
+<!-- End Step 1 --> 
+
+
+<!-- Step 2 -->
+<article> 
+
+<header>Add concussion data-binds</header>
+<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
+<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
+<!--<div id="s2-1" class="editor"></div>-->
 <pre>
   &lt;div id="contacts" data-bind="foreach:contacts"&gt;
     &lt;div class="vcard"&gt;
@@ -260,25 +268,34 @@ function getPage(userId,filename,callback)
     &lt;/div&gt;
   &lt;/div&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
-	<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
+<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- End Step 2-->
+
 
 <!-- Step 3 -->
 <article>
-	<header>Add contacts in admin</header>
-	<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
-	<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
-	<p>Add 2 or 3 more records to show more data in the contacts app.</p>
-	<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
+
+<header>Add contacts in admin</header>
+<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
+<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
+<p>Add 2 or 3 more records to show more data in the contacts app.</p>
+<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- End Step 3 -->
+
 
 <!-- Step 4 -->
 <article>
-	<header>Add contacts directly from the app</header>
-	<p>You should see the contacts that were added from the admin.</p>
-	<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
+
+<header>Add contacts directly from the app</header>
+<p>You should see the contacts that were added from the admin.</p>
+<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
+<!--<div id="s4-1" class="editor"></div>-->
 <pre>
 &lt;div class="new-contact"&gt;
   &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_Name"&gt;
@@ -287,57 +304,79 @@ function getPage(userId,filename,callback)
   &lt;button data-bind="submit:contacts_create"&gt;Add record&lt;/button&gt;    
 &lt;/div&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>You should see the add contacts form in the preview.</p>
-	<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
-	<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>You should see the add contacts form in the preview.</p>
+<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
+<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- End Step 4 -->
+
 
 <!-- Step 5 -->
 <article>
-	<header>Add a new field</header>
-	<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
+
+<header>Add a new field</header>
+<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
+<!--<div id="s5-1" class="editor"></div>-->
 <pre>
 &lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>You should see the new field in the add contact form</p>
-	<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>You should see the new field in the add contact form</p>
+<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
+<!--<div id="s5-2" class="editor"></div>-->
 <pre>
 &lt;input class="bday" data-bind="value:Birthday"&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
-	<p>Add a few contacts using the new field. These should display all the data.</p>
-	<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
+<p>Add a few contacts using the new field. These should display all the data.</p>
+<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- End Step 5 -->
+
 
 <!-- Step 6 -->
 <article>
-	<header>Update contacts in admin</header>
-	<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
-	<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
+
+<header>Update contacts in admin</header>
+<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
+<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- Step 6 -->
+
 
 <!-- Step 7 -->
 <article>
-	<header>Update contacts directly from the app</header>
-	<p>You should see the updates to the contacts made in admin.</p>
-	<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
-	<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
+
+<header>Update contacts directly from the app</header>
+<p>You should see the updates to the contacts made in admin.</p>
+<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
+<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
+<!--<div id="s7-1" class="editor"></div>-->
 <pre>
 &lt;button&gt;Save&lt;/button&gt;&lt;button&gt;Delete&lt;/button&gt;
 </pre>
-	<p class="action"><a>Just do it for me&raquo;</a></p>
-	<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
-	<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
+<p class="action"><a>Just do it for me&raquo;</a></p>
+<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
+<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
+
 </article>
+<!-- End Step 7 -->
+
 
 <!-- Step 8 -->
 <article>
-	<header>These are the instructions for step 8.</header>
-	<p>Done, app url, login, next steps, etc.</p>
+
+<header>These are the instructions for step 8.</header>
+<p>Done, app url, login, next steps, etc.</p>
+
 </article>
+<!-- End Step 8 -->
+
 						</div>
 					</div>
 					<div id="page-indicator">
@@ -362,7 +401,7 @@ function getPage(userId,filename,callback)
 									<div class="panel-header-secondary"></div>
 								</header>
 								<div class="panel-body">
-									<div id="editor"></div>
+									<div id="editor" class="editor"></div>
 								</div>
 							</section>
 							<section id="view" class="panel">
@@ -601,9 +640,12 @@ function getPage(userId,filename,callback)
 					<p>Etiam porttitor nisi et risus luctus sed ullamcorper enim vulputate. Suspendisse non nunc ipsum, vel cursus massa. Vivamus eget risus quis libero egestas elementum. Nulla facilisi. Nulla sodales elementum leo a malesuada. Mauris at mauris massa. Curabitur vel enim nec nunc varius rutrum sit amet eget odio. Vivamus rhoncus, libero eu porttitor tempus, sem enim placerat tortor, at vulputate nibh erat et justo. Fusce consequat laoreet adipiscing. Ut laoreet pharetra quam, non imperdiet risus lacinia sit amet.</p>
 					<p>Sed in justo eget mi placerat porttitor sit amet commodo ipsum. Vivamus diam nisi, iaculis nec posuere non, pulvinar a urna. Vestibulum tincidunt posuere semper. Suspendisse potenti. Vestibulum nec metus et nisi laoreet fringilla. Vestibulum eleifend, lacus eget facilisis placerat, mi dolor sodales leo, aliquam aliquet leo magna sed arcu. Suspendisse erat justo, commodo et pretium a, accumsan sit amet lectus. Nam a mi odio, et hendrerit turpis. Nulla facilisi. Integer tempor volutpat eros auctor vehicula. In hac habitasse platea dictumst. Proin sed mi sem, id auctor velit. Praesent ornare sodales massa vel pretium. Nulla venenatis ultricies felis, ac commodo magna semper et. Etiam hendrerit, mi non euismod gravida, mauris neque adipiscing libero, eget consectetur lorem urna at nisl. Aenean ullamcorper blandit hendrerit.</p>
 					<ul>
-						<li>List item one
-						<li>List item two
-						<li>List item three
+						<li>Our cloud and your data center
+						<li>Desktop and mobile
+						<li>On-line and off-line
+						<li>Single tenancy and multi-tenancy
+						<li>Easy to learn and massively scalable
+						<li>High developer productivity and differentiated UI
 					</ul>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tellus lacus, porttitor eu pretium a, volutpat vel turpis. Duis et justo lorem, at mollis mi. Cras nulla urna, feugiat ac placerat non, porta mattis tortor. Fusce dictum blandit elit at pharetra. Quisque porta leo at neque laoreet sodales. Sed lacinia rhoncus magna, a pharetra nulla sollicitudin adipiscing. Cras pulvinar varius rutrum. Integer lobortis vestibulum dui, vel lobortis massa dignissim ut. Ut at arcu tortor. Nulla facilisi. Aliquam eget mauris eros, nec iaculis orci. Suspendisse placerat lacinia nisl, vitae euismod lorem tempus a. Quisque dui tortor, aliquam tempor tincidunt in, rhoncus at lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 					<p>Etiam porttitor nisi et risus luctus sed ullamcorper enim vulputate. Suspendisse non nunc ipsum, vel cursus massa. Vivamus eget risus quis libero egestas elementum. Nulla facilisi. Nulla sodales elementum leo a malesuada. Mauris at mauris massa. Curabitur vel enim nec nunc varius rutrum sit amet eget odio. Vivamus rhoncus, libero eu porttitor tempus, sem enim placerat tortor, at vulputate nibh erat et justo. Fusce consequat laoreet adipiscing. Ut laoreet pharetra quam, non imperdiet risus lacinia sit amet.</p>
