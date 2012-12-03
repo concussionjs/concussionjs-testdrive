@@ -533,7 +533,7 @@ function getPage(userId,filename,callback)
 	<h2>Creating Data</h2>
 	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help1" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -542,7 +542,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Hook this static form up to a database by adding the following data-binds:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help2" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -558,7 +558,7 @@ function getPage(userId,filename,callback)
 	<h2>Reading Data</h2>
 	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help3" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -566,7 +566,7 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Reading data of the database by adding the following data-binds:</p>
-		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
+		<pre id="help4" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
@@ -579,7 +579,7 @@ function getPage(userId,filename,callback)
 	<h2>Updating Data</h2>
 	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help5" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -588,7 +588,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Updating data in the database by adding the following data-binds:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help6" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -604,7 +604,7 @@ function getPage(userId,filename,callback)
 	<h2>Deleting Data</h2>
 	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+	<pre id="help7" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -612,7 +612,7 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Deleting data of the database by adding the following data-binds:</p>
-		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
+		<pre id="help8" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
