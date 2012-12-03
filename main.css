@@ -938,7 +938,26 @@ body > input[type="radio"] {
 			height: 100px;
 			overflow: hidden;
 			}
+
+		.snippet {
+			position: relative;
+			/*top: 0;
+			left: 0;*/
+			width: 100%;
+			overflow: hidden;
+			}
+
+		.small{
+			height: 50px;
+		}
 		
+		.medium{
+			height: 150px;
+		}
+
+		.large{
+			height: 250px;
+		}
 			.ace_gutter {
 				border-radius: 5px 0 0 5px;
 			}
