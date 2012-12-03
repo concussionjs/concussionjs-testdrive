@@ -14,7 +14,6 @@
 	<script>
 		var myId="";
 		var editor;
-
 		 (function(d){
  		    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
  		    if (d.getElementById(id)) {return;}
@@ -66,12 +65,15 @@
       } 
 
 		
-		$(document).ready(function() {
+		$(document).ready(function(){
 
-			editor = ace.edit("editor");
+			aceEditorInit($(".editor"));
+			aceEditorInit($(".snippet"));
+			myId=readCookie("sessionId");
+			/*editor = ace.edit("editor");
 			editor.setTheme("ace/theme/concussion");
 			editor.getSession().setMode("ace/mode/html");
-			editor.setShowPrintMargin(false);
+			editor.setShowPrintMargin(false);*/
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -83,23 +85,36 @@
 
 			if(!myId)
 			{	
-				editor.getSession().setValue("");/*<html>\r\n<head>\r\n    <title>Contacts</title>\r\n    <meta charset=\"utf-8\">\r\n\t<link rel=\"stylesheet\" href=\"contacts-style.css\">\r\n</head>\r\n\t<body>\r\n        <form data-bind=\"submit:contacts_create\">\r\n        <div class=\"new-contact\">\r\n\t\t\t<input class=\"fn\" type=\"text\" placeholder=\"Contact Name\" data-bind=\"value:contacts_Name\">\r\n\t\t\t<input class=\"phone\" type=\"text\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phoneNumber\">\r\n\t\t\t<input class=\"email\" type=\"text\" placeholder=\"Email Address\" data-bind=\"value:contacts_emailAddress\">\r\n            <button type=\"submit\" value=\"Save\">Add record</button>    \r\n\t    </div>\r\n        </form>\r\n\t    <div id=\"contacts\" data-bind=\"foreach:contacts\">\r\n        \t<div class=\"vcard\">\r\n    \t\t\t<input class=\"fn\" data-bind=\"value:Name\">\r\n    \t\t\t<input class=\"tel\" data-bind=\"value:phoneNumber\">\r\n                <input class=\"tel\" data-bind=\"value:emailAddress\">\r\n                <button data-bind=\"click:contacts_update\">Save</button><button data-bind=\"click:contacts_delete\">Delete</button>\r\n    \t\t</div>\r\n        </div>\r\n </body>\r\n</html>");*/
-
-					
-					/*"<html>\n\t<body>\n\t\t<div data-bind=\"foreach:saturday\"><br>\n\t\t\t<span data-bind=\"text:questionTitle\"></span> - \n\t\t\t<span data-bind=\"text:questionBody\"></span>\n\t\t</div>\n\t\t<form data-bind=\"submit:saturday_create\">\n\t\t\tQuestion title\n\t\t\t<input data-bind=\"value:saturday_questionTitle\"><br>\n\t\t\tQuestion body \n\t\t\t<input data-bind=\"value:saturday_questionBody\"></br>\n\t\t\t<input type=\"submit\" value=\"add question\">\n\t\t</form>\n\t</body>\n</html>");*/
-
+				console.log("No authenticated user or session");
+				editor.getSession().setValue("");
 				submitFormData(readCookie("sessionId"));
 			}
 			else
 			{
-				getPage(myId,"next");
+				console.log("myId:", myId);
+				getPage(myId,"index",submitFormData);
 			}
 
 			$("#panel-header-icon-refresh").click(function(event){
 					//alert("clicked");
 					submitFormData();
 			});	
-		});//close ready
+		});
+
+function aceEditorInit(editors)
+{
+	console.log(editors.length);
+	for(i=0;i<editors.length;i++)
+	{
+		console.log(editors[i].id + " "+ editors[i].getAttribute("data-readonly"));
+		eval(editors[i].id + "=ace.edit(\"" + editors[i].id + "\");");
+		eval(editors[i].id + ".setTheme(\"ace/theme/concussion\");");
+		eval(editors[i].id + ".getSession().setMode(\"ace/mode/html\");");
+		eval(editors[i].id + ".setShowPrintMargin(false);");
+		eval(editors[i].id + ".setReadOnly(" + editors[i].getAttribute("data-readonly") + ");");
+		eval(editors[i].id + ".renderer.setShowGutter(" + editors[i].getAttribute("data-gutter") + ");");
+	}
+}
 function getPage(userId,filename,callback)
 {
 	$.ajax({
@@ -222,16 +237,13 @@ function getPage(userId,filename,callback)
 					</div>
 					<div id="steps">
 						<div id="step-wrapper">
-<!-- Step 1 -->
+				<!-- Step 1 -->
 <article>
-
-<header><span id="lede">The web app platform for the impatient hacker.</span></header>
-<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
-<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
-<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
-<!--<div id="s1-1" class="editor"></div>-->
-<pre>
-&lt;!DOCTYPE html&gt;&lt;html&gt;
+	<header><span id="lede">The web app platform for the impatient hacker.</span></header>
+	<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
+	<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
+	<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
+<pre class="snippet large" id="s1e1" data-readonly="true" data-gutter="false">&lt;!DOCTYPE html&gt;&lt;html&gt;
 &lt;head&gt;&lt;title&gt;Contacts&lt;/title&gt;&lt;meta charset="utf-8"&gt;&lt;link rel="stylesheet" href="contacts-style.css"&gt;&lt;/head&gt;
 &lt;body&gt;
   &lt;div id="contacts"&gt;
@@ -242,141 +254,96 @@ function getPage(userId,filename,callback)
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/body&gt;
-&lt;/html&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>You should see a sample contact appear in the preview.</p>
-<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
-
+&lt;/html&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>You should see a sample contact appear in the preview.</p>
+	<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 1 --> 
 
-
-<!-- Step 2 -->
-<article> 
-
-<header>Add concussion data-binds</header>
-<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
-<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
-<!--<div id="s2-1" class="editor"></div>-->
-<pre>
-  &lt;div id="contacts" data-bind="foreach:contacts"&gt;
-    &lt;div class="vcard"&gt;
-      &lt;input class="fn" data-bind="value:contacts_Name"&gt;
-      &lt;input class="email" data-bind="value:contacts_Email"&gt;
-      &lt;input class="tel" data-bind="value:contacts_Phone"&gt;
+<!-- Step 2-->
+<article>
+	<header>Add concussion data-binds</header>
+	<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
+	<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
+<pre class="snippet medium" id="s2e1" data-readonly="true" data-gutter="false">&lt;div id="contacts" data-bind="foreach:contacts"&gt;
+	&lt;div class="vcard"&gt;
+		&lt;input class="fn" data-bind="value:name"&gt;
+		&lt;input class="email" data-bind="value:email"&gt;
+		&lt;input class="tel" data-bind="value:phone"&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
-<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
-
+  &lt;/div&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
+	<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 2-->
-
 
 <!-- Step 3 -->
 <article>
-
-<header>Add contacts in admin</header>
-<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
-<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
-<p>Add 2 or 3 more records to show more data in the contacts app.</p>
-<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
-
+	<header>Add contacts in admin</header>
+	<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
+	<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
+	<p>Add 2 or 3 more records to show more data in the contacts app.</p>
+	<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 3 -->
-
 
 <!-- Step 4 -->
 <article>
-
-<header>Add contacts directly from the app</header>
-<p>You should see the contacts that were added from the admin.</p>
-<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
-<!--<div id="s4-1" class="editor"></div>-->
-<pre>
+	<header>Add contacts directly from the app</header>
+	<p>You should see the contacts that were added from the admin.</p>
+	<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
+<pre class="snippet medium" id="s4e1" data-readonly="true" data-gutter="false">&lt;form data-bind="submit:contacts_create"&gt;
 &lt;div class="new-contact"&gt;
-  &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_Name"&gt;
-  &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_Email"&gt;
-  &lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_Phone"&gt;
-  &lt;button data-bind="submit:contacts_create"&gt;Add record&lt;/button&gt;    
+  &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
+  &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_email"&gt;
+  &lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_phone"&gt;
+  &lt;button&gt;Add record&lt;/button&gt;    
 &lt;/div&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>You should see the add contacts form in the preview.</p>
-<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
-<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
-
+&lt;/form&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>You should see the add contacts form in the preview.</p>
+	<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
+	<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 4 -->
-
 
 <!-- Step 5 -->
 <article>
-
-<header>Add a new field</header>
-<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
-<!--<div id="s5-1" class="editor"></div>-->
-<pre>
-&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>You should see the new field in the add contact form</p>
-<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
-<!--<div id="s5-2" class="editor"></div>-->
-<pre>
-&lt;input class="bday" data-bind="value:Birthday"&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
-<p>Add a few contacts using the new field. These should display all the data.</p>
-<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
-
+	<header>Add a new field</header>
+	<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
+<pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>You should see the new field in the add contact form</p>
+	<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
+<pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">&lt;input class="bday" data-bind="value:Birthday"&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
+	<p>Add a few contacts using the new field. These should display all the data.</p>
+	<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 5 -->
-
 
 <!-- Step 6 -->
 <article>
-
-<header>Update contacts in admin</header>
-<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
-<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
-
+	<header>Update contacts in admin</header>
+	<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
+	<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- Step 6 -->
-
 
 <!-- Step 7 -->
 <article>
-
-<header>Update contacts directly from the app</header>
-<p>You should see the updates to the contacts made in admin.</p>
-<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
-<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
-<!--<div id="s7-1" class="editor"></div>-->
-<pre>
-&lt;button&gt;Save&lt;/button&gt;&lt;button&gt;Delete&lt;/button&gt;
-</pre>
-<p class="action"><a>Just do it for me&raquo;</a></p>
-<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
-<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
-
+	<header>Update contacts directly from the app</header>
+	<p>You should see the updates to the contacts made in admin.</p>
+	<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
+	<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
+<pre class="snippet small" id="s7e1" data-readonly="true" data-gutter="false">&lt;button data-bind="click:contacts_update"&gt;Save&lt;/button&gt;&lt;button class="secondary" data-bind="click:contacts_delete"&gt;Delete&lt;/button&gt;</pre>
+	<p class="action"><a>Just do it for me&raquo;</a></p>
+	<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
+	<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
 </article>
-<!-- End Step 7 -->
-
 
 <!-- Step 8 -->
 <article>
-
-<header>These are the instructions for step 8.</header>
-<p>Done, app url, login, next steps, etc.</p>
-
+	<header>These are the instructions for step 8.</header>
+	<p>Done, app url, login, next steps, etc.</p>
 </article>
-<!-- End Step 8 -->
-
 						</div>
 					</div>
 					<div id="page-indicator">
@@ -401,7 +368,7 @@ function getPage(userId,filename,callback)
 									<div class="panel-header-secondary"></div>
 								</header>
 								<div class="panel-body">
-									<div id="editor" class="editor"></div>
+									<div id="editor" class="editor" data-readonly="false" data-gutter="true"></div>
 								</div>
 							</section>
 							<section id="view" class="panel">
@@ -456,9 +423,7 @@ function getPage(userId,filename,callback)
 					<article>
 						<h2>Hosted Concussion JS include</h2>
 						<p>Include this hosted Concussion script in your HTML file</p>
-						<pre>
-&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;
-						</pre>
+						<pre class="snippet" id="hostedInclude" data-readonly="true" data-gutter="false">&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;</pre>
 					</article>
 					<!-- local include -->
 						<article>
@@ -519,9 +484,7 @@ function getPage(userId,filename,callback)
 	<img src="images/documentation-admin.png" alt="Admin Image">
 	<h3>Reference the Script</h3>
 	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
-	<pre>
-		&lt;script src=“http://concussionjs.com/concussion.js”&gt;
-	</pre>
+	<pre id="help" class="snippet small" data-readonly="true" data-gutter="false">&lt;script src=“http://concussionjs.com/concussion.js”&gt;</pre>
 </article>
 
 <!-- Creating Data Object -->
@@ -529,7 +492,7 @@ function getPage(userId,filename,callback)
 	<h2>Creating Data</h2>
 	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -538,7 +501,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Hook this static form up to a database by adding the following data-binds:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -554,7 +517,7 @@ function getPage(userId,filename,callback)
 	<h2>Reading Data</h2>
 	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -562,13 +525,11 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Reading data of the database by adding the following data-binds:</p>
-		<pre>					
-		&lt;ul data-bind="foreach:contacts"&gt;
+		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
-		&lt;/ul&gt;
-	</pre>
+		&lt;/ul&gt;</pre>
 	<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
 </article>
 
@@ -577,7 +538,7 @@ function getPage(userId,filename,callback)
 	<h2>Updating Data</h2>
 	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -586,7 +547,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Updating data in the database by adding the following data-binds:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -602,7 +563,7 @@ function getPage(userId,filename,callback)
 	<h2>Deleting Data</h2>
 	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -610,7 +571,7 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Deleting data of the database by adding the following data-binds:</p>
-		<pre>					
+		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
