@@ -102,7 +102,7 @@ html {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	font: 400 18px "open-sans","helvetica neue",calibri,sans-serif;
+	font: 400 18px "open-sans",serif;
 	color: rgb(255,255,255);
 	background: rgb(14,17,18);
 }
@@ -120,10 +120,9 @@ body {
 }
 
 h1 {
-	margin: .76rem 0;
+	margin: .38rem 0;
 	font-size: 1.4rem;
 	font-weight: normal;
-	font-family: adelle,"open-sans","helvetica neue",calibri,sans-serif;
 }
 
 h2 {
@@ -295,12 +294,10 @@ iframe {
 	.panel-header-icon:hover {
 		opacity: 1;
 		cursor: pointer;
-		/*
 		transition: .5s;
 		-moz-transition: .5s;
 		-webkit-transition: .5s;
 		-o-transition: .5s;
-		*/
 	}
 
 	#panel-header-icon-refresh {
@@ -912,6 +909,7 @@ body > input[type="radio"] {
 /* FRONT-END
 ---------------------------------------------------------------------*/
 #front-end {
+	float: left;
 	width: 50%;
 	height: 100%;
 	display: -moz-box;
