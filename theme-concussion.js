@@ -57,11 +57,9 @@ exports.cssText = "\
 }\
 \
 .ace-concussion .ace_marker-layer .ace_active_line {\
-  background: #353637;\
 }\
 \
 .ace-concussion .ace_gutter_active_line {\
-  background-color: #353637;\
 }\
 \
 .ace-concussion .ace_marker-layer .ace_selected_word {\
