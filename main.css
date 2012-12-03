@@ -966,6 +966,9 @@ body > input[type="radio"] {
 				border-radius: 0 5px 5px 0;
 			}
 
+		.justDoItContent{
+			visibility: hidden;
+		}	
 
 	/* View */
 	#view {
