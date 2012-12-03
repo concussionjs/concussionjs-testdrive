@@ -106,11 +106,13 @@ function aceEditorInit(editors)
 	console.log(editors.length);
 	for(i=0;i<editors.length;i++)
 	{
-		console.log(editors[i].id);
-		eval(editors[i].id + " = ace.edit(\"" + editors[i].id + "\");");
+		console.log(editors[i].id + " "+ editors[i].getAttribute("data-readonly"));
+		eval(editors[i].id + "=ace.edit(\"" + editors[i].id + "\");");
 		eval(editors[i].id + ".setTheme(\"ace/theme/concussion\");");
 		eval(editors[i].id + ".getSession().setMode(\"ace/mode/html\");");
 		eval(editors[i].id + ".setShowPrintMargin(false);");
+		eval(editors[i].id + ".setReadOnly(" + editors[i].getAttribute("data-readonly") + ");");
+		eval(editors[i].id + ".renderer.setShowGutter(" + editors[i].getAttribute("data-gutter") + ");");
 	}
 }
 function getPage(userId,filename,callback)
@@ -241,7 +243,7 @@ function getPage(userId,filename,callback)
 	<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
 	<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
 	<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
-<pre class="snippet large" id="s1e1">&lt;!DOCTYPE html&gt;&lt;html&gt;
+<pre class="snippet large" id="s1e1" data-readonly="true" data-gutter="false">&lt;!DOCTYPE html&gt;&lt;html&gt;
 &lt;head&gt;&lt;title&gt;Contacts&lt;/title&gt;&lt;meta charset="utf-8"&gt;&lt;link rel="stylesheet" href="contacts-style.css"&gt;&lt;/head&gt;
 &lt;body&gt;
   &lt;div id="contacts"&gt;
@@ -263,7 +265,7 @@ function getPage(userId,filename,callback)
 	<header>Add concussion data-binds</header>
 	<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
 	<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
-<pre class="snippet medium" id="s2e1">&lt;div id="contacts" data-bind="foreach:contacts"&gt;
+<pre class="snippet medium" id="s2e1" data-readonly="true" data-gutter="false">&lt;div id="contacts" data-bind="foreach:contacts"&gt;
 	&lt;div class="vcard"&gt;
 		&lt;input class="fn" data-bind="value:name"&gt;
 		&lt;input class="email" data-bind="value:email"&gt;
@@ -289,7 +291,7 @@ function getPage(userId,filename,callback)
 	<header>Add contacts directly from the app</header>
 	<p>You should see the contacts that were added from the admin.</p>
 	<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
-<pre class="snippet medium" id="s4e1">&lt;form data-bind="submit:contacts_create"&gt;
+<pre class="snippet medium" id="s4e1" data-readonly="true" data-gutter="false">&lt;form data-bind="submit:contacts_create"&gt;
 &lt;div class="new-contact"&gt;
   &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
   &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_email"&gt;
@@ -307,11 +309,11 @@ function getPage(userId,filename,callback)
 <article>
 	<header>Add a new field</header>
 	<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
-<pre class="snippet small" id="s5e1">&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;</pre>
+<pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;</pre>
 	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>You should see the new field in the add contact form</p>
 	<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
-<pre class="snippet small" id="s5e2">&lt;input class="bday" data-bind="value:Birthday"&gt;</pre>
+<pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">&lt;input class="bday" data-bind="value:Birthday"&gt;</pre>
 	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
 	<p>Add a few contacts using the new field. These should display all the data.</p>
@@ -331,7 +333,7 @@ function getPage(userId,filename,callback)
 	<p>You should see the updates to the contacts made in admin.</p>
 	<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
 	<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
-<pre class="snippet small" id="s7e1">&lt;button&gt;Save&lt;/button&gt;&lt;button&gt;Delete&lt;/button&gt;</pre>
+<pre class="snippet small" id="s7e1" data-readonly="true" data-gutter="false">&lt;button data-bind="click:contacts_update"&gt;Save&lt;/button&gt;&lt;button class="secondary" data-bind="click:contacts_delete"&gt;Delete&lt;/button&gt;</pre>
 	<p class="action"><a>Just do it for me&raquo;</a></p>
 	<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
 	<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
@@ -366,7 +368,7 @@ function getPage(userId,filename,callback)
 									<div class="panel-header-secondary"></div>
 								</header>
 								<div class="panel-body">
-									<div id="editor" class="editor"></div>
+									<div id="editor" class="editor" data-readonly="false" data-gutter="true"></div>
 								</div>
 							</section>
 							<section id="view" class="panel">
@@ -421,9 +423,7 @@ function getPage(userId,filename,callback)
 					<article>
 						<h2>Hosted Concussion JS include</h2>
 						<p>Include this hosted Concussion script in your HTML file</p>
-						<pre>
-&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;
-						</pre>
+						<pre class="snippet" id="hostedInclude" data-readonly="true" data-gutter="false">&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;</pre>
 					</article>
 					<!-- local include -->
 						<article>
@@ -484,9 +484,7 @@ function getPage(userId,filename,callback)
 	<img src="images/documentation-admin.png" alt="Admin Image">
 	<h3>Reference the Script</h3>
 	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
-	<pre>
-		&lt;script src=“http://concussionjs.com/concussion.js”&gt;
-	</pre>
+	<pre id="help" class="snippet small" data-readonly="true" data-gutter="false">&lt;script src=“http://concussionjs.com/concussion.js”&gt;</pre>
 </article>
 
 <!-- Creating Data Object -->
@@ -494,7 +492,7 @@ function getPage(userId,filename,callback)
 	<h2>Creating Data</h2>
 	<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -503,7 +501,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Hook this static form up to a database by adding the following data-binds:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -519,7 +517,7 @@ function getPage(userId,filename,callback)
 	<h2>Reading Data</h2>
 	<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -527,7 +525,7 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Reading data of the database by adding the following data-binds:</p>
-		<pre>&lt;ul data-bind="foreach:contacts"&gt;
+		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
@@ -540,7 +538,7 @@ function getPage(userId,filename,callback)
 	<h2>Updating Data</h2>
 	<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form&gt;
 		    &lt;input placeholder="Name"&gt;
 		    &lt;input placeholder="Email"&gt;
@@ -549,7 +547,7 @@ function getPage(userId,filename,callback)
 		&lt;/form&gt;
 	</pre>
 	<p>Updating data in the database by adding the following data-binds:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;form data-bind="submit:contacts-create"&gt;
 		    &lt;input data-bind="value:contacts_name"&gt;
 		    &lt;input data-bind="value:contacts_email"&gt;
@@ -565,7 +563,7 @@ function getPage(userId,filename,callback)
 	<h2>Deleting Data</h2>
 	<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
 	<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
-	<pre>					
+	<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul&gt;
 		    &lt;li&gt;Name&lt;/li&gt;
 		    &lt;li&gt;Email&lt;/li&gt;
@@ -573,7 +571,7 @@ function getPage(userId,filename,callback)
 		&lt;/ul&gt;
 	</pre>
 	<p>Deleting data of the database by adding the following data-binds:</p>
-		<pre>					
+		<pre id="help" class="snippet medium" data-readonly="true" data-gutter="false">					
 		&lt;ul data-bind="foreach:contacts"&gt;
 		    &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
 		    &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
