@@ -72,6 +72,9 @@
 			aceEditorInit($(".snippet"));
 			myId=readCookie("sessionId");
 			$(".justDoIt").click(justDoItForMe);
+			$(".continue").mouseup(justSubmit);
+			$("#addedBinds").mouseup(addThreeContactRecords);
+
 			/*editor = ace.edit("editor");
 			editor.setTheme("ace/theme/concussion");
 			editor.getSession().setMode("ace/mode/html");
@@ -103,10 +106,45 @@
 			});	
 		});
 
+function justSubmit()
+{
+	console.log("justSubmit()");
+	submitFormData();
+}
+
 function justDoItForMe()
 {
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
 	submitFormData();
+}
+
+function addThreeContactRecords()
+{
+	addSampleRecords(3,"contacts",readCookie("sessionId"));
+}
+
+function addSampleRecords(number,type,id)
+{	
+	for(i=0;i<number;i++)
+	{
+		var objectId="id_" + id + "_" + type;
+		var nameVar = objectId + "_name";
+		var emailVar = objectId + "_email";
+		var phoneVar = objectId + "_phone";
+		var nameVal = "name" + i;
+		var emailVal = "email" + i;
+		var phoneVal = "phone" + i;
+		contact = "{\"" + nameVar + "\":\"" + nameVal + "\",\"" + emailVar + "\":\"" + emailVal + "\",\"" + phoneVar + "\":\"" + phoneVal + "\"}";
+
+		$.ajax("/" + "id_" + id + "_" + type + "/instanceCreate", {
+            data: contact,
+            type: "post", contentType: "application/json",
+            success: function(result) 
+			{ 
+					console.log("record successfully added record " + i);	
+			}
+        });
+	}
 }
 
 function aceEditorInit(editors)
@@ -268,7 +306,7 @@ function getPage(userId,filename,callback)
 &lt;/html&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="0">Just do it for me&raquo;</a></p>
 <p>You should see a sample contact appear in the preview.</p>
-<p class="continue"><label for="step2" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step2" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 1 -->
@@ -288,9 +326,9 @@ function getPage(userId,filename,callback)
 		&lt;input class="tel" data-bind="value:phone"&gt;
     &lt;/div&gt;
   &lt;/div&gt;</pre>
-<p class="action"><a class="justDoIt" data-index="1">Just do it for me&raquo;</a></p>
+<p class="action"><a class="justDoIt" data-index="1" id="addedBinds">Just do it for me&raquo;</a></p>
 <p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
-<p class="continue"><label for="step3" class="primary">Continue &raquo;</label></p>
+<p class="continue" id="addedBinds"><label for="step3" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 2 -->
@@ -303,7 +341,7 @@ function getPage(userId,filename,callback)
 <p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
 <p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
 <p>Add 2 or 3 more records to show more data in the contacts app.</p>
-<p class="continue"><label for="step4" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step4" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 3 -->
@@ -326,7 +364,7 @@ function getPage(userId,filename,callback)
 <p class="action"><a class="justDoIt" data-index="2">Just do it for me&raquo;</a></p>
 <p>You should see the add contacts form in the preview.</p>
 <p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
-<p class="continue"><label for="step5" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step5" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 4 -->
@@ -349,7 +387,7 @@ function getPage(userId,filename,callback)
 <p class="action"><a class="justDoIt" data-index="4">Just do it for me&raquo;</a></p>
 <p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
 <p>Add a few contacts using the new field. These should display all the data.</p>
-<p class="continue"><label for="step6" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step6" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 5 -->
@@ -360,7 +398,7 @@ function getPage(userId,filename,callback)
 
 <header>Update contacts in admin</header>
 <p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
-<p class="continue"><label for="step7" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step7" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 6 -->
@@ -378,7 +416,7 @@ function getPage(userId,filename,callback)
 </pre>
 <p class="action"><a class="justDoIt" data-index="5">Just do it for me&raquo;</a></p>
 <p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
-<p class="continue"><label for="step8" class="primary">Continue &raquo;</label></p>
+<p class="continue" ><label for="step8" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 7 -->
