@@ -72,8 +72,8 @@
 			aceEditorInit($(".snippet"));
 			myId=readCookie("sessionId");
 			$(".justDoIt").click(justDoItForMe);
-			$(".continue").mouseup(justSubmit);
-			$("#addedBinds").click(addThreeContactRecords);
+			$(".continue").click(justSubmit);
+			//$("#addedBinds").click(addThreeContactRecords);
 
 			/*editor = ace.edit("editor");
 			editor.setTheme("ace/theme/concussion");
@@ -109,12 +109,22 @@
 function justSubmit()
 {
 	console.log("justSubmit()");
+	if(this.getAttribute("data-addContacts")=="true")
+	{
+		addThreeContactRecords();
+	}
 	submitFormData();
 }
 
 function justDoItForMe()
 {
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
+	
+	if(this.getAttribute("data-addContacts")=="true")
+	{
+		addThreeContactRecords();
+	}
+
 	submitFormData();
 }
 
@@ -326,9 +336,9 @@ function getPage(userId,filename,callback)
 		&lt;input class="tel" data-bind="value:phone"&gt;
     &lt;/div&gt;
   &lt;/div&gt;</pre>
-<p class="action"><a class="justDoIt" data-index="1" id="addedBinds">Just do it for me&raquo;</a></p>
+<p class="action"><a class="justDoIt" data-index="1" data-addContacts="true">Just do it for me&raquo;</a></p>
 <p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
-<p class="continue" id="addedBinds"><label for="step3" class="primary">Continue &raquo;</label></p>
+<p class="continue" data-addContacts="true"><label for="step3" class="primary">Continue &raquo;</label></p>
 
 </article>
 <!-- Close Step 2 -->
