@@ -109,6 +109,7 @@
 function justSubmit()
 {
 	console.log("justSubmit()");
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', readCookie("sessionId")]);
 	if(this.getAttribute("data-addContacts")=="true")
 	{
 		addThreeContactRecords();
@@ -118,6 +119,7 @@ function justSubmit()
 
 function justDoItForMe()
 {
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', readCookie("sessionId")]);
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
 	
 	if(this.getAttribute("data-addContacts")=="true")
@@ -126,6 +128,7 @@ function justDoItForMe()
 	}
 
 	submitFormData();
+
 }
 
 function addThreeContactRecords()
