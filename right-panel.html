@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ConcussionJS</title>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+	<meta charset="utf-8">
+	<script src="ace.js"></script>
+	<script src="mode-html.js"></script>
+	<script src="theme-concussion.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>-->
+	<script src="jquery-1.8.1.min.js"></script>
+	<script type="text/javascript" src="//use.typekit.net/bqr1qnl.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="http://app.stacktack.com/jquery.stacktack.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(document).stacktack({width: '260px'});
+            });
+        </script>
+        
+        <style type="text/css">
+        
+        		/* Style overrides */ 
+            
+            .stacktack-logo {
+            	display: none !important;
+            }
+            
+            .stacktack-profile {
+							/*float: none !important;*/
+							display: none;
+						}
+						
+						
+						.stacktack-container {
+							background: none !important;
+							padding: 0 !important;
+						}
+						
+						.stacktack-content {
+							border: none !important;
+							background: none !important;
+							padding: 0 !important;
+						}
+						
+						.stacktack-profile {
+							margin-bottom: 1rem !important;
+							background: none !important;
+						}
+						
+						#steps article {
+							padding: 10px !important;
+						}
+						
+						.stacktack-container code {
+							background: none !important;
+            }
+            
+            .stacktack-question {
+	   	        border-top: solid 1px rgba(255,255,255,.2) !important;
+	          }
+	          
+	          .stacktack-answers  {
+	          	border-top: solid 1px rgba(255,255,255,.2) !important;
+	          }
+	          
+	          .stacktack-answer + .stacktack-answer {
+	          	border-top: solid 1px rgba(255,255,255,.2) !important;
+	          }
+	          
+	          ul.stacktack-tags li {
+		          border: none !important;
+		          background: rgba(255,255,255,.2) !important;
+		          border-radius: 5px;
+		          display: none !important;
+		        }
+		        
+		        .stacktack-container a, .stacktack-container a:link, .stacktack-container a:visited {
+			        word-wrap: break-word !important;
+						}
+						
+						.stacktack-container h4 {
+							display: inline !important;
+						}
+						
+						.stacktack-votes {
+							float: right;
+							color: rgba(255,255,255,.2) !important;
+						}
+						
+						.stacktack-answer-check {
+							display: none !important;
+						}
+            
+            .stacktack-question h3 {
+            	line-height: 24px !important;
+            }
+            
+            .stacktack-answer-accepted .stacktack-answer-header h4 a, .stacktack-answer-accepted .stacktack-answer-header h4 a:link, .stacktack-answer-accepted .stacktack-answer-header h4 a:visited {
+	            color: #588FC7 !important;
+	            vertical-align: top;
+	            font-size: 1rem;
+	          }
+        </style>
+
+	<link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+	<input type="radio" name="menu-control" id="menu1" checked>
+	<input type="radio" name="menu-control" id="menu2">
+	<input type="radio" name="menu-control" id="menu3">
+	<input type="radio" name="menu-control" id="menu4">
+	<input type="radio" name="menu-control" id="menu5">
+
+	<section id="masthead">
+		<header id="logo">concussion<span>js</span></header>
+		<nav id="main-menu">
+			<label for="menu1">Tutorial</label>
+			<label for="menu2">How it works</label>
+			<label for="menu3">Getting started</label>
+			<label for="menu4">Documentation</label>
+			<label for="menu5">About</label>
+			<div id="menu-indicator"></div>
+		</nav>
+		<div id="auth-status">
+			<div id="auth-loggedout">
+				Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><!--<a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>-->
+			</div>
+			<div id="auth-loggedin" class="auth-hide">
+				<span id="auth-displayname"></span>
+				<div id="auth-logoutlink" class="fb-login-button" data-width="200" data-max-rows="1"><a class="fb_button fb_button_medium"><span class="fb_button_text">Log Out</span></a></div>
+			</div>
+		</div>
+	</section>
+	
+	<div id="pages">
+		<div id="page-wrapper">
+	
+			<section id="tutorial" class="page">
+
+				<input type="radio" name="step-control" id="step1" checked>
+				<input type="radio" name="step-control" id="step2">
+				<input type="radio" name="step-control" id="step3">
+
+		
+				<section id="instructions" class="panel">
+					<header id="step-number">
+						<div id="step-number-wrapper">
+							<h1>Documentation</h1>
+							<h1>News</h1>
+							<h1>Site Stats</h1>
+						</div>
+					</header>
+					<div id="next-prev">
+						<label for="step1"></label>
+						<label for="step2"></label>
+						<label for="step3"></label>
+					</div>
+					<div id="steps">
+						<div id="step-wrapper">
+
+<!-- Documentation via Stackoverflow -->
+<article>
+
+<div id="stacktack-518021" class="width-260px"></div>
+
+</article>
+<!-- Close Documentation via Stackoverflow -->
+
+
+<!-- News via Twitter -->
+<article>
+
+
+<a class="twitter-timeline" data-dnt=true href="https://twitter.com/briandelgiudice" data-widget-id="275650919067160576" width="100%" height="100%">Tweets by @briandelgiudice</a>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+</article>
+<!-- Close News via Twitter -->
+
+
+<!-- Site Stats via Google Analytics -->
+<article>
+
+<div></div>
+
+</article>
+<!-- Close Site Stats via Google Analytics -->
+
+
+
+						</div>
+					</div>
+					<div id="page-indicator">
+						<label for="step1"></label>
+						<label for="step2"></label>
+						<label for="step3"></label>
+					</div>
+				</section>
+
+				
+
+			
+		</div>
+	</div>
+
+<script>
+
+function getSizables() {
+	sizables = new Array();
+	sizables[0] = document.getElementById("editor");
+	sizables[1] = document.getElementById("preview");
+	sizables[2] = document.getElementById("admin-app");
+	resizeSizables();
+}
+
+function resizeSizables() {
+	var parent;
+	for( var i=0; i<sizables.length; i++ ) {
+		parent = sizables[i].parentNode;
+		sizables[i].style.width = parent.offsetWidth -1 + "px";
+		sizables[i].style.height = parent.offsetHeight -2 + "px";
+	}
+}
+getSizables();
+window.onresize = resizeSizables;
+
+var iPadLabels = function () {
+	function fix() {
+		var labels = document.getElementsByTagName('label'), 
+		target_id, 
+		el;
+		for (var i = 0; labels[i]; i++) {
+			if (labels[i].getAttribute('for')) {
+				labels[i].onclick = labelClick;
+			}
+		}
+	};
+	function labelClick() {
+		el = document.getElementById(this.getAttribute('for'));
+		if (['radio', 'checkbox'].indexOf(el.getAttribute('type')) != -1) {
+			el.setAttribute('selected', !el.getAttribute('selected'));
+		} else {
+			el.focus();
+		}
+	};
+	return {
+		fix: fix
+	}
+}();
+
+window.onload = function () {
+	iPadLabels.fix();
+	}
+</script>	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36886630-1']);
+  _gaq.push(['_setDomainName', 'concussionjs.com']);
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
