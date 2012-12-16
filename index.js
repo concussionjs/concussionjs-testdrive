@@ -291,32 +291,33 @@ loopThroughObjects = function(objects,req,res,next)
 			var searchKey = [];
 			var object = {};
 			res.writeHeader(200, {'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/javascript'});
-			//console.log(req.rawBody);
+			console.log("inside call to getScript: ",req.rawBody);
 			var args = qs.parse(req.url.split('?')[1]);
+			console.log("inside call to getScript: ",args);
 			var id = args.id;
 			var pagename = args.pagename;
 			if (nta.debug)
-				util.debug('getScript: session id: ', id, ' ', pagename);
+				util.debug('getScript x: session id: ' + id + ' pagename ' + pagename);
 
 			nta.getEntriesWhere({'id': id, 'name': pagename},'pages', function(err,objects) {
 				if (nta.debug)
-					util.debug('getScript: ', JSON.stringify(objects));
+					util.debug('getScript: ' + JSON.stringify(objects));
 				if (objects && objects.length > 0 && objects[0].html)
 				{
 					parse.runGenerateStructureHTML(objects[0].html, function(myObjects) {
 						var myName = myObjects[0].name;
 						setSessionId(myObjects, 'id_' + id, 0, function(myObjects) {
-							if (nta.debug)
+							if ( nta.debug)
 							{
-								util.debug('getScript: setSession', id, ' ', JSON.stringify(myObjects));
-								util.debug('getScript: ', objects[0].html);
+								util.debug('getScript: setSession ' +  id + ' ' + JSON.stringify(myObjects));
+								util.debug('getScript: ' + objects[0].html);
 								util.debug('getScript: setSessionId');
 							}
 							addNewObjects(myObjects, function() {
-								if (nta.debug)
+								if ( nta.debug)
 								{
 									util.debug('getScript: addNewObjects');
-									util.debug('getScript: ', JSON.stringify(myObjects));
+									util.debug('getScript: ' + JSON.stringify(myObjects));
 								}
 								//var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
 								//console.log("getPage: ",mergedJSandHTML);
