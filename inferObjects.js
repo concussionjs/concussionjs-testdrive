@@ -179,11 +179,46 @@ function processHTML(errors,window){
 			currentObject.name = window.$(this).attr("data-bind").split(":")[1];
 		
 		//if(currentObject.type!="submit")
-		objects.push(currentObject);
+		//objects.push(currentObject);
+		addNewObject(currentObject);
+
 	});
 	//console.log("WatchFile myCallBack: ",JSON.stringify(objects));
 	myCallback(objects);	
 }
+
+var dedupe = function(arr)
+{
+	var arrTrackDupes = [];
+	var retArr = [];
+	for (i = 0; i < arr.length; i++)
+	{
+		//console.log("testParse: ",arr[i].name, " ",retArr.length, " ",arrTrackDupes.indexOf(arr[i].name));
+		if (arrTrackDupes.indexOf(arr[i].name) == -1)
+		{
+			arrTrackDupes[arrTrackDupes.length] = arr[i].name;
+			retArr[retArr.length] = arr[i];
+		}
+	}
+
+	return retArr;
+};
+
+function addNewObject(newObject)
+{
+	//console.log("inside addNewObject" + JSON.stringify(newObject));
+	if(objects[newObject.name])
+	{
+		objects[newObject.name].fields=dedupe(objects[newObject.name].fields.concat(newObject.fields))
+	}
+	else
+	{
+		objects[newObject.name] = newObject;
+		objects.push(objects[newObject.name]);
+	}		
+
+}
+
 
 function printStuff(objects,nextThing)
 {
