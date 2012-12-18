@@ -6,7 +6,7 @@ $.ajaxSetup({
   cache: true
 });
 $.ajax({
-		url:"http://testdrive.local-concussionjs.com/assets/js/cjs-utilities.js"
+		url:"http://<%=CJS_WEB_URL%>/assets/js/cjs-utilities.js"
 		,async:false
 		,data:null
 		,dataType:"script"
@@ -14,7 +14,7 @@ $.ajax({
 			function(data, textStatus, jqxhr)
 			{
 				$.ajax({
-							url:"http://testdrive.local-concussionjs.com/assets/js/libs/knockout-2.0.0.js" 
+							url:"http://<%=CJS_WEB_URL%>/assets/js/libs/knockout-2.0.0.js" 
 							,async:false
 							,data:null
 							,dataType:"script"
@@ -62,16 +62,16 @@ $.ajax({
 										getPage(function(html)
 										{
 											$.ajax({
-            									url: "http://testdrive.local-concussionjs.com/pages/updateWhere/?id="+localStorage.getItem("sessionId"),
+            									url: "http://<%=CJS_WEB_URL%>/pages/updateWhere/?id="+localStorage.getItem("sessionId"),
             									data: JSON.stringify(html),
             									dataType: "text",
             									type: "post", 
             									success: function(result) 
 												{ 
-													$.getScript("http://testdrive.local-concussionjs.com/getScript?id="+localStorage.getItem("sessionId")+"&pagename=index", function(){
+													$.getScript("http://<%=CJS_WEB_URL%>/getScript?id="+localStorage.getItem("sessionId")+"&pagename=index", function(){
 													});
 													
-													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.local-concussionjs.com/admin.html?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
+													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://<%=CJS_WEB_URL%>/admin.html?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
 												}
         									});
         								});

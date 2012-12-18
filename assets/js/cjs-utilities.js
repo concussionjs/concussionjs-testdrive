@@ -44,16 +44,24 @@
 				}
 				else var expires = "";
 				document.cookie = name+"="+value+expires+"; path=/";
+				localStorage.setItem("sessionId",value);
 			}
 
 			function readCookie(name) {
 				var nameEQ = name + "=";
-				var ca = document.cookie.split(';');
-				//alert(document.cookie);
-				for(var i=0;i < ca.length;i++) {
-					var c = ca[i];
-					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+				if(document.cookie)
+				{
+					var ca = document.cookie.split(';');
+					//alert(document.cookie);
+					for(var i=0;i < ca.length;i++) {
+						var c = ca[i];
+						while (c.charAt(0)==' ') c = c.substring(1,c.length);
+						if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+					}
+				}
+				else if(localStorage.getItem("sessionId"))
+				{
+					return localStorage.getItem("sessionId");
 				}
 				return null;
 			}

@@ -3,7 +3,7 @@
 	<head>
 		<!--script src="http://testdrive.concussionjs.com/assets/js/cjs-utilities.js"></script-->
 		<script src="http://testdrive.concussionjs.com/jquery-1.8.1.min.js"></script>
-		<script language="JavaScript" src="http://testdrive.concussionjs.com/cjs-bootstrap.js"></script>
+		<script language="JavaScript" src="http://testdrive.concussionjs.com/concussion.js"></script>
     	<title>Contacts</title>
     	<meta charset="utf-8">
     	<link rel="stylesheet" href="http://testdrive.concussionjs.com/contacts-style.css">
@@ -22,7 +22,7 @@
     			<input class="fn" data-bind="value:Name">
     			<input class="tel" data-bind="value:phoneNumber">
                 <input class="email" data-bind="value:emailAddress">
-                <button data-bind="click:contacts_update">Save</button><button data-bind="click:contacts_delete">Delete</button>
+                <button data-bind="click:contacts_update">Save</button><button class="secondary" data-bind="click:contacts_delete">Delete</button>
     		</div>
         </div>
  </body>

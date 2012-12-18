@@ -10,9 +10,35 @@ var qs = require('querystring');
 var http = require('http');
 var parse = require('./inferObjects.js');
 var util = require('util');
+var URLPrefix=process.env.CJS_WEB_URL;
+var files2Localize=[{templateFileName:"concussion.ejs",outputFileName:"concussion.js"},{templateFileName:"loadEditorContent.ejs",outputFileName:"loadEditorContent.js"}];
 var s = settings();
 
 objects = [];
+
+
+for(i=0;i<files2Localize.length;i++)
+{
+	localizeFile(files2Localize[i].templateFileName,files2Localize[i].outputFileName);
+}
+
+function localizeFile(fileName,output)
+{
+	console.log(fileName, " ",output);
+	contents = fs.readFileSync(fileName,'utf-8');
+	//console.log(contents);
+	//contents.replace("@@CJS_WEB_URL@@", process.env.CJS_WEB_URL);
+	contentsOutput = ejs.render(contents, {locals: {'CJS_WEB_URL': process.env.CJS_WEB_URL}})
+	console.log(contentsOutput);
+	fs.writeFile(output,contentsOutput,function(err){
+		if(err)
+		{
+			console.error(err);
+		}
+		else
+			console.log(output + " written successfully");
+	});
+}
 
 function escapeSpecialCharacters(text)
 {
@@ -240,12 +266,12 @@ loopThroughObjects = function(objects,req,res,next)
 					util.debug('why double:, number of matching pages ', objects.length);
 				if (nta.debug)
 					console.log("objects.length :" + objects.length);
-				if(objects && objects.length > 0 && (!objects[0].html || objects[0].html.search("html")==-1 || objects[0].html.search("body")==-1 || objects[0].html.search("data-bind")==-1))
-				{
+				/*if(objects && objects.length > 0 && (!objects[0].html || objects[0].html.search("html")==-1 || objects[0].html.search("body")==-1 || objects[0].html.search("data-bind")==-1))
+				{*/
 					if (nta.debug)
 						util.debug("objects :" + objects[0].html);
 					res.end(objects[0].html);
-				}
+				/*}
 				else if (objects && objects.length > 0 && objects[0].html)
 				{
 					if (nta.debug)
@@ -281,7 +307,7 @@ loopThroughObjects = function(objects,req,res,next)
 							});
 						});
 					});
-				}
+				}*/
 			});
 
       return;
@@ -322,7 +348,7 @@ loopThroughObjects = function(objects,req,res,next)
 								//var mergedJSandHTML = (""+objects[0].html).split(myName).join(myObjects[0].name);
 								//console.log("getPage: ",mergedJSandHTML);
 								//res.writeHeader(200,{'Access-Control-Allow-Origin':'*'});
-								res.end(ejs.render(scriptonly, {locals: {'myObjects': dedupe(myObjects)}}));
+								res.end(ejs.render(scriptonly, {locals: {'myObjects': dedupe(myObjects),'URLPrefix':URLPrefix}}));
 								//res.end(mergedJSandHTML);
 							});
 						});

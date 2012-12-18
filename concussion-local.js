@@ -87,7 +87,7 @@ $.ajax({
    														// alert("Script loaded and executed.");
 													});
 													
-													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.concussionjs.com/admin?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
+													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://testdrive.local-concussionjs.com/admin.html?id=" + localStorage.getItem("sessionId") + "\');\"> admin </a>");
 												}
         									});
         								});
