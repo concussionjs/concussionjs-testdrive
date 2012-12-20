@@ -77,7 +77,7 @@ try{
 
 						
 
-						self._id=ko.observable(data._id);
+						self.id=ko.observable(data._id);
 						self.row=ko.observable("");
 						self.myForm = ko.observable("");
 					<%
@@ -258,7 +258,7 @@ try{
     		};
     	 
     	 <%=objects[i].varname%>_delete = function() {
-                                $.ajax("http://<%=testdriveURL%>/instances/delete/"+this._id(), {
+                                $.ajax("http://<%=testdriveURL%>/instances/delete/"+this.id(), {
                                         data: '',
                                         type: "get", dataType: "text",
                                         success: function(result)
@@ -273,7 +273,7 @@ try{
                 };
 
          <%=objects[i].varname%>_update = function() {
-                            $.ajax("http://<%=testdriveURL%>/<%=objects[i].name%>/instanceUpdate/" + this._id() , {
+                            $.ajax("http://<%=testdriveURL%>/<%=objects[i].name%>/instanceUpdate/" + this.id() , {
             				data: ko.toJSON(this),
             				type: "post", dataType: "text",
             				success: function(result) 
