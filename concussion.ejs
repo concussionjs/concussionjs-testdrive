@@ -10,89 +10,65 @@ $.ajaxSetup({
 });
 
 console.log("console: initiating cjs-utilities load");
-$.getScript("http://<%=CJS_WEB_URL%>/assets/js/cjs-utilities.js",/*{
-		url:"http://<%=CJS_WEB_URL%>/assets/js/cjs-utilities.js"
-		,async:false
-		,data:null
-		,dataType:"script"
-		,error:
-			function(data, textStatus, jqxhr)
+$.getScript("http://<%=CJS_WEB_URL%>/assets/js/cjs-utilities.js",
+	function(data, textStatus, jqxhr)
+	{
+		console.log("console: successfully loaded cjs-utilities");							
+		$(document).ready(function(){
+			function getPage(callback)
 			{
-				console.log("console: error encountered");
-			}
-		,success:*/
-			function(data, textStatus, jqxhr)
-			{
-				console.log("console: successfully loaded cjs-utilities");
-				/*$.ajax({
-							url:"http://<%=CJS_WEB_URL%>/assets/js/libs/knockout-2.0.0.js" 
-							,async:false
-							,data:null
-							,dataType:"script"
-							,success:
-								function()
-								{  */								
-									$(document).ready(function()
-									{
-										function getPage(callback)
-										{
-											var vars = [], hash;
-			    							var q = document.URL.split('?')[1];
-			    							page= {};
-			    							if(q != undefined)
-			    							{
-			        							q = q.split('&');
-			        							for(var i = 0; i < q.length; i++)
-			        							{
-			            							hash = q[i].split('=');
-			            							vars.push(hash[1]);
-			            							vars[hash[0]] = hash[1];
-			        							}
-											}
+				var vars = [], hash;
+				var q = document.URL.split('?')[1];
+				page= {};
+				if(q != undefined)
+				{
+					q = q.split('&');
+					for(var i = 0; i < q.length; i++)
+					{
+						hash = q[i].split('=');
+						vars.push(hash[1]);
+						vars[hash[0]] = hash[1];
+					}
+				}
 						
-											if(!vars["sid"] && !readCookie("sessionId"))
-											{
-												createUUID(function(id){
-													createCookie("sessionId",id,1);
-														
-													page.id=readCookie("sessionId");
-													page.html=$('html')[0].innerHTML;
-													page.name='index';
-													callback(page);	
-												});
-											}
-											else
-											{
-												page.id=readCookie("sessionId");
-												page.html=$('html')[0].innerHTML;
-												page.name='index';
-												callback(page);	
-											}
-										}
-					
-										getPage(function(html)
-										{
-											console.log("console: getPage");
-											$.ajax({
-            									url: "http://<%=CJS_WEB_URL%>/pages/updateWhere/?id="+readCookie("sessionId"),
-            									data: JSON.stringify(html),
-            									dataType: "text",
-            									type: "post", 
-            									success: function(result) 
-												{ 
-													$.getScript("http://<%=CJS_WEB_URL%>/getScript?id="+readCookie("sessionId")+"&pagename=index",
-														function(){
-															console.log("console: loaded custom script");
-														}
-													);
-													
-													$("body").append("<a href=\"#\" onclick=\"window.open(\'http://<%=CJS_WEB_URL%>/admin.html?id=" + readCookie("sessionId") + "\');\"> admin </a>");
-												}
-        									});
-        								});
-									});
-								/*}
-						});*/
+				if(!vars["sid"] && !readCookie("sessionId"))
+				{
+					createUUID(function(id){
+						createCookie("sessionId",id,1);								
+						page.id=readCookie("sessionId");
+						page.html=$('html')[0].innerHTML;
+						page.name='index';
+						callback(page);	
+					});
+				}
+				else
+				{
+					page.id=readCookie("sessionId");
+					page.html=$('html')[0].innerHTML;
+					page.name='index';
+					callback(page);	
+				}
 			}
-		);
+					
+			getPage(function(html){
+				console.log("console: getPage");
+				$.ajax({
+					url: "http://<%=CJS_WEB_URL%>/pages/updateWhere/?id="+readCookie("sessionId"),
+					data: JSON.stringify(html),
+					dataType: "text",
+					type: "post", 
+					success: function(result) 
+					{ 
+						$.getScript("http://<%=CJS_WEB_URL%>/getScript?id="+readCookie("sessionId")+"&pagename=index",
+							function()
+							{
+								console.log("console: loaded custom script");
+							});
+													
+						$("body").append("<a href=\"#\" onclick=\"window.open(\'http://<%=CJS_WEB_URL%>/admin.html?id=" + readCookie("sessionId") + "\');\"> <img style=\"position: absolute; top: 0; right: 0; border: 0;\" src=\"http://<%=CJS_WEB_URL%>/concussion_admin.png\" alt=\"Fork me on GitHub\"> </a>");
+					}
+				});
+			});
+		});
+});
 
