@@ -51,6 +51,7 @@
 				if (me.name) {
 					document.getElementById('auth-displayname').innerHTML = me.name;
 				}
+				createCookie(myId,"sessionId",1);
 				getPage(myId,"index",submitFormData);
             })
             document.getElementById('auth-loggedout').style.display = 'none';
