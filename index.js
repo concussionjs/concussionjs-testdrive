@@ -11,7 +11,7 @@ var http = require('http');
 var parse = require('./inferObjects.js');
 var util = require('util');
 var URLPrefix=process.env.CJS_WEB_URL;
-var files2Localize=[{templateFileName:"concussion.ejs",outputFileName:"concussion.js"},{templateFileName:"loadEditorContent.ejs",outputFileName:"loadEditorContent.js"}];
+var files2Localize=[{templateFileName:"index.ejs",outputFileName:"index.html"},{templateFileName:"concussion.ejs",outputFileName:"concussion.js"},{templateFileName:"loadEditorContent.ejs",outputFileName:"loadEditorContent.js"}];
 var s = settings();
 
 objects = [];
