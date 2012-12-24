@@ -180,7 +180,7 @@ function getPage(userId,filename,callback)
 {
 	$.ajax({
 		//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-         url: "http://api.local-concussionjs.com/pages/getEntryWhere/?id="+userId+"&name="+filename,
+         url: "http://<%=CJS_WEB_URL%>/pages/getEntryWhere/?id="+userId+"&name="+filename,
          type: "get", 
          dataType:"text",
          success: function(result) 
@@ -209,21 +209,21 @@ function getPage(userId,filename,callback)
 		//alert(JSON.stringify(page));
 		$.ajax({
 			//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-        	url: "http://api.local-concussionjs.com/pages/updateWhere/?id="+myId,
+        	url: "http://<%=CJS_WEB_URL%>/pages/updateWhere/?id="+myId,
         	data: JSON.stringify(page),//$("#codeArea").value,
     		type: "post", 
     		success: function(result) 
 			{	 
 				//alert(result);
-				$("#preview").attr({"src":"http://api.local-concussionjs.com/getPage?id="+ myId + "&pagename=index"});
-				$("#admin-app").attr({"src":"http://api.local-concussionjs.com/admin.html?id="+ myId});
+				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage?id="+ myId + "&pagename=index"});
+				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 			}
 		});
 	}
 
 	function openUpPreviewWindow()
 	{
-		window.open("http://api.local-concussionjs.com/getPage?id="+ myId + "&pagename=index");
+		window.open("http://<%=CJS_WEB_URL%>/getPage?id="+ myId + "&pagename=index");
 	}
 
 	</script>
