@@ -2,7 +2,6 @@
 ---------------------------------------------------------------------*/
 * {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -85,6 +84,7 @@ iframe {
 	overflow: hidden;
 	background: rgb(34,37,38);
 }
+
 
 /* SCROLLBARS
 ---------------------------------------------------------------------*/
@@ -577,13 +577,14 @@ body > input[type="radio"] {
 		-webkit-box-flex: 1;
 		box-flex: 1;
 		position: relative;
-		height: 0;
+		height: 0; 
 		overflow-x: hidden;
 		overflow-y: hidden;
 		border-top: 1px solid rgb(42,45,46);
 		background: rgba(49,51,52,.5);
 		color: rgba(168,167,146,.75);
 		font-size: .77rem;
+
 	}
 
 		/* The wrapper used to indent. Set the width equal to the number of steps * 100 */
@@ -960,11 +961,11 @@ body > input[type="radio"] {
 .fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
 .fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
 .fb_dialog_content{background:#fff;color:#333}
-.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px;right:7px}
 .fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
 .fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
-.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
-.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
 .fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
 .fb_dialog_top_left,
 .fb_dialog_top_right,
