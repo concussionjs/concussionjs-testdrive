@@ -52,6 +52,7 @@
 				}
 				createCookie("sessionId",myId,1);
 				getPage(myId,"index",submitFormData);
+				synchSessionVariables(myId);
             })
             document.getElementById('auth-loggedout').style.display = 'none';
             document.getElementById('auth-loggedin').style.display = 'block';
@@ -86,7 +87,9 @@
 				//alert("inside no cookie");
 				createUUID(function(uuid)
 				{
+					myId=uuid;
 					createCookie("sessionId",uuid,1);
+					synchSessionVariables(uuid);
 				});
 			}
 
@@ -178,6 +181,7 @@ function aceEditorInit(editors)
 }
 function getPage(userId,filename,callback)
 {
+	synchSessionVariables(userId);
 	$.ajax({
 		//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
          url: "http://<%=CJS_WEB_URL%>/getEntryWhere/pages?id="+userId+"&name="+filename,
@@ -187,12 +191,18 @@ function getPage(userId,filename,callback)
 		{ 
 			var obj = JSON.parse(result)
 			//alert(""+obj.html);
+
 			editor.getSession().setValue(obj.html);
 			if(callback)
 				callback();
 		}
    	});
 }
+
+	function synchSessionVariables(id)
+	{
+		$("#synchSessionVariables").attr({"src":"http://<%=CJS_WEB_URL%>/setSessionVariables.html?sid="+ id});
+	}
 
 	function submitFormData(id)
 	{
@@ -217,6 +227,7 @@ function getPage(userId,filename,callback)
 				//alert(result);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getpage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
+				synchSessionVariables(myId);
 			}
 		});
 	}
@@ -230,7 +241,7 @@ function getPage(userId,filename,callback)
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
-
+	<iframe id="synchSessionVariables" width=0 height=0 style="visibility:hidden;display:none"></iframe>
 	<input type="radio" name="menu-control" id="menu1" checked>
 	<input type="radio" name="menu-control" id="menu2">
 	<input type="radio" name="menu-control" id="menu3">
