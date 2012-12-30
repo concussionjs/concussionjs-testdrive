@@ -3,8 +3,8 @@
 <head>
 	<title>ConcussionJS</title>
 	<meta charset="utf-8">
+	<meta name="description=" content="The web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create.">
 	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<meta charset="utf-8">
 	<script src="ace.js"></script>
 	<script src="mode-html.js"></script>
 	<script src="theme-concussion.js"></script>
@@ -87,7 +87,6 @@
 				//alert("inside no cookie");
 				createUUID(function(uuid)
 				{
-					myId=uuid;
 					createCookie("sessionId",uuid,1);
 					synchSessionVariables(uuid);
 				});
@@ -115,10 +114,11 @@ function justSubmit()
 {
 	console.log("justSubmit()");
 	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', readCookie("sessionId")]);
-	if(this.getAttribute("data-addContacts")=="true")
+	
+	/*if(this.getAttribute("data-addContacts")=="true")
 	{
 		addThreeContactRecords();
-	}
+	}*/
 	submitFormData();
 }
 
@@ -126,11 +126,6 @@ function justDoItForMe()
 {
 	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', readCookie("sessionId")]);
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
-	
-	if(this.getAttribute("data-addContacts")=="true")
-	{
-		addThreeContactRecords();
-	}
 
 	submitFormData();
 
@@ -154,9 +149,9 @@ function addSampleRecords(number,type,id)
 		var phoneVal = "phone" + i;
 		contact = "{\"" + nameVar + "\":\"" + nameVal + "\",\"" + emailVar + "\":\"" + emailVal + "\",\"" + phoneVar + "\":\"" + phoneVal + "\"}";
 
-		$.ajax("/" + "id_" + id + "_" + type + "/instanceCreate", {
+		$.ajax("http://<%=CJS_WEB_URL%>/createInstance/" + objectId, {
             data: contact,
-            type: "post", contentType: "application/json",
+            type: "POST",
             success: function(result) 
 			{ 
 					console.log("record successfully added record " + i);	
@@ -191,7 +186,6 @@ function getPage(userId,filename,callback)
 		{ 
 			var obj = JSON.parse(result)
 			//alert(""+obj.html);
-
 			editor.getSession().setValue(obj.html);
 			if(callback)
 				callback();
@@ -225,7 +219,7 @@ function getPage(userId,filename,callback)
     		success: function(result) 
 			{	 
 				//alert(result);
-				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getpage/"+ myId + "/index"});
+				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 				synchSessionVariables(myId);
 			}
@@ -314,8 +308,8 @@ function getPage(userId,filename,callback)
 
 <header><span id="lede">The web app platform for the impatient hacker.</span></header>
 <p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
-<p>Try out concussion by building a contacts app. Follow this 7 step tutorial, and in 5 minutes you will be able to view, create, edit, and delete contacts.</p>
-<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview.</p>
+<p>Follow this 8 step tutorial, and in 5 minutes you will have a working contacts app. You will define the basic view, create, edit, and delete functionality in the app.</p>
+<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview (or push &ldquo;Just do it for me&rdquo;).</p>
 <pre class="snippet large" id="s1e1" data-readonly="true" data-gutter="false">
 &lt;!DOCTYPE html&gt;&lt;html&gt;
 &lt;head&gt;&lt;title&gt;Contacts&lt;/title&gt;&lt;meta charset="utf-8"&gt;&lt;link rel="stylesheet" href="contacts-style.css"&gt;&lt;/head&gt;
@@ -340,10 +334,14 @@ function getPage(userId,filename,callback)
 <!-- Step 2 -->
 <article>
 
-<header>Add concussion data-binds</header>
-<p>Next you will add special concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell concussion how to wire up data from the back end to the user interface.</p>
-<p>Replace the contacts div with the following markup, then press the refresh button in the preview.</p>
-<pre class="snippet medium" id="s2e1" data-readonly="true" data-gutter="false">
+<header>Connect to the Concussion back-end</header>
+<p>Next you will add special Concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell Concussion how to wire up data from the back end to the user interface.</p>
+<p>First, paste this reference to the Concussion javascript file in the head tag, after the stylesheet link.</p>
+<pre class="snippet small" id="s2e1" data-readonly="true" data-gutter="false">
+  &lt;script src="http://api.concussionjs.com/concussion.js"&gt;&lt;/script&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="1" data-addContacts="true">Just do it for me&raquo;</a></p>
+<p>Next, replace the contacts div with the following markup, then press the refresh button in the preview.</p>
+<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">
   &lt;div id="contacts" data-bind="foreach:contacts"&gt;
 	&lt;div class="vcard"&gt;
 		&lt;input class="fn" data-bind="value:name"&gt;
@@ -352,7 +350,7 @@ function getPage(userId,filename,callback)
     &lt;/div&gt;
   &lt;/div&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="1" data-addContacts="true">Just do it for me&raquo;</a></p>
-<p>The original sample contact should be replaced with 3 contacts that have already been created.</p>
+<p>You should see the original static data defined in the HTML disappear. That data has been replaced with data from the backend, and in this case there is no data so no contacts show up.</p>
 <p class="continue" data-addContacts="true"><label for="step3" class="primary">Continue &raquo;</label></p>
 
 </article>
@@ -363,8 +361,8 @@ function getPage(userId,filename,callback)
 <article>
 
 <header>Add contacts in admin</header>
-<p>The concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
-<p>Add an additional contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
+<p>The Concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
+<p>Add a contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
 <p>Add 2 or 3 more records to show more data in the contacts app.</p>
 <p class="continue" ><label for="step4" class="primary">Continue &raquo;</label></p>
 
@@ -377,7 +375,7 @@ function getPage(userId,filename,callback)
 
 <header>Add contacts directly from the app</header>
 <p>You should see the contacts that were added from the admin.</p>
-<p>Now add a form so contacts can be added directly. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
+<p>Now add a form so contacts can be added directly from your app. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
 <pre class="snippet medium" id="s4e1" data-readonly="true" data-gutter="false">&lt;form data-bind="submit:contacts_create"&gt;
 &lt;div class="new-contact"&gt;
   &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
@@ -399,13 +397,13 @@ function getPage(userId,filename,callback)
 <article>
 
 <header>Add a new field</header>
-<p>Concussion makes it easy to update the data used in the application. Let's add a Birthday field to the contacts. First paste the following markup into the editor, in the New Contact div below the Phone input.</p>
+<p>Concussion makes it easy to update the data used in the application. Let's add a birthday field to the contacts. First paste the following markup into the editor, in the new contact div below the phone input.</p>
 <pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">
 	&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
 </pre>
 <p class="action"><a class="justDoIt" data-index="3">Just do it for me&raquo;</a></p>
-<p>You should see the new field in the add contact form</p>
-<p>Next paste the following markup into the editor, in the Contacts div below the Phone input. Then press the refresh button in the preview.</p>
+<p>You should see the new field in the add contact form.</p>
+<p>Next paste the following markup into the editor, in the contacts div below the phone input. Then press the refresh button in the preview.</p>
 <pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">
 	&lt;input class="bday" data-bind="value:Birthday"&gt;
 </pre>
@@ -434,13 +432,13 @@ function getPage(userId,filename,callback)
 
 <header>Update contacts directly from the app</header>
 <p>You should see the updates to the contacts made in admin.</p>
-<p>Now add buttons so contacts can be saved and deleted directly from the app.</p>
-<p>Paste the following markup in the editor, in the Contacts div below the Birthday input. Then press the refresh button in the preview.</p>
+<p>Now add save and delete buttons so that edits to contacts can be saved, and contacts can be deleted directly from your app.</p>
+<p>Paste the following markup in the editor, in the contacts div below the birthday input. Then press the refresh button in the preview.</p>
 <pre class="snippet small" id="s7e1" data-readonly="true" data-gutter="false">
 	&lt;button data-bind="click:contacts_update"&gt;Save&lt;/button&gt;&lt;button class="secondary" data-bind="click:contacts_delete"&gt;Delete&lt;/button&gt;
 </pre>
 <p class="action"><a class="justDoIt" data-index="5">Just do it for me&raquo;</a></p>
-<p>Edit a few contacts and click Save to persist the changes. Press the Delete button to remove the contact.</p>
+<p>Edit a few contacts and click save to persist the changes. Press the delete button to remove the contact.</p>
 <p class="continue" ><label for="step8" class="primary">Continue &raquo;</label></p>
 
 </article>
@@ -450,8 +448,10 @@ function getPage(userId,filename,callback)
 <!-- Step 8 -->
 <article>
 
-<header>These are the instructions for step 8.</header>
-<p>Done, app url, login, next steps, etc.</p>
+<header>You've been Concussed!</header>
+<p>Now go to the <label for="menu3">Getting started</label> page to learn how to install Concussion.</p>
+<p>You can run Concussion initially as an anonymous user, and when you are ready create an account and start building apps.
+<p>Have fun!</p>
 
 </article>
 <!-- Close Step 8 -->
@@ -519,16 +519,16 @@ function getPage(userId,filename,callback)
 			<section id="download" class="page">
 				<div class="page-body">
 
-<h1></h1>
+<h1>Create an account</h1>
 
 <p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
 
 <h1>Concussion JS File</h1>
-<p>To start using Concussion you need to include the Concussion script in your HTML file</p>
+<p>To start using Concussion you need to include the Concussion script in your HTML file.</p>
 <p>You can use the hosted version of the file:</p>
 <pre class="snippet small" id="hostedInclude" data-readonly="true" data-gutter="false">&lt;script src=“http://testdrive.concussionjs.com/concussion.js”&gt;</pre>
 <p>Or download the file locally:</p>
-<p><a href="http://testdrive.concussionjs.com/concussion.js"> Download</a></p>
+<p><a href="http://api.concussionjs.com/concussion.js"> Download</a></p>
 
 <h1>Virtual appliance download</h1>
 <p>Download Virtual Box image to run a local copy of the Concussion platform.</p>
