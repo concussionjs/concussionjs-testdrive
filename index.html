@@ -4,15 +4,15 @@
 	<title>ConcussionJS</title>
 	<meta charset="utf-8">
 	<meta name="description=" content="The web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create.">
-	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-	<script src="ace.js"></script>
-	<script src="mode-html.js"></script>
-	<script src="theme-concussion.js"></script>
-	<script src="jquery-1.8.1.min.js"></script>
+	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+	<script src="js/ace.js"></script>
+	<script src="js/mode-html.js"></script>
+	<script src="js/theme-concussion.js"></script>
+	<script src="js/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript" src="//use.typekit.net/bqr1qnl.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<script src="assets/js/cjs-utilities.js" type="text/javascript"></script>	
-	<script src="loadEditorContent.js" type="text/javascript"></script>
+	<script src="js/cjs-utilities.js" type="text/javascript"></script>	
+	<script src="js/loadEditorContent.js" type="text/javascript"></script>
 	<script>
 		var myId="";
 		var editor;
@@ -52,6 +52,7 @@
 				}
 				createCookie("sessionId",myId,1);
 				getPage(myId,"index",submitFormData);
+				synchSessionVariables(myId);
             })
             document.getElementById('auth-loggedout').style.display = 'none';
             document.getElementById('auth-loggedin').style.display = 'block';
@@ -87,6 +88,7 @@
 				createUUID(function(uuid)
 				{
 					createCookie("sessionId",uuid,1);
+					synchSessionVariables(uuid);
 				});
 			}
 
@@ -112,10 +114,11 @@ function justSubmit()
 {
 	console.log("justSubmit()");
 	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', readCookie("sessionId")]);
-	if(this.getAttribute("data-addContacts")=="true")
+	
+	/*if(this.getAttribute("data-addContacts")=="true")
 	{
 		addThreeContactRecords();
-	}
+	}*/
 	submitFormData();
 }
 
@@ -123,11 +126,6 @@ function justDoItForMe()
 {
 	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', readCookie("sessionId")]);
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
-	
-	if(this.getAttribute("data-addContacts")=="true")
-	{
-		addThreeContactRecords();
-	}
 
 	submitFormData();
 
@@ -151,9 +149,9 @@ function addSampleRecords(number,type,id)
 		var phoneVal = "phone" + i;
 		contact = "{\"" + nameVar + "\":\"" + nameVal + "\",\"" + emailVar + "\":\"" + emailVal + "\",\"" + phoneVar + "\":\"" + phoneVal + "\"}";
 
-		$.ajax("/" + "id_" + id + "_" + type + "/instanceCreate", {
+		$.ajax("http://api.local-concussionjs.com/createInstance/" + objectId, {
             data: contact,
-            type: "post", contentType: "application/json",
+            type: "POST",
             success: function(result) 
 			{ 
 					console.log("record successfully added record " + i);	
@@ -178,9 +176,10 @@ function aceEditorInit(editors)
 }
 function getPage(userId,filename,callback)
 {
+	synchSessionVariables(userId);
 	$.ajax({
 		//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-         url: "http://api.local-concussionjs.com/pages/getEntryWhere/?id="+userId+"&name="+filename,
+         url: "http://api.local-concussionjs.com/getEntryWhere/pages?id="+userId+"&name="+filename,
          type: "get", 
          dataType:"text",
          success: function(result) 
@@ -193,6 +192,11 @@ function getPage(userId,filename,callback)
 		}
    	});
 }
+
+	function synchSessionVariables(id)
+	{
+		$("#synchSessionVariables").attr({"src":"http://api.local-concussionjs.com/setSessionVariables.html?sid="+ id});
+	}
 
 	function submitFormData(id)
 	{
@@ -209,28 +213,29 @@ function getPage(userId,filename,callback)
 		//alert(JSON.stringify(page));
 		$.ajax({
 			//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-        	url: "http://api.local-concussionjs.com/pages/updateWhere/?id="+myId,
+        	url: "http://api.local-concussionjs.com/updateWhere/pages?id="+myId,
         	data: JSON.stringify(page),//$("#codeArea").value,
     		type: "post", 
     		success: function(result) 
 			{	 
 				//alert(result);
-				$("#preview").attr({"src":"http://api.local-concussionjs.com/getPage?id="+ myId + "&pagename=index"});
+				$("#preview").attr({"src":"http://api.local-concussionjs.com/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://api.local-concussionjs.com/admin.html?id="+ myId});
+				synchSessionVariables(myId);
 			}
 		});
 	}
 
 	function openUpPreviewWindow()
 	{
-		window.open("http://api.local-concussionjs.com/getPage?id="+ myId + "&pagename=index");
+		window.open("http://api.local-concussionjs.com/getpage/"+ myId + "/index");
 	}
 
 	</script>
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-
+	<iframe id="synchSessionVariables" width=0 height=0 style="visibility:hidden;display:none"></iframe>
 	<input type="radio" name="menu-control" id="menu1" checked>
 	<input type="radio" name="menu-control" id="menu2">
 	<input type="radio" name="menu-control" id="menu3">
@@ -508,7 +513,7 @@ function getPage(userId,filename,callback)
 			</section>
 
 			<section id="howitworks" class="page">
-				<img src="infographic.png" alt="How it works infographic">
+				<img src="img/infographic.png" alt="How it works infographic">
 			</section>
 			
 			<section id="download" class="page">
@@ -559,9 +564,9 @@ function getPage(userId,filename,callback)
 	<h2>Getting Started</h2>
 	<h3>Login</h3>
 	<p>Getting started is easy. Just login via your Facebook account in the top right corner of the page and your done.</p>
-	<img src="images/documentation-fb-login.png" alt="Login Image"> 
+	<img src="img/documentation-fb-login.png" alt="Login Image"> 
 	<p>Once you have signed in you will get a link to your admin console. The admin console lets you view everything that is in your database. To start, there is not much in the database...</p>
-	<img src="images/documentation-admin.png" alt="Admin Image">
+	<img src="img/documentation-admin.png" alt="Admin Image">
 	<h3>Reference the Script</h3>
 	<p>The next thing you need to do is add the following line just above your &lt;/body&gt; tag:</p>
 	<pre id="help" class="snippet small" data-readonly="true" data-gutter="false">&lt;script src=“http://concussionjs.com/concussion.js”&gt;</pre>

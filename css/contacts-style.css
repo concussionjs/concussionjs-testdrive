@@ -77,13 +77,13 @@ html {
 	padding: 0;
 	font: 300 14px "open-sans","helvetica nueu",helvetica,arial,sans-serif;
 	color: rgba(255,255,255,.6);
-	background: url("contacts-bg.png"),
+	background: url("../img/contacts-bg.png"),
 				-moz-radial-gradient(50% 0%, circle farthest-side, rgba(151,169,185,.28), rgba(151,169,185,0)) fixed,
 				rgb(34,37,38);
-	background: url("contacts-bg.png"),
+	background: url("../img/contacts-bg.png"),
 				-webkit-radial-gradient(50% 0%, circle farthest-side,rgba(151,169,185,.28), rgba(151,169,185,0)) fixed,
 				rgb(34,37,38);
-	background: url("contacts-bg.png"),
+	background: url("../img/contacts-bg.png"),
 				radial-gradient(50% 0%, circle farthest-side, rgba(151,169,185,.28), rgba(151,169,185,0)) fixed,
 				rgb(34,37,38);
 }

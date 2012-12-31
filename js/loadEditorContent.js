@@ -1,6 +1,6 @@
 var justDoIt=[];
 justDoIt[0]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive").replace("api","testdrive")%>/css/contacts-style.css\"></head>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\"></head>\n\
 <body>\n\
   <div id=\"contacts\">\n\
     <div class=\"vcard\">\n\
@@ -13,8 +13,8 @@ justDoIt[0]="<!DOCTYPE html><html>\n\
 </html>";
 
 justDoIt[1]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css\">\n\
-<script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
   <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
@@ -28,8 +28,8 @@ justDoIt[1]="<!DOCTYPE html><html>\n\
 </html>";
 
 justDoIt[2]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css\">\n\
-<script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
   <form data-bind=\"submit:contacts_create\">\n\
@@ -52,8 +52,8 @@ justDoIt[2]="<!DOCTYPE html><html>\n\
 </html>";
 
 justDoIt[3]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css\">\n\
-<script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
   <form data-bind=\"submit:contacts_create\">\n\
@@ -77,8 +77,8 @@ justDoIt[3]="<!DOCTYPE html><html>\n\
 </html>";
 
 justDoIt[4]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css\">\n\
-<script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
   <form data-bind=\"submit:contacts_create\">\n\
@@ -103,8 +103,8 @@ justDoIt[4]="<!DOCTYPE html><html>\n\
 </html>";
 
 justDoIt[5]="<!DOCTYPE html><html>\n\
-<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css\">\n\
-<script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
   <form data-bind=\"submit:contacts_create\">\n\

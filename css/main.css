@@ -216,19 +216,19 @@ iframe {
 	}
 
 	#panel-header-icon-refresh {
-		background-image: url("icons/icon-refresh.svg");
+		background-image: url("../img/icons/icon-refresh.svg");
 	}
 
 	#panel-header-icon-refresh:hover {
-		background-image: url("icons/icon-refresh-hover.svg");
+		background-image: url("../img/icons/icon-refresh-hover.svg");
 	}
 
 	#panel-header-icon-new-window {
-		background-image: url("icons/icon-new-window.svg");
+		background-image: url("../img/icons/icon-new-window.svg");
 	}
 
 	#panel-header-icon-new-window:hover {
-		background-image: url("icons/icon-new-window-hover.svg");
+		background-image: url("../img/icons/icon-new-window-hover.svg");
 	}
 
 
@@ -433,27 +433,27 @@ body > input[type="radio"] {
 	}
 
 	#masthead-icon-facebook {
-		background-image: url("icons/icon-facebook.svg");	
+		background-image: url("../img/icons/icon-facebook.svg");	
 	}
 
 	#masthead-icon-facebook:hover {
-		background-image: url("icons/icon-facebook-hover.svg");
+		background-image: url("../img/icons/icon-facebook-hover.svg");
 	}
 
 	#masthead-icon-twitter {
-		background-image: url("icons/icon-twitter.svg");
+		background-image: url("../img/icons/icon-twitter.svg");
 	}
 
 	#masthead-icon-twitter:hover {
-		background-image: url("icons/icon-twitter-hover.svg");
+		background-image: url("../img/icons/icon-twitter-hover.svg");
 	}
 
 	#masthead-icon-github {
-		background-image: url("icons/icon-github.svg");
+		background-image: url("../img/icons/icon-github.svg");
 	}
 
 	#masthead-icon-github:hover {
-		background-image: url("icons/icon-github-hover.svg");
+		background-image: url("../img/icons/icon-github-hover.svg");
 	}
 
 
@@ -549,7 +549,7 @@ body > input[type="radio"] {
 		#step6:checked ~ #instructions #next-prev label:nth-child(7),
 		#step7:checked ~ #instructions #next-prev label:nth-child(8),
 		#step8:checked ~ #instructions #next-prev label:nth-child(1) {
-			background: url('step-forward.png') no-repeat 85% 50%;
+			background: url('../img/step-forward.png') no-repeat 85% 50%;
 			float: right;
 			margin: 0 0px 0 0;
 			display: block;
@@ -564,7 +564,7 @@ body > input[type="radio"] {
 		#step6:checked ~ #instructions #next-prev label:nth-child(5),
 		#step7:checked ~ #instructions #next-prev label:nth-child(6),
 		#step8:checked ~ #instructions #next-prev label:nth-child(7) {
-			background: url('step-back.png') no-repeat 15% 50%;
+			background: url('../img/step-back.png') no-repeat 15% 50%;
 			float: left;
 			margin: 0 0 0 0px;
 			display: block;
