@@ -156,6 +156,8 @@ function aceEditorInit(editors)
 		eval(editors[i].id + ".setShowPrintMargin(false);");
 		eval(editors[i].id + ".setReadOnly(" + editors[i].getAttribute("data-readonly") + ");");
 		eval(editors[i].id + ".renderer.setShowGutter(" + editors[i].getAttribute("data-gutter") + ");");
+		eval(editors[i].id + ".resize();");
+		eval(editors[i].id + ".renderer.getHScrollBarAlwaysVisible();");
 	}
 }
 function getPage(userId,filename,callback)
@@ -171,6 +173,7 @@ function getPage(userId,filename,callback)
 			var obj = JSON.parse(result)
 			//alert(""+obj.html);
 			editor.getSession().setValue(obj.html);
+			editor.resize();
 			if(callback)
 				callback();
 		}
