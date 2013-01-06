@@ -119,18 +119,16 @@
 <header>Connect to the Concussion back-end</header>
 <p>Next you will add special Concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell Concussion how to wire up data from the back end to the user interface.</p>
 <p>First, paste this reference to the Concussion javascript file in the head tag, after the stylesheet link.</p>
-<pre class="snippet small" id="s2e1" data-readonly="true" data-gutter="false">
-  &lt;script src="http://api.concussionjs.com/concussion.js"&gt;&lt;/script&gt;</pre>
+<pre class="snippet small" id="s2e1" data-readonly="true" data-gutter="false">&lt;script src="http://api.concussionjs.com/concussion.js"&gt;&lt;/script&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="6" data-addContacts="true">Just do it for me&raquo;</a></p>
 <p>Next, replace the contacts div with the following markup, then press the refresh button in the preview.</p>
-<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">
-  &lt;div id="contacts" data-bind="foreach:contacts"&gt;
+<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">&lt;div id="contacts" data-bind="foreach:contacts"&gt;
 	&lt;div class="vcard"&gt;
 		&lt;input class="fn" data-bind="value:name"&gt;
 		&lt;input class="email" data-bind="value:email"&gt;
 		&lt;input class="tel" data-bind="value:phone"&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;</pre>
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="1" data-addContacts="true">Just do it for me&raquo;</a></p>
 <p>You should see the original static data defined in the HTML disappear. That data has been replaced with data from the backend, and in this case there is no data so no contacts show up.</p>
 <p class="continue" data-addContacts="true"><label for="step3" class="primary">Continue &raquo;</label></p>
@@ -159,12 +157,12 @@
 <p>You should see the contacts that were added from the admin.</p>
 <p>Now add a form so contacts can be added directly from your app. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
 <pre class="snippet medium" id="s4e1" data-readonly="true" data-gutter="false">&lt;form data-bind="submit:contacts_create"&gt;
-&lt;div class="new-contact"&gt;
-  &lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
-  &lt;input class="email" placeholder="Email Address" data-bind="value:contacts_email"&gt;
-  &lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_phone"&gt;
-  &lt;button&gt;Add record&lt;/button&gt;    
-&lt;/div&gt;
+	&lt;div class="new-contact"&gt;
+  		&lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
+		&lt;input class="email" placeholder="Email Address" data-bind="value:contacts_email"&gt;
+		&lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_phone"&gt;
+  		&lt;button&gt;Add record&lt;/button&gt;    
+	&lt;/div&gt;
 &lt;/form&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="2">Just do it for me&raquo;</a></p>
 <p>You should see the add contacts form in the preview.</p>
@@ -180,15 +178,11 @@
 
 <header>Add a new field</header>
 <p>Concussion makes it easy to update the data used in the application. Let's add a birthday field to the contacts. First paste the following markup into the editor, in the new contact div below the phone input.</p>
-<pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">
-	&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;
-</pre>
+<pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="3">Just do it for me&raquo;</a></p>
 <p>You should see the new field in the add contact form.</p>
 <p>Next paste the following markup into the editor, in the contacts div below the phone input. Then press the refresh button in the preview.</p>
-<pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">
-	&lt;input class="bday" data-bind="value:Birthday"&gt;
-</pre>
+<pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">&lt;input class="bday" data-bind="value:Birthday"&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="4">Just do it for me&raquo;</a></p>
 <p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
 <p>Add a few contacts using the new field. These should display all the data.</p>
