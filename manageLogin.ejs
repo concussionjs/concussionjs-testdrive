@@ -156,8 +156,7 @@ function aceEditorInit(editors)
 		eval(editors[i].id + ".setShowPrintMargin(false);");
 		eval(editors[i].id + ".setReadOnly(" + editors[i].getAttribute("data-readonly") + ");");
 		eval(editors[i].id + ".renderer.setShowGutter(" + editors[i].getAttribute("data-gutter") + ");");
-		eval(editors[i].id + ".resize();");
-		eval(editors[i].id + ".renderer.getHScrollBarAlwaysVisible();");
+		//eval(editors[i].id + ".resize();");
 	}
 }
 function getPage(userId,filename,callback)
