@@ -1,0 +1,140 @@
+// Vars
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+@bg-darkest: rgba(14,17,18,1.0);
+@bg-darker: rgba(39,43,45,1.0);
+
+@fg-brightest: rgba(255,255,255,1.0);
+@fg-dark: rgba(100,111,115,1.0);
+@logo-light: rgba(142,153,157,1.0);
+@logo-dark: rgba(69,76,78,1.0);
+
+@font-family-body: "open-sans","helvetica nueu",helvetica,arial,sans-serif;
+@font-family-title: Adelle,Constantia,"Lucida Bright",Georgia,serif;
+
+@font-size-base: 14px;
+@font-size-title-large: 1.65rem;
+
+// Mixins
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------
+.gradient (@start, @end){
+	background: -webkit-linear-gradient(@start,@end);
+	background: linear-gradient(@start,@end);
+}
+
+.letterpress-on-dark() {
+	text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);
+}
+
+.clearfix() {
+	&::before,
+	&::after {
+	content: " "; 
+	display: table; 
+	}
+
+	&::after {
+		clear: both;
+	}
+}
+
+/* BASICS
+---------------------------------------------------------------------*/
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font: 400  @font-size-base @font-family-body;
+	color: @fg-brightest;
+	background: @bg-darkest;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* MASTHEAD
+---------------------------------------------------------------------*/
+#masthead {
+	margin: 0;
+	border-bottom: 1px solid @bg-darkest;
+	padding: 6px 0;
+	.gradient(@bg-darkest,@bg-darker);
+	.clearfix;
+}
+
+/* Logo */
+#logo {
+	float: left;
+	margin: 0;
+	padding: 0px 25px 0;
+	font-weight: bold;
+	font-size: @font-size-title-large;
+	font-family: @font-family-title;
+	color: @logo-light;
+	.letterpress-on-dark;
+}
+
+#logo span {
+	font-style: italic;
+	color: @logo-dark;
+}
+
+/* Nav */
+#main-menu {
+	float: left;
+	position: relative;
+	margin: 8px 0 0;
+	white-space: nowrap;
+}
+
+#main-menu label {
+	display: inline-block;
+	padding: 0 6px;
+	color: @fg-dark;
+	text-decoration: none;
+	.letterpress-on-dark;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+/* Authorization */
+#auth-status {
+	float: right;
+	margin: 8px 0 0;
+	padding: 0 25px;
+	color: rgb(100,111,115);
+	text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);
+}
+
+#auth-status img {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.displayname{
+
+}
+
+.auth-hide {
+	display: none;
+}
+
+.fb-login-button {
+	display: inline-block;
+}
