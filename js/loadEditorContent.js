@@ -12,6 +12,21 @@ justDoIt[0]="<!DOCTYPE html><html>\n\
 </body>\n\
 </html>";
 
+justDoIt[6]="<!DOCTYPE html><html>\n\
+<head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
+<script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
+</head>\n\
+<body>\n\
+  <div id=\"contacts\">\n\
+    <div class=\"vcard\">\n\
+      <input class=\"fn\" value=\"First Last\">\n\
+      <input class=\"email\" value=\"address@email.com\">\n\
+      <input class=\"tel\" value=\"+1.818.555.1212\">\n\
+    </div>\n\
+  </div>\n\
+</body>\n\
+</html>";
+
 justDoIt[1]="<!DOCTYPE html><html>\n\
 <head><title>Contacts</title><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"http://testdrive.local-concussionjs.com/css/contacts-style.css\">\n\
 <script src=\"http://api.local-concussionjs.com/concussion.js\"></script>\n\
