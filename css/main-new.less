@@ -41,13 +41,41 @@
 	}
 }
 
-/* BASICS
+.transition-quick() {
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+
+
+/* GLOBAL
 ---------------------------------------------------------------------*/
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+ 
+*::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.35);
+	background: rgba(0,0,0,.15);
+	border-radius: 4px;
+}
+ 
+*::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background: rgba(127,127,127,.3);
+}
+
+*::-webkit-scrollbar-corner {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.35); 
+}
+
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
+/* BASICS
+---------------------------------------------------------------------*/
 html {
 	width: 100%;
 	height: 100%;
@@ -62,18 +90,22 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	padding: 0;
+	padding: 42px 0 0;
 }
 
 
 /* MASTHEAD
 ---------------------------------------------------------------------*/
 #masthead {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	min-width: 800px;
+	.clearfix;
 	margin: 0;
 	border-bottom: 1px solid @bg-darkest;
 	padding: 6px 0;
 	.gradient(@bg-darkest,@bg-darker);
-	.clearfix;
 }
 
 /* Logo */
@@ -95,8 +127,8 @@ body {
 
 /* Nav */
 #main-menu {
-	float: left;
 	position: relative;
+	float: left;
 	margin: 8px 0 0;
 	white-space: nowrap;
 }
@@ -107,34 +139,172 @@ body {
 	color: @fg-dark;
 	text-decoration: none;
 	.letterpress-on-dark;
+	cursor: pointer;
+
 	-webkit-transform: translateZ(0);
 	transform: translateZ(0);
 	-webkit-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out;
 }
 
+	/* Menu Indicator */
+	#menu-indicator {
+		position: absolute;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-color: @bg-darkest transparent;
+		border-style: solid;
+		border-width: 0px 12px 12px 12px;
+
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		-webkit-transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+		transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+
+		-webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+		transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+	}
+
+	#menu1:checked ~ #masthead label:nth-child(1) { color: rgb(102,153,204); }
+	#menu1:checked ~ #masthead #menu-indicator { left: 20px; }
+
+	#menu2:checked ~ #masthead label:nth-child(2) { color: rgb(102,153,204); }
+	#menu2:checked ~ #masthead #menu-indicator { left: 102px; }
+
+	#menu3:checked ~ #masthead label:nth-child(3) { color: rgb(102,153,204); }
+	#menu3:checked ~ #masthead #menu-indicator { left: 214px; }
+
+	#menu4:checked ~ #masthead label:nth-child(4) { color: rgb(102,153,204); }
+	#menu4:checked ~ #masthead #menu-indicator { left: 332px; }
+
+	#menu5:checked ~ #masthead label:nth-child(5) { color: rgb(102,153,204); }
+	#menu5:checked ~ #masthead #menu-indicator { left: 416px; }
+
 /* Authorization */
 #auth-status {
 	float: right;
-	margin: 8px 0 0;
+	margin: 5px 0 0;
 	padding: 0 25px;
 	color: rgb(100,111,115);
-	text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);
+	.letterpress-on-dark;
 }
 
-#auth-status img {
-	display: inline-block;
-	vertical-align: bottom;
-}
+.auth-hide { display: none; }
 
-.displayname{
+#auth-loggedout {}
 
-}
+	/* Masthead Icons*/
+	.masthead-icon {
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		margin: 0 0 -6px 8px;
+		border-radius: 4px;
+		background: @fg-dark center center no-repeat;
+		background-size: 66%;
+		box-shadow: inset 0 1px 0 rgba(0, 0, 0, 1), inset 0 -1px 0 rgba(255, 255, 255, .2);
+		opacity: .5;
+	}
 
-.auth-hide {
+	.masthead-icon:hover {
+		background-color: #6699cc;
+		opacity: 1;
+		cursor: pointer;
+		.transition-quick;
+	}
+
+	#masthead-icon-facebook       { background-image: url("../img/icons/icon-facebook.svg"); }
+	#masthead-icon-facebook:hover {	background-image: url("../img/icons/icon-facebook-hover.svg"); }
+
+	#masthead-icon-twitter        { background-image: url("../img/icons/icon-twitter.svg"); }
+ 	#masthead-icon-twitter:hover  { background-image: url("../img/icons/icon-twitter-hover.svg"); }
+
+	#masthead-icon-github         { background-image: url("../img/icons/icon-github.svg"); }
+	#masthead-icon-github:hover   { background-image: url("../img/icons/icon-github-hover.svg"); }
+
+#auth-loggedin {}
+	.displayname{}
+	.fb-login-button { display: inline-block; }
+
+
+/* PAGES
+---------------------------------------------------------------------*/
+body > input[type="radio"] {
 	display: none;
 }
 
-.fb-login-button {
-	display: inline-block;
+/* The container for the pages */
+#pages {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+	/* The wrapper used to indent. Set the width equal to the number of steps * 100 */
+	#page-wrapper {
+		position: absolute;
+		width: 500%;
+		height: 100%;
+
+		-webkit-transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+		transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+
+		-webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+		transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+	}
+
+	/* Based on the selected radio button, pull the wrapper to left */
+	#menu1:checked ~ #pages  #page-wrapper { margin-left: 0; }
+	#menu2:checked ~ #pages  #page-wrapper { margin-left: -100%; }
+	#menu3:checked ~ #pages  #page-wrapper { margin-left: -200%; }
+	#menu4:checked ~ #pages  #page-wrapper { margin-left: -300%; }
+	#menu5:checked ~ #pages  #page-wrapper { margin-left: -400%; }
+
+		.page {
+			float: left;
+			width: 20%;
+			height: 100%;
+			overflow: auto;
+			padding: 10px;
+		}
+
+			.page-body {
+				width: 760px;
+			}
+
+
+/* TUTORIAL
+---------------------------------------------------------------------*/
+#tutorial {
+	//background: red;
+}
+
+
+/* HOW IT WORKS
+---------------------------------------------------------------------*/
+#howitworks {
+	//background: blue;
+}
+
+
+/* GETTING STARTED
+---------------------------------------------------------------------*/
+#gettingstarted {
+	//background: pink;
+}
+
+
+/* DOCUMENTATION
+---------------------------------------------------------------------*/
+#documentation {
+	//background: orange;
+}
+
+
+/* ABOUT
+---------------------------------------------------------------------*/
+#about {
+//	background: green;
 }
