@@ -3,18 +3,28 @@
 //---------------------------------------------------------------------
 //---------------------------------------------------------------------
 @bg-darkest: rgba(14,17,18,1.0);
+@bg-darkerer: rgba(26,30,31,1.0);
 @bg-darker: rgba(39,43,45,1.0);
+@bg-dark: rgba(42,45,46,1.0);
+@bg-medium: rgba(54,57,58,1.0);
 
-@fg-brightest: rgba(255,255,255,1.0);
+@fg-brightest: rgba(225,225,225,1.0);
 @fg-dark: rgba(100,111,115,1.0);
+@fg-medium: rgba(136,136,121,1.0);
+@clickable: rgba(102, 153, 204, 1);
+
 @logo-light: rgba(142,153,157,1.0);
 @logo-dark: rgba(69,76,78,1.0);
 
 @font-family-body: "open-sans","helvetica nueu",helvetica,arial,sans-serif;
 @font-family-title: Adelle,Constantia,"Lucida Bright",Georgia,serif;
+@font-family-code: "source-code-pro",Monaco,Consolas,"Courier New",monospace;
 
 @font-size-base: 14px;
 @font-size-title-large: 1.65rem;
+
+@vr-base: 1.5;
+@vr: 1.5rem;
 
 // Mixins
 //---------------------------------------------------------------------
@@ -41,14 +51,100 @@
 	}
 }
 
-.transition-quick() {
-	-webkit-transition: .2s;
-	transition: .2s;
+.hover() {
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
 }
 
 
-/* GLOBAL
+.page-transition() {
+	-webkit-transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+	transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+	-webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); 
+	transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+}
+
+
+/* BASICS
 ---------------------------------------------------------------------*/
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font: 400 @font-size-base @font-family-body;
+	line-height: @vr-base;
+	color: @fg-brightest;
+	background: @bg-darkest;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 42px 0 0;
+}
+
+h1 {
+	margin: 0 0 @vr;
+	font-family: @font-family-title;
+	font-size: @font-size-title-large;
+	font-weight: normal;
+	color: @logo-light;
+}
+
+h2 {
+	margin: 0 0 @vr;
+	font-size: 1.28rem;
+	font-weight: normal;
+	color: @logo-light;
+}
+
+h3 {
+	margin: 0 0 @vr;
+	font-size: 1.22rem;
+	font-weight: normal;
+	color: @logo-light;
+}
+
+p {
+	margin: 0 0 @vr;
+}
+
+ul {
+	margin: 0 0 @vr;
+	list-style-type: square;
+}
+
+li {
+	margin: 0;
+}
+
+pre {
+	margin: 0 0 @vr;
+	border-radius: 3px;
+	box-shadow: inset 0 0 2px rgba(0,0,0,0.35);
+	overflow-y: hidden;
+	background: rgba(0,0,0,.15);
+	color: rgba(255,255,255,.5);
+}
+
+a:link,a:visited {
+	color: @clickable;
+	text-decoration: none;
+}
+
+iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	border: none;
+	overflow: hidden;
+	background: rgb(34,37,38);
+}
+
 *::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
@@ -74,23 +170,8 @@
   box-sizing: border-box;
 }
 
-/* BASICS
----------------------------------------------------------------------*/
-html {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	font: 400  @font-size-base @font-family-body;
-	color: @fg-brightest;
-	background: @bg-darkest;
-}
-
-body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 42px 0 0;
+#synchSessionVariables{
+	display: none;
 }
 
 
@@ -140,11 +221,7 @@ body {
 	text-decoration: none;
 	.letterpress-on-dark;
 	cursor: pointer;
-
-	-webkit-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-transition: all 0.2s ease-out;
-	transition: all 0.2s ease-out;
+	.hover;
 }
 
 	/* Menu Indicator */
@@ -166,19 +243,19 @@ body {
 		transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
 	}
 
-	#menu1:checked ~ #masthead label:nth-child(1) { color: rgb(102,153,204); }
+	#menu1:checked ~ #masthead label:nth-child(1) { color: @clickable; }
 	#menu1:checked ~ #masthead #menu-indicator { left: 20px; }
 
-	#menu2:checked ~ #masthead label:nth-child(2) { color: rgb(102,153,204); }
+	#menu2:checked ~ #masthead label:nth-child(2) { color: @clickable; }
 	#menu2:checked ~ #masthead #menu-indicator { left: 102px; }
 
-	#menu3:checked ~ #masthead label:nth-child(3) { color: rgb(102,153,204); }
+	#menu3:checked ~ #masthead label:nth-child(3) { color: @clickable; }
 	#menu3:checked ~ #masthead #menu-indicator { left: 214px; }
 
-	#menu4:checked ~ #masthead label:nth-child(4) { color: rgb(102,153,204); }
+	#menu4:checked ~ #masthead label:nth-child(4) { color: @clickable; }
 	#menu4:checked ~ #masthead #menu-indicator { left: 332px; }
 
-	#menu5:checked ~ #masthead label:nth-child(5) { color: rgb(102,153,204); }
+	#menu5:checked ~ #masthead label:nth-child(5) { color: @clickable; }
 	#menu5:checked ~ #masthead #menu-indicator { left: 416px; }
 
 /* Authorization */
@@ -186,7 +263,7 @@ body {
 	float: right;
 	margin: 5px 0 0;
 	padding: 0 25px;
-	color: rgb(100,111,115);
+	color: @fg-dark;
 	.letterpress-on-dark;
 }
 
@@ -208,10 +285,10 @@ body {
 	}
 
 	.masthead-icon:hover {
-		background-color: #6699cc;
+		background-color: @clickable;
 		opacity: 1;
 		cursor: pointer;
-		.transition-quick;
+		.hover;
 	}
 
 	#masthead-icon-facebook       { background-image: url("../img/icons/icon-facebook.svg"); }
@@ -247,12 +324,7 @@ body > input[type="radio"] {
 		position: absolute;
 		width: 500%;
 		height: 100%;
-
-		-webkit-transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); 
-		transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
-
-		-webkit-transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); 
-		transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
+		.page-transition;
 	}
 
 	/* Based on the selected radio button, pull the wrapper to left */
@@ -272,39 +344,665 @@ body > input[type="radio"] {
 
 			.page-body {
 				width: 760px;
+				margin: 0 auto;
 			}
+
+
+/* PANEL
+---------------------------------------------------------------------*/
+.panel {
+	position: relative;
+	height: 100%;
+	padding: 30px 0;
+	border: 1px solid @bg-dark;
+	border-radius: 7px;
+	background: @bg-darker;
+}
+
+	.panel-header {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 30px;
+		border-bottom: 1px solid @bg-darkest;
+		border-radius: 6px 6px 0 0;
+		padding: 4px 10px 0;
+		color: @fg-dark;
+		.letterpress-on-dark;
+		.gradient(@bg-darkerer,@bg-darker);
+	}
+
+		.panel-header-primary {
+			float: left;
+			width: 100px;
+		}
+
+		.panel-header-secondary {
+			float: right;
+			width: 100px;
+			text-align: right;
+		}
+
+		.panel-header h1 {
+			margin: 0;
+			padding: 0;
+			text-align: center;
+			font-family: @font-family-body;
+			font-weight: normal;
+			font-size: @font-size-base;
+			color: @fg-dark;
+		}
+
+	.panel-body {
+		height: 100%;
+		overflow: auto;
+		position: relative;
+		color: @fg-brightest;		
+	}
+
+	.panel-footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 30px;
+		border-top: 1px solid @bg-darkest;
+		border-radius: 0 0 6px 6px;
+		padding: 4px 10px 0;
+		color: @fg-dark;
+		.letterpress-on-dark;
+		.gradient(@bg-darker,@bg-darkerer);
+	}
+
+
+	/* Panel Header Icons */
+	.panel-header-icon {
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		opacity: .5;
+	}
+
+	.panel-header-icon:hover {
+		opacity: 1;
+		cursor: pointer;
+		.hover;
+	}
+
+	#panel-header-icon-refresh {
+		background-image: url("../img/icons/icon-refresh.svg");
+	}
+
+	#panel-header-icon-refresh:hover {
+		background-image: url("../img/icons/icon-refresh-hover.svg");
+	}
+
+	#panel-header-icon-new-window {
+		background-image: url("../img/icons/icon-new-window.svg");
+	}
+
+	#panel-header-icon-new-window:hover {
+		background-image: url("../img/icons/icon-new-window-hover.svg");
+	}
+
+
+/* ACE EDITOR
+---------------------------------------------------------------------*/
+.ace_editor {
+	font-size: .77rem;
+	font-family: source-code-pro,Monaco,Consolas,"Courier New",monospace;
+}
+
+.ace_gutter {
+	border-radius: 5px 0 0 5px;
+}
+
+.ace_scroller {
+	border-radius: 0 5px 5px 0;
+}
+
+.snippet {
+	position: relative;
+	overflow-y:scroll;
+	width: 100%;
+}
+
+.small{
+	height: 30px;
+}
+
+.medium{
+	height: 150px;
+}
+
+.large{
+	height: 225px;
+}
+
+.justDoItContent{
+	visibility: hidden;
+}
 
 
 /* TUTORIAL
 ---------------------------------------------------------------------*/
 #tutorial {
-	//background: red;
+
 }
+
+/* Radio buttons that set the active step */
+#tutorial input[type="radio"] {
+	display: none;
+}
+
+
+/* Instructions */
+#instructions {
+	float: left;
+	width: 300px;
+	margin-right: 10px;
+}
+
+	/* Set the basic styling for the controls */
+	#instructions label {
+		cursor: pointer;
+	}
+
+	/* Step Number */
+	#step-number {
+		overflow-x: hidden;
+	}
+
+		/* The wrapper used to indent. Set the width equal to the number of steps * 100 */
+		#step-number-wrapper {
+			width: 800%;
+			height: 100%;
+		}
+
+		/* Based on the selected radio button, pull the wrapper to left */
+		#step1:checked ~ #instructions #step-number-wrapper { margin-left: 0; }
+		#step2:checked ~ #instructions #step-number-wrapper { margin-left: -100%; }
+		#step3:checked ~ #instructions #step-number-wrapper { margin-left: -200%; }
+		#step4:checked ~ #instructions #step-number-wrapper { margin-left: -300%; }
+		#step5:checked ~ #instructions #step-number-wrapper { margin-left: -400%; }
+		#step6:checked ~ #instructions #step-number-wrapper { margin-left: -500%; }
+		#step7:checked ~ #instructions #step-number-wrapper { margin-left: -600%; }
+		#step8:checked ~ #instructions #step-number-wrapper { margin-left: -700%; }
+
+		/* animate the step number transition */
+		#step-number-wrapper {
+			.page-transition;
+		}
+
+			/* Each step. Set the width equal to 100 / number of steps */
+			#step-number h1 {
+				float: left;
+				width: 12.5%;
+			}
+
+	/* Next/previous arrows */
+	#next-prev {
+		height: 30px;
+		margin-top: -30px;
+	}
+
+		#next-prev label { 
+			display: none;
+			width: 80px;
+			height: 30px;
+			opacity: .6;
+		}
+
+		/* animate the next-prev hover */
+		#next-prev label:hover {
+			opacity: .99;
+		}
+		
+		#next-prev label {
+			.hover;
+		}
+
+		/* find the label for the previous step, make it visible, and move it into positions */
+		#step1:checked ~ #instructions #next-prev label:nth-child(8),
+		#step2:checked ~ #instructions #next-prev label:nth-child(1),
+		#step3:checked ~ #instructions #next-prev label:nth-child(2),
+		#step4:checked ~ #instructions #next-prev label:nth-child(3),
+		#step5:checked ~ #instructions #next-prev label:nth-child(4),
+		#step6:checked ~ #instructions #next-prev label:nth-child(5),
+		#step7:checked ~ #instructions #next-prev label:nth-child(6),
+		#step8:checked ~ #instructions #next-prev label:nth-child(7) {
+			background: url('../img/step-back.png') no-repeat 15% 45%;
+			float: left;
+			display: block;
+		}
+
+		/* find the label for the next step, make it visible, and move it into positions */
+		#step1:checked ~ #instructions #next-prev label:nth-child(2),
+		#step2:checked ~ #instructions #next-prev label:nth-child(3),
+		#step3:checked ~ #instructions #next-prev label:nth-child(4),
+		#step4:checked ~ #instructions #next-prev label:nth-child(5),
+		#step5:checked ~ #instructions #next-prev label:nth-child(6),
+		#step6:checked ~ #instructions #next-prev label:nth-child(7),
+		#step7:checked ~ #instructions #next-prev label:nth-child(8),
+		#step8:checked ~ #instructions #next-prev label:nth-child(1) {
+			background: url('../img/step-forward.png') no-repeat 85% 45%;
+			float: right;
+			display: block;
+		}
+
+	/* The container for the steps */
+	#steps {
+		overflow-x: hidden;
+	}
+
+		/* The wrapper used to indent. Set the width equal to the number of steps * 100 */
+		#step-wrapper {
+			width: 800%;
+			height: 100%;
+		}
+
+		/* Based on the selected radio button, pull the wrapper to left */
+		#step1:checked ~ #instructions  #step-wrapper { margin-left: 0; }
+		#step2:checked ~ #instructions  #step-wrapper { margin-left: -100%; }
+		#step3:checked ~ #instructions  #step-wrapper { margin-left: -200%; }
+		#step4:checked ~ #instructions  #step-wrapper { margin-left: -300%; }
+		#step5:checked ~ #instructions  #step-wrapper { margin-left: -400%; }
+		#step6:checked ~ #instructions  #step-wrapper { margin-left: -500%; }
+		#step7:checked ~ #instructions  #step-wrapper { margin-left: -600%; }
+		#step8:checked ~ #instructions  #step-wrapper { margin-left: -700%; }
+
+		/* animate the step transition */
+		#step-wrapper {
+			.page-transition;
+		}
+
+			/* Each step. Set the width equal to 100 / number of steps */
+			#steps article {
+				float: left;
+				width: 12.5%;
+				height: 100%;
+				overflow: auto;
+				padding: 10px;
+				color: @fg-medium;
+			}
+
+				/* Styling for the markup inside each step */
+				#steps article h2 {
+					margin: 0 0 10px;
+					padding: 0;
+					font-family: @font-family-title;
+					font-weight: bold;
+					font-size: @font-size-base;
+					color: @fg-brightest;
+				}
+
+				#lede {
+					font-size: 1.28rem;
+				}
+
+				#steps article p {
+				}
+
+				#steps article .action {
+					margin-top: -20px;
+				}
+
+				#steps article .action a {
+					color: @clickable;
+					cursor: pointer;
+				}
+
+				#steps article pre {
+
+				}
+
+				#steps article label {
+					color: @clickable;
+					cursor: pointer;
+				}
+
+
+				#steps article .continue {
+					margin: 20px 0;
+
+				}
+				
+				#steps article .primary {
+					border-radius: 3px;
+					padding: 5px 15px;
+					color: @fg-brightest;
+					background: @clickable;
+				}
+
+
+	/* Page indicator discs */
+	#page-indicator {
+		position: relative;
+		height: 30px;
+		margin: 0 0 0;
+		border-top: 1px solid @bg-darkest;
+		border-radius: 0 0 7px 7px;
+		.gradient(@bg-darker,@bg-darkerer);
+		text-align: center;
+		cursor: default;
+	}
+
+	#page-indicator:before {
+		content: '';
+		position: absolute;
+		top: -2px;
+		left: 0px;
+		width: 100%;
+		height: 0px;
+		border-top: 1px solid @bg-dark;
+	}
+
+		/* turn the labels into discs */
+		#page-indicator label {
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			margin: 0 2px;
+			border-radius: 5px;
+			background: @bg-darkest;
+		}
+
+		/* animate the page indicator */
+		#page-indicator label:hover {
+			background: @clickable;
+			border-color: @clickable;
+		}
+
+		#page-indicator label {
+			.hover;
+		}
+
+		/* find the label for the current step and make it visible */
+		#step1:checked ~ #instructions #page-indicator label:nth-child(1),
+		#step2:checked ~ #instructions #page-indicator label:nth-child(2),
+		#step3:checked ~ #instructions #page-indicator label:nth-child(3),
+		#step4:checked ~ #instructions #page-indicator label:nth-child(4),
+		#step5:checked ~ #instructions #page-indicator label:nth-child(5),
+		#step6:checked ~ #instructions #page-indicator label:nth-child(6),
+		#step7:checked ~ #instructions #page-indicator label:nth-child(7),
+		#step8:checked ~ #instructions #page-indicator label:nth-child(8) {
+			background: @clickable;
+			border-color: @clickable;
+		}
+
+
+/* Workspace */
+#workspace {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+	/* The wrapper used to indent. Set the width equal to the number of workspaces * 100 */
+	#workspace-wrapper {
+		position: absolute;
+		width: 200%;
+		height: 100%;
+	}
+
+	/* Based on the selected radio button, pull the wrapper to left */
+	#step1:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step2:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step3:checked ~ #workspace #workspace-wrapper { margin-left: -100% }
+	#step4:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step5:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step6:checked ~ #workspace #workspace-wrapper { margin-left: -100% }
+	#step7:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+	#step8:checked ~ #workspace #workspace-wrapper { margin-left: 0% }
+
+	/* animate the workspace transition */
+	#workspace-wrapper {
+		.page-transition;
+	}
+
+		/* Front-end workspace*/
+		#front-end {
+			float: left;
+			width: 50%;
+			height: 100%;
+		}
+
+			/* Needed to get the space between the panels */
+			#markup-wrapper {
+				height: 50%;
+				padding-bottom: 5px;				
+			}
+
+				/* Markup */
+				#markup {
+					padding-bottom: 0;
+				}
+
+					/* Editor */
+					#editor {
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100px;
+						height: 100px;
+						overflow: hidden;
+						}
+
+			/* Needed to get the space between the panels */
+			#view-wrapper {
+				height: 50%;
+				padding-top: 5px;			
+			}
+
+				/* View */
+				#view {
+					padding-bottom: 0;
+				}
+
+				#view .panel-body {
+					//overflow: hidden;
+				}
+					#preview {
+						border-radius: 0 0 7px 7px;
+					}
+
+
+		/* Admin */
+		#admin {
+			float: left;
+			width: 50%;
+			height: 100%;
+			padding-bottom: 0;
+		}
 
 
 /* HOW IT WORKS
 ---------------------------------------------------------------------*/
 #howitworks {
-	//background: blue;
+
 }
 
+#howitworks img {
+	max-width: 100%;
+}
 
 /* GETTING STARTED
 ---------------------------------------------------------------------*/
 #gettingstarted {
-	//background: pink;
+
 }
 
 
 /* DOCUMENTATION
 ---------------------------------------------------------------------*/
 #documentation {
-	//background: orange;
+
 }
 
 
 /* ABOUT
 ---------------------------------------------------------------------*/
 #about {
-//	background: green;
+
 }
+
+
+/* FACEBOOK
+---------------------------------------------------------------------*/
+.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px;right:7px}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yO/r/_j03izEX40U.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6), color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{position:relative;display:inline-block;vertical-align:text-bottom;text-align:justify}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}

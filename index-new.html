@@ -5,8 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="description=" content="ConcussionJS is the web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create.">
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-	<script type="text/javascript" src="//use.typekit.net/bqr1qnl.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<link rel="stylesheet" href="css/main-new.css">
 </head>
 </body>
@@ -37,54 +35,491 @@
 		</div>
 	</div>
 </section>
+
 <section id="pages">
 	<div id="page-wrapper">
+
 		<section id="tutorial" class="page">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer scelerisque enim at orci lacinia tempor. Fusce nisi enim, euismod id commodo at, sodales sed felis. Praesent sagittis neque consectetur nunc sagittis volutpat. Etiam dui nulla, viverra rhoncus tristique gravida, placerat tristique nisl. Mauris magna mauris, tincidunt id tincidunt et, auctor quis eros. Aenean ac laoreet purus. Nulla pharetra velit elementum nibh tempor volutpat. Mauris vitae ante lobortis mi ultricies elementum fermentum sed ante. Donec odio elit, euismod vel scelerisque at, feugiat vel mi.
 
-			Nam fringilla nisl a quam porttitor venenatis. Nam lectus tellus, dictum sed scelerisque eu, dapibus quis tellus. Fusce pharetra consectetur justo, eu blandit lorem pellentesque sodales. Curabitur adipiscing nibh erat. Donec ultricies, diam ac ultricies imperdiet, quam nisl fringilla sem, id porta magna quam et metus. Vivamus quis leo a erat rutrum faucibus vitae id nunc. Suspendisse vitae viverra augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum tincidunt nulla eu porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce vel sapien nunc.
+			<input type="radio" name="step-control" id="step1" checked>
+			<input type="radio" name="step-control" id="step2">
+			<input type="radio" name="step-control" id="step3">
+			<input type="radio" name="step-control" id="step4">
+			<input type="radio" name="step-control" id="step5">
+			<input type="radio" name="step-control" id="step6">
+			<input type="radio" name="step-control" id="step7">
+			<input type="radio" name="step-control" id="step8">
+			
+			<section id="instructions" class="panel">
+				<header id="step-number" class="panel-header">
+					<div id="step-number-wrapper">
+						<h1>Step 1</h1>
+						<h1>Step 2</h1>
+						<h1>Step 3</h1>
+						<h1>Step 4</h1>
+						<h1>Step 5</h1>
+						<h1>Step 6</h1>
+						<h1>Step 7</h1>
+						<h1>Step 8</h1>
+					</div>
+				</header>
+				<div id="next-prev">
+					<label for="step1"></label>
+					<label for="step2"></label>
+					<label for="step3"></label>
+					<label for="step4"></label>
+					<label for="step5"></label>
+					<label for="step6"></label>
+					<label for="step7"></label>
+					<label for="step8"></label>
+				</div>
+				<div id="steps" class="panel-body">
+					<div id="step-wrapper">
 
-			In hac habitasse platea dictumst. Nulla quam eros, blandit sed sagittis a, cursus a nisl. Aliquam erat volutpat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean viverra tellus eget libero rutrum eget bibendum velit luctus. Fusce arcu nisi, condimentum quis imperdiet quis, euismod interdum ligula. Praesent in dui ac dolor commodo tempus. Duis sapien tortor, euismod molestie accumsan hendrerit, vulputate sit amet nulla.
+<!-- Step 1 -->
+<article>
 
-			Sed urna leo, iaculis sit amet dapibus vel, luctus nec ante. Vivamus eget leo sed ligula hendrerit vestibulum. Vestibulum id ultrices sem. Maecenas id lectus augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In a arcu vitae lacus ornare fringilla venenatis vel mauris. Donec molestie sagittis mauris, vel suscipit nunc imperdiet quis. Sed porta vulputate leo, a volutpat nunc ullamcorper sed.
+<h2><span id="lede">The web app platform for the impatient hacker.</span></h2>
+<p>You provide the HTML. Concussion will use the markup to generate the web services, javascript, and admin tools to make your app work.</p>
+<p>Follow this 8 step tutorial, and in 5 minutes you will have a working contacts app. You will define the basic view, create, edit, and delete functionality in the app.</p>
+<p>To start, copy and paste the following markup into the editor, then press the refresh button in the preview (or push &ldquo;Just do it for me&rdquo;).</p>
+<pre class="snippet large" id="s1e1" data-readonly="true" data-gutter="false">&lt;!DOCTYPE html&gt;&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Contacts&lt;/title&gt;&lt;meta charset="utf-8"&gt;&lt;link rel="stylesheet" href="http://testdrive.local-concussionjs.com/css/contacts-style.css"&gt;&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="contacts"&gt;
+		&lt;div class="vcard"&gt;
+			&lt;input class="fn" value="First Last"&gt;
+			&lt;input class="email" value="address@email.com"&gt;
+			&lt;input class="tel" value="+1.818.555.1212"&gt;
+  		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre><br>
+<p class="action"><a class="justDoIt" data-index="0">Just do it for me&raquo;</a></p>
+<p>You should see a sample contact appear in the preview.</p>
+<p class="continue" ><label for="step2" class="primary">Continue &raquo;</label></p>
 
-			Etiam massa est, adipiscing sed pharetra congue, accumsan non orci. In hac habitasse platea dictumst. Aliquam viverra odio a ligula semper sed dictum purus dignissim. In hac habitasse platea dictumst. Fusce et urna metus, tempus malesuada purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec sed neque eget leo facilisis tempus sit amet vel tellus. Sed at scelerisque libero. Mauris tristique, mi in eleifend mollis, elit nisi tincidunt turpis, id vestibulum leo lacus in ipsum.
+</article>
+<!-- Close Step 1 -->
 
-			Sed sit amet nisi ante. Suspendisse eget est nunc, nec convallis mi. Cras non sem eget leo cursus consequat. Vestibulum volutpat, felis quis vulputate cursus, leo massa varius orci, vitae ultricies augue magna a nulla. Vivamus malesuada hendrerit tortor, ut cursus arcu interdum eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed pretium cursus ligula in fringilla. Donec posuere hendrerit quam, nec posuere turpis convallis non. Integer non blandit tortor.
 
-			Donec lobortis ante non odio tempus aliquet. Aenean libero dui, dapibus in bibendum nec, semper pretium metus. Nam rutrum commodo ultrices. Aliquam diam odio, auctor a auctor feugiat, consectetur luctus arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur quam neque, suscipit non condimentum at, mattis in enim. Sed scelerisque, lectus nec suscipit luctus, magna felis tristique risus, quis scelerisque neque tortor id metus. Nulla nulla elit, consequat sed tincidunt eu, auctor id orci. Phasellus nec ligula at diam tempus aliquam.
+<!-- Step 2 -->
+<article>
 
-			Aenean sit amet felis erat. Curabitur felis augue, gravida in posuere vel, ullamcorper vitae dolor. Phasellus quis tempus ante. Ut fermentum, tellus non luctus ornare, massa quam rhoncus est, in bibendum arcu purus quis ante. Pellentesque lectus elit, sollicitudin lacinia semper in, consequat a eros. Vivamus ipsum massa, ultrices eu vehicula sed, rutrum a erat. Donec sed erat quis sapien eleifend vestibulum. Nunc quis augue id orci sodales sollicitudin bibendum a lacus. Curabitur malesuada luctus rhoncus. Sed vel mi ac ligula varius luctus.
+<h2>Connect to the Concussion back-end</h2>
+<p>Next you will add special Concussion attributes to the elements in the markup that represent application data. These are called data-binds, and they tell Concussion how to wire up data from the back end to the user interface.</p>
+<p>First, paste this reference to the Concussion javascript file in the head tag, after the stylesheet link.</p>
+<pre class="snippet small" id="s2e1" data-readonly="true" data-gutter="false">&lt;script src="http://api.concussionjs.com/concussion.js"&gt;&lt;/script&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="6" data-addContacts="true">Just do it for me&raquo;</a></p>
+<p>Next, replace the contacts div with the following markup, then press the refresh button in the preview.</p>
+<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">&lt;div id="contacts" data-bind="foreach:contacts"&gt;
+	&lt;div class="vcard"&gt;
+		&lt;input class="fn" data-bind="value:name"&gt;
+		&lt;input class="email" data-bind="value:email"&gt;
+		&lt;input class="tel" data-bind="value:phone"&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="1" data-addContacts="true">Just do it for me&raquo;</a></p>
+<p>You should see the original static data defined in the HTML disappear. That data has been replaced with data from the backend, and in this case there is no data so no contacts show up.</p>
+<p class="continue" data-addContacts="true"><label for="step3" class="primary">Continue &raquo;</label></p>
 
-			In laoreet dictum iaculis. Aliquam orci orci, aliquet quis sollicitudin a, imperdiet at felis. Pellentesque rhoncus placerat lacus vel ullamcorper. Fusce tempus felis sed arcu volutpat vestibulum. Proin quis bibendum felis. Nulla ornare ornare lacus id porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin eget est dolor, vel egestas eros. Nullam nec sapien eget mi facilisis venenatis suscipit pellentesque quam. Morbi in diam nunc. Proin risus elit, vulputate ut varius mattis, aliquam eget risus. Sed dolor lorem, convallis sed sagittis in, auctor quis nisi. Vivamus odio nunc, ultricies ac ornare in, bibendum ut magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi a tempus ligula.
+</article>
+<!-- Close Step 2 -->
 
-			Etiam at risus a ante lobortis aliquam. Nunc nunc nunc, eleifend in gravida id, consectetur pellentesque lectus. Pellentesque est mi, feugiat a fringilla vel, pellentesque nec nisi. Maecenas commodo tortor id neque gravida cursus. Sed aliquet varius lorem et aliquet. Curabitur sed tortor vel dolor sodales elementum. Morbi eu mi est, ut pretium purus. Nunc pellentesque consectetur lectus, vel volutpat elit rhoncus luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 
-			Nunc ut suscipit nunc. Donec tempor velit vel tellus adipiscing pretium. Etiam urna est, sagittis eu auctor ac, convallis eu nisi. Suspendisse vitae adipiscing felis. Mauris felis purus, egestas quis ultrices ac, fermentum a velit. Ut pulvinar, orci vitae consequat vehicula, mi urna elementum metus, quis dictum urna ante a mi. Vivamus elementum auctor nibh sit amet egestas. Sed ultricies, dolor nec tristique ullamcorper, dui mi pulvinar felis, nec sodales lectus metus at mauris. Vivamus eu ante a neque consequat tristique. Ut bibendum aliquam nunc varius cursus. Donec a adipiscing nisl. Morbi sagittis risus non mi luctus sit amet faucibus leo scelerisque. Nam vitae mi et ante rhoncus egestas. In ut elit nisi, at vestibulum mauris.
+<!-- Step 3 -->
+<article>
 
-			Aliquam eleifend ultrices pretium. Etiam nec lorem eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin at nisi quis ipsum mollis congue. In ultricies commodo risus vel pellentesque. Vivamus odio nisi, dignissim eu suscipit quis, ornare nec ligula. Praesent ut nulla sem, et egestas orci. Mauris volutpat lobortis dui vel facilisis.
+<h2>Add contacts in admin</h2>
+<p>The Concussion admin app allows you to manage application data. It shows the objects and values specified in the markup, and the list of records for each object.</p>
+<p>Add a contact by pressing the New button in the List. Fill out the fields below in the Details, then press the Save button.</p>
+<p>Add 2 or 3 more records to show more data in the contacts app.</p>
+<p class="continue" ><label for="step4" class="primary">Continue &raquo;</label></p>
 
-			Nunc eget nisi et est pulvinar venenatis facilisis rhoncus metus. Maecenas porta tincidunt orci, et consequat urna tristique nec. Phasellus dui lorem, elementum ac mollis vel, lobortis sit amet sem. Maecenas lacinia vehicula neque et porttitor. Mauris nec ligula nec massa cursus convallis. Vestibulum rutrum, sem id placerat cursus, ipsum ligula imperdiet odio, eget rhoncus tortor mi sed risus. Aliquam egestas tincidunt placerat. Donec commodo porttitor lorem, non semper felis feugiat in. Phasellus aliquam nisi in felis tempor ac dignissim sapien pulvinar. Aenean a lorem non mi faucibus dapibus. Nullam ac eleifend justo. In ornare quam eu dui euismod vel rutrum dui laoreet. Nulla laoreet ipsum at lectus tincidunt sed porttitor libero elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+</article>
+<!-- Close Step 3 -->
 
-			Duis ac est non sapien tincidunt blandit in vel magna. In hac habitasse platea dictumst. Vivamus lacinia leo aliquam magna sagittis semper. Vestibulum ut libero dolor. Curabitur fermentum leo id diam feugiat rutrum. Mauris euismod accumsan leo ac tempus. Donec eleifend aliquet pretium. Sed mauris nisi, cursus ac porttitor at, rhoncus ac tellus.
 
-			Aenean et ligula erat, a viverra arcu. Proin fringilla neque in turpis laoreet convallis. In hac habitasse platea dictumst. Nam in eros turpis, vel porta velit. Cras scelerisque massa at velit ultrices lacinia. Nunc at est dolor, vitae consequat ipsum. Donec vulputate augue sit amet neque malesuada ac hendrerit ipsum vehicula. Sed id mi id libero vulputate lobortis. Duis mollis convallis euismod.
+<!-- Step 4 -->
+<article>
 
-			Curabitur vitae commodo mauris. Maecenas malesuada tempor diam, id porta lectus pharetra eu. In ornare interdum tellus eu aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam nec magna at lacus blandit commodo ac eu mauris. Praesent sem arcu, lobortis eu ullamcorper eu, rhoncus eget metus. Donec nec blandit augue. Maecenas fermentum metus quis magna faucibus vitae vulputate dolor mattis. Donec congue congue scelerisque.
+<h2>Add contacts directly from the app</h2>
+<p>You should see the contacts that were added from the admin.</p>
+<p>Now add a form so contacts can be added directly from your app. Copy and paste the following markup into the editor, between the body element and the contacts div. Then press the refresh button in the preview.</p>
+<pre class="snippet medium" id="s4e1" data-readonly="true" data-gutter="false">&lt;form data-bind="submit:contacts_create"&gt;
+	&lt;div class="new-contact"&gt;
+  		&lt;input class="fn" placeholder="Contact Name" data-bind="value:contacts_name"&gt;
+		&lt;input class="email" placeholder="Email Address" data-bind="value:contacts_email"&gt;
+		&lt;input class="phone" placeholder="Phone Number" data-bind="value:contacts_phone"&gt;
+  		&lt;button&gt;Add record&lt;/button&gt;    
+	&lt;/div&gt;
+&lt;/form&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="2">Just do it for me&raquo;</a></p>
+<p>You should see the add contacts form in the preview.</p>
+<p>Now add a few more contacts using the new form. You should see the contacts appear in the list.</p>
+<p class="continue" ><label for="step5" class="primary">Continue &raquo;</label></p>
 
-			Donec placerat lobortis consequat. Suspendisse sit amet felis leo, ut ullamcorper leo. Fusce pulvinar molestie libero, sit amet aliquam odio gravida in. Donec pulvinar metus et lorem dictum placerat. Morbi fermentum nulla quis lectus mattis aliquet. Fusce a purus turpis. Ut gravida, enim in fringilla imperdiet, risus elit luctus ante, vitae venenatis enim erat et lectus. Aliquam imperdiet pretium ante condimentum molestie. Ut congue sagittis ligula, sed varius nunc suscipit a. Vivamus imperdiet, urna a facilisis tristique, enim dolor pulvinar diam, sed euismod lacus purus quis est. Nullam eget mauris diam. Quisque congue, tortor sed mollis luctus, velit lorem volutpat augue, sed iaculis justo turpis in leo. Cras aliquet tincidunt odio sed ultrices. Vivamus arcu massa, rutrum eget condimentum eget, dignissim in justo.
+</article>
+<!-- Close Step 4 -->
 
-			Ut et arcu felis, tincidunt ultrices mauris. Donec a laoreet ligula. Curabitur adipiscing mauris eget ante rhoncus consequat. Curabitur tempor tempus nibh non adipiscing. Integer sodales egestas aliquet. Cras a arcu libero, a mollis sapien. Morbi adipiscing feugiat sapien non placerat. Nunc sit amet turpis quis dui blandit pretium vel in nibh. Fusce in risus ante. Donec vestibulum rhoncus aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis elit libero, consectetur accumsan feugiat eu, feugiat eget lorem. Sed pulvinar consequat justo, non bibendum elit elementum at. Vivamus facilisis mollis leo, in bibendum enim tincidunt ac. Pellentesque varius, felis vitae lobortis tempor, ligula neque consectetur nisi, a suscipit libero nulla vitae sapien.
 
-			In consectetur ligula et dui iaculis vel tincidunt dolor sollicitudin. Cras ligula est, ornare non tincidunt vel, feugiat in lorem. Nunc sit amet tellus et nisl molestie scelerisque ac nec leo. Nam eros magna, dictum nec laoreet nec, consequat et ante. Maecenas vel lacus id nulla ornare rutrum. Pellentesque sapien lorem, volutpat semper porttitor imperdiet, pellentesque non libero. Phasellus nec elit tortor. Phasellus quis sapien sit amet massa placerat dapibus in eget purus. Sed pretium lacinia dolor, vel posuere felis varius quis. Praesent suscipit arcu a elit semper consequat.
+<!-- Step 5 -->
+<article>
 
-			Aliquam sem purus, tempus eget pretium ac, cursus sit amet dui. Nunc dignissim porttitor lacinia. Praesent sed turpis a risus convallis venenatis vel et elit. Vestibulum suscipit tellus non lorem sollicitudin volutpat. Integer scelerisque tincidunt pharetra. Nulla at sem vel est dictum dignissim at nec ligula. Ut vitae pretium lorem. Phasellus vehicula tristique nunc, id posuere eros ullamcorper eget. Etiam dapibus ligula quis sem elementum a fermentum nulla pellentesque.
+<h2>Add a new field</h2>
+<p>Concussion makes it easy to update the data used in the application. Let's add a birthday field to the contacts. First paste the following markup into the editor, in the new contact div below the phone input.</p>
+<pre class="snippet small" id="s5e1" data-readonly="true" data-gutter="false">&lt;input class="bday" placeholder="Birthday" data-bind="value:contacts_Birthday"&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="3">Just do it for me&raquo;</a></p>
+<p>You should see the new field in the add contact form.</p>
+<p>Next paste the following markup into the editor, in the contacts div below the phone input. Then press the refresh button in the preview.</p>
+<pre class="snippet small" id="s5e2" data-readonly="true" data-gutter="false">&lt;input class="bday" data-bind="value:Birthday"&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="4">Just do it for me&raquo;</a></p>
+<p>In this case you will not see anything in the existing contacts, because they have no birthday data.</p>
+<p>Add a few contacts using the new field. These should display all the data.</p>
+<p class="continue" ><label for="step6" class="primary">Continue &raquo;</label></p>
+
+</article>
+<!-- Close Step 5 -->
+
+
+<!-- Step 6 -->
+<article>
+
+<h2>Update contacts in admin</h2>
+<p>In the admin app you can add birthdays to the existing contacts. Select a contact from the list, then enter the birthday in the field below and press save.</p>
+<p class="continue" ><label for="step7" class="primary">Continue &raquo;</label></p>
+
+</article>
+<!-- Close Step 6 -->
+
+
+<!-- Step 7 -->
+<article>
+
+<h2>Update contacts directly from the app</h2>
+<p>You should see the updates to the contacts made in admin.</p>
+<p>Now add save and delete buttons so that edits to contacts can be saved, and contacts can be deleted directly from your app.</p>
+<p>Paste the following markup in the editor, in the contacts div below the birthday input. Then press the refresh button in the preview.</p>
+<pre class="snippet small" id="s7e1" data-readonly="true" data-gutter="false">&lt;button data-bind="click:contacts_update"&gt;Save&lt;/button&gt;&lt;button class="secondary" data-bind="click:contacts_delete"&gt;Delete&lt;/button&gt;</pre>
+<p class="action"><a class="justDoIt" data-index="5">Just do it for me&raquo;</a></p>
+<p>Edit a few contacts and click save to persist the changes. Press the delete button to remove the contact.</p>
+<p class="continue" ><label for="step8" class="primary">Continue &raquo;</label></p>
+
+</article>
+<!-- Close Step 7 -->
+
+
+<!-- Step 8 -->
+<article>
+
+<h2>You've been Concussed!</h2>
+<p>Now go to the <label for="menu3">Getting started</label> page to learn how to install Concussion.</p>
+<p>You can run Concussion initially as an anonymous user, and when you are ready create an account and start building apps.
+<p>Have fun!</p>
+
+</article>
+<!-- Close Step 8 -->
+
+					</div>
+				</div>
+				<footer id="page-indicator" class="panel-footer">
+					<label for="step1"></label>
+					<label for="step2"></label>
+					<label for="step3"></label>
+					<label for="step4"></label>
+					<label for="step5"></label>
+					<label for="step6"></label>
+					<label for="step7"></label>
+					<label for="step8"></label>
+				</footer>
+			</section>
+
+			<div id="workspace">
+				<div id="workspace-wrapper">
+
+					<div id="front-end">
+						<div id="markup-wrapper">
+							<section id="markup" class="panel">
+								<header class="panel-header">
+									<h1>Editor</h1>
+								</header>
+								<div class="panel-body">
+									<div id="editor" class="editor" data-readonly="false" data-gutter="true"></div>
+								</div>
+							</section>
+						</div>
+						<div id="view-wrapper">
+							<section id="view" class="panel">
+								<header class="panel-header">
+									<div class="panel-header-primary">Primary</div>
+									<div class="panel-header-secondary">Secondary</div>
+									<h1>Editor</h1>
+								</header>
+								<div class="panel-body">
+									<iframe src="contacts.html" id="preview"></iframe>
+								</div>
+							</section>
+						</div>
+					</div>
+
+					<section id="admin" class="panel">
+						<header class="panel-header">
+							<h1>Admin</h1>
+						</header>
+						<div class="panel-body">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer scelerisque enim at orci lacinia tempor. Fusce nisi enim, euismod id commodo at, sodales sed felis. Praesent sagittis neque consectetur nunc sagittis volutpat. Etiam dui nulla, viverra rhoncus tristique gravida, placerat tristique nisl. Mauris magna mauris, tincidunt id tincidunt et, auctor quis eros. Aenean ac laoreet purus. Nulla pharetra velit elementum nibh tempor volutpat. Mauris vitae ante lobortis mi ultricies elementum fermentum sed ante. Donec odio elit, euismod vel scelerisque at, feugiat vel mi.
+
+							Nam fringilla nisl a quam porttitor venenatis. Nam lectus tellus, dictum sed scelerisque eu, dapibus quis tellus. Fusce pharetra consectetur justo, eu blandit lorem pellentesque sodales. Curabitur adipiscing nibh erat. Donec ultricies, diam ac ultricies imperdiet, quam nisl fringilla sem, id porta magna quam et metus. Vivamus quis leo a erat rutrum faucibus vitae id nunc. Suspendisse vitae viverra augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin dictum tincidunt nulla eu porttitor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce vel sapien nunc.
+
+							In hac habitasse platea dictumst. Nulla quam eros, blandit sed sagittis a, cursus a nisl. Aliquam erat volutpat. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean viverra tellus eget libero rutrum eget bibendum velit luctus. Fusce arcu nisi, condimentum quis imperdiet quis, euismod interdum ligula. Praesent in dui ac dolor commodo tempus. Duis sapien tortor, euismod molestie accumsan hendrerit, vulputate sit amet nulla.
+
+							Sed urna leo, iaculis sit amet dapibus vel, luctus nec ante. Vivamus eget leo sed ligula hendrerit vestibulum. Vestibulum id ultrices sem. Maecenas id lectus augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In a arcu vitae lacus ornare fringilla venenatis vel mauris. Donec molestie sagittis mauris, vel suscipit nunc imperdiet quis. Sed porta vulputate leo, a volutpat nunc ullamcorper sed.
+
+							Etiam massa est, adipiscing sed pharetra congue, accumsan non orci. In hac habitasse platea dictumst. Aliquam viverra odio a ligula semper sed dictum purus dignissim. In hac habitasse platea dictumst. Fusce et urna metus, tempus malesuada purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec sed neque eget leo facilisis tempus sit amet vel tellus. Sed at scelerisque libero. Mauris tristique, mi in eleifend mollis, elit nisi tincidunt turpis, id vestibulum leo lacus in ipsum.
+
+							Sed sit amet nisi ante. Suspendisse eget est nunc, nec convallis mi. Cras non sem eget leo cursus consequat. Vestibulum volutpat, felis quis vulputate cursus, leo massa varius orci, vitae ultricies augue magna a nulla. Vivamus malesuada hendrerit tortor, ut cursus arcu interdum eget. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed pretium cursus ligula in fringilla. Donec posuere hendrerit quam, nec posuere turpis convallis non. Integer non blandit tortor.
+
+							Donec lobortis ante non odio tempus aliquet. Aenean libero dui, dapibus in bibendum nec, semper pretium metus. Nam rutrum commodo ultrices. Aliquam diam odio, auctor a auctor feugiat, consectetur luctus arcu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur quam neque, suscipit non condimentum at, mattis in enim. Sed scelerisque, lectus nec suscipit luctus, magna felis tristique risus, quis scelerisque neque tortor id metus. Nulla nulla elit, consequat sed tincidunt eu, auctor id orci. Phasellus nec ligula at diam tempus aliquam.
+
+							Aenean sit amet felis erat. Curabitur felis augue, gravida in posuere vel, ullamcorper vitae dolor. Phasellus quis tempus ante. Ut fermentum, tellus non luctus ornare, massa quam rhoncus est, in bibendum arcu purus quis ante. Pellentesque lectus elit, sollicitudin lacinia semper in, consequat a eros. Vivamus ipsum massa, ultrices eu vehicula sed, rutrum a erat. Donec sed erat quis sapien eleifend vestibulum. Nunc quis augue id orci sodales sollicitudin bibendum a lacus. Curabitur malesuada luctus rhoncus. Sed vel mi ac ligula varius luctus.
+
+							In laoreet dictum iaculis. Aliquam orci orci, aliquet quis sollicitudin a, imperdiet at felis. Pellentesque rhoncus placerat lacus vel ullamcorper. Fusce tempus felis sed arcu volutpat vestibulum. Proin quis bibendum felis. Nulla ornare ornare lacus id porttitor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin eget est dolor, vel egestas eros. Nullam nec sapien eget mi facilisis venenatis suscipit pellentesque quam. Morbi in diam nunc. Proin risus elit, vulputate ut varius mattis, aliquam eget risus. Sed dolor lorem, convallis sed sagittis in, auctor quis nisi. Vivamus odio nunc, ultricies ac ornare in, bibendum ut magna. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi a tempus ligula.
+
+							Etiam at risus a ante lobortis aliquam. Nunc nunc nunc, eleifend in gravida id, consectetur pellentesque lectus. Pellentesque est mi, feugiat a fringilla vel, pellentesque nec nisi. Maecenas commodo tortor id neque gravida cursus. Sed aliquet varius lorem et aliquet. Curabitur sed tortor vel dolor sodales elementum. Morbi eu mi est, ut pretium purus. Nunc pellentesque consectetur lectus, vel volutpat elit rhoncus luctus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+							Nunc ut suscipit nunc. Donec tempor velit vel tellus adipiscing pretium. Etiam urna est, sagittis eu auctor ac, convallis eu nisi. Suspendisse vitae adipiscing felis. Mauris felis purus, egestas quis ultrices ac, fermentum a velit. Ut pulvinar, orci vitae consequat vehicula, mi urna elementum metus, quis dictum urna ante a mi. Vivamus elementum auctor nibh sit amet egestas. Sed ultricies, dolor nec tristique ullamcorper, dui mi pulvinar felis, nec sodales lectus metus at mauris. Vivamus eu ante a neque consequat tristique. Ut bibendum aliquam nunc varius cursus. Donec a adipiscing nisl. Morbi sagittis risus non mi luctus sit amet faucibus leo scelerisque. Nam vitae mi et ante rhoncus egestas. In ut elit nisi, at vestibulum mauris.
+
+							Aliquam eleifend ultrices pretium. Etiam nec lorem eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin at nisi quis ipsum mollis congue. In ultricies commodo risus vel pellentesque. Vivamus odio nisi, dignissim eu suscipit quis, ornare nec ligula. Praesent ut nulla sem, et egestas orci. Mauris volutpat lobortis dui vel facilisis.
+
+							Nunc eget nisi et est pulvinar venenatis facilisis rhoncus metus. Maecenas porta tincidunt orci, et consequat urna tristique nec. Phasellus dui lorem, elementum ac mollis vel, lobortis sit amet sem. Maecenas lacinia vehicula neque et porttitor. Mauris nec ligula nec massa cursus convallis. Vestibulum rutrum, sem id placerat cursus, ipsum ligula imperdiet odio, eget rhoncus tortor mi sed risus. Aliquam egestas tincidunt placerat. Donec commodo porttitor lorem, non semper felis feugiat in. Phasellus aliquam nisi in felis tempor ac dignissim sapien pulvinar. Aenean a lorem non mi faucibus dapibus. Nullam ac eleifend justo. In ornare quam eu dui euismod vel rutrum dui laoreet. Nulla laoreet ipsum at lectus tincidunt sed porttitor libero elementum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+							Duis ac est non sapien tincidunt blandit in vel magna. In hac habitasse platea dictumst. Vivamus lacinia leo aliquam magna sagittis semper. Vestibulum ut libero dolor. Curabitur fermentum leo id diam feugiat rutrum. Mauris euismod accumsan leo ac tempus. Donec eleifend aliquet pretium. Sed mauris nisi, cursus ac porttitor at, rhoncus ac tellus.
+
+							Aenean et ligula erat, a viverra arcu. Proin fringilla neque in turpis laoreet convallis. In hac habitasse platea dictumst. Nam in eros turpis, vel porta velit. Cras scelerisque massa at velit ultrices lacinia. Nunc at est dolor, vitae consequat ipsum. Donec vulputate augue sit amet neque malesuada ac hendrerit ipsum vehicula. Sed id mi id libero vulputate lobortis. Duis mollis convallis euismod.
+
+							Curabitur vitae commodo mauris. Maecenas malesuada tempor diam, id porta lectus pharetra eu. In ornare interdum tellus eu aliquam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam nec magna at lacus blandit commodo ac eu mauris. Praesent sem arcu, lobortis eu ullamcorper eu, rhoncus eget metus. Donec nec blandit augue. Maecenas fermentum metus quis magna faucibus vitae vulputate dolor mattis. Donec congue congue scelerisque.
+
+							Donec placerat lobortis consequat. Suspendisse sit amet felis leo, ut ullamcorper leo. Fusce pulvinar molestie libero, sit amet aliquam odio gravida in. Donec pulvinar metus et lorem dictum placerat. Morbi fermentum nulla quis lectus mattis aliquet. Fusce a purus turpis. Ut gravida, enim in fringilla imperdiet, risus elit luctus ante, vitae venenatis enim erat et lectus. Aliquam imperdiet pretium ante condimentum molestie. Ut congue sagittis ligula, sed varius nunc suscipit a. Vivamus imperdiet, urna a facilisis tristique, enim dolor pulvinar diam, sed euismod lacus purus quis est. Nullam eget mauris diam. Quisque congue, tortor sed mollis luctus, velit lorem volutpat augue, sed iaculis justo turpis in leo. Cras aliquet tincidunt odio sed ultrices. Vivamus arcu massa, rutrum eget condimentum eget, dignissim in justo.
+
+							Ut et arcu felis, tincidunt ultrices mauris. Donec a laoreet ligula. Curabitur adipiscing mauris eget ante rhoncus consequat. Curabitur tempor tempus nibh non adipiscing. Integer sodales egestas aliquet. Cras a arcu libero, a mollis sapien. Morbi adipiscing feugiat sapien non placerat. Nunc sit amet turpis quis dui blandit pretium vel in nibh. Fusce in risus ante. Donec vestibulum rhoncus aliquam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis elit libero, consectetur accumsan feugiat eu, feugiat eget lorem. Sed pulvinar consequat justo, non bibendum elit elementum at. Vivamus facilisis mollis leo, in bibendum enim tincidunt ac. Pellentesque varius, felis vitae lobortis tempor, ligula neque consectetur nisi, a suscipit libero nulla vitae sapien.
+
+							In consectetur ligula et dui iaculis vel tincidunt dolor sollicitudin. Cras ligula est, ornare non tincidunt vel, feugiat in lorem. Nunc sit amet tellus et nisl molestie scelerisque ac nec leo. Nam eros magna, dictum nec laoreet nec, consequat et ante. Maecenas vel lacus id nulla ornare rutrum. Pellentesque sapien lorem, volutpat semper porttitor imperdiet, pellentesque non libero. Phasellus nec elit tortor. Phasellus quis sapien sit amet massa placerat dapibus in eget purus. Sed pretium lacinia dolor, vel posuere felis varius quis. Praesent suscipit arcu a elit semper consequat.
+
+							Aliquam sem purus, tempus eget pretium ac, cursus sit amet dui. Nunc dignissim porttitor lacinia. Praesent sed turpis a risus convallis venenatis vel et elit. Vestibulum suscipit tellus non lorem sollicitudin volutpat. Integer scelerisque tincidunt pharetra. Nulla at sem vel est dictum dignissim at nec ligula. Ut vitae pretium lorem. Phasellus vehicula tristique nunc, id posuere eros ullamcorper eget. Etiam dapibus ligula quis sem elementum a fermentum nulla pellentesque.
+						</div>
+					</section>
+
+				</div>
+			</div>
+
 		</section>
-		<section id="howitworks" class="page">test</section>
-		<section id="gettingstarted" class="page">test</section>
-		<section id="documentation" class="page">test</section>
-		<section id="about" class="page">test</section>
+
+		<section id="howitworks" class="page">
+			<img src="img/infographic.png" alt="How it works infographic">			
+		</section>
+
+		<section id="gettingstarted" class="page">
+			<div class="page-body">
+
+<h1>Create an account</h1>
+
+<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
+
+<h1>Concussion JS File</h1>
+<p>To start using Concussion you need to include the Concussion script in your HTML file.</p>
+<p>You can use the hosted version of the file:</p>
+<pre class="snippet small" id="hostedInclude" data-readonly="true" data-gutter="false">&lt;script src=“http://api.concussionjs.com/concussion.js”&gt;</pre>
+<p>Or download the file locally:</p>
+<p><a href="http://api.concussionjs.com/concussion.js"> Download</a></p>
+
+<h1>Virtual appliance download</h1>
+<p>Download virtual appliance to run a local copy of the Concussion platform.</p>
+<p><a href="https://s3.amazonaws.com/concussionjs/concussion-base-v0.3.ova">Download</a></p>
+
+<h1>Amazon Web Servies</h1>
+<p>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS</p>
+<p>AMI ID:  ami-e9a32d80</p>
+
+			</div>
+		</section>
+
+		<section id="documentation" class="page">
+			<div class="page-body">
+
+<h1>Documentation</h1>
+<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and a just a little bit about database to get started.</p>
+
+<!-- Navigation -->				
+<h2>Navigation</h2>
+
+<ul>
+
+<li><a href="#create">Creating Data</a></li>
+<li><a href="#read">Reading Data</a></li>
+<li><a href="#update">Updating Data</a></li>
+<li><a href="#delete">Deleting Data</a></li>
+<li><a href="#knockout">Knockout</a></li>
+</ul>
+
+<!-- Creating Data Object -->
+<article>
+<h2>Creating Data</h2>
+<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
+<p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
+<pre id="help1" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;form&gt;
+ &lt;input placeholder="Name"&gt;
+ &lt;input placeholder="Email"&gt;
+ &lt;input placeholder="Phone"&gt;
+ &lt;input type="submit"&gt;
+&lt;/form&gt;
+</pre>
+<p>Hook this static form up to a database by adding the following data-binds:</p>
+<pre id="help2" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;form data-bind="submit:contacts-create"&gt;
+ &lt;input data-bind="value:contacts_name"&gt;
+ &lt;input data-bind="value:contacts_email"&gt;
+ &lt;input data-bind="value:contacts_phone"&gt;
+ &lt;input data-bind="submit:contacts-create" type="submit"&gt;
+&lt;/form&gt;
+</pre>
+<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Reading Data Object -->
+<article>
+<h2>Reading Data</h2>
+<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<pre id="help3" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;ul&gt;
+ &lt;li&gt;Name&lt;/li&gt;
+ &lt;li&gt;Email&lt;/li&gt;
+ &lt;li&gt;Phone&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>Reading data of the database by adding the following data-binds:</p>
+<pre id="help4" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
+ &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+ &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+ &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+</article>
+
+<!-- Updating Data Object -->
+<article>
+<h2>Updating Data</h2>
+<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<pre id="help5" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;form&gt;
+ &lt;input placeholder="Name"&gt;
+ &lt;input placeholder="Email"&gt;
+ &lt;input placeholder="Phone"&gt;
+ &lt;input type="submit"&gt;
+&lt;/form&gt;
+</pre>
+<p>Updating data in the database by adding the following data-binds:</p>
+<pre id="help6" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;form data-bind="submit:contacts-create"&gt;
+ &lt;input data-bind="value:contacts_name"&gt;
+ &lt;input data-bind="value:contacts_email"&gt;
+ &lt;input data-bind="value:contacts_phone"&gt;
+ &lt;input data-bind="submit:contacts-update" type="submit"&gt;
+&lt;/form&gt;
+</pre>
+<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Delete Object -->
+<article>
+<h2>Deleting Data</h2>
+<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
+<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<pre id="help7" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;ul&gt;
+ &lt;li&gt;Name&lt;/li&gt;
+ &lt;li&gt;Email&lt;/li&gt;
+ &lt;li&gt;Phone&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<p>Deleting data of the database by adding the following data-binds:</p>
+<pre id="help8" class="snippet medium" data-readonly="true" data-gutter="false">					
+&lt;ul data-bind="foreach:contacts"&gt;
+ &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
+ &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
+ &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
+  &lt;button data-bind="click:contacts-delete"&gt;Delete&lt;button&gt;
+&lt;/ul&gt;
+</pre>
+<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
+</article>
+
+<!-- Knockout -->
+<article>
+<h2>Knockout</h2>
+<p>desc</p>
+"}
+P:"
+</article>	
+			</div>
+		</section>
+
+		<section id="about" class="page">
+			<div class="page-body">
+
+<h1>Why ConcussionJS?</h1>
+<p>ConcussionJS enables people with limited programming experience to create web apps without having to learn a proprietary JavaScript framework, create and manage a database, or build and run web servers and services.</p>
+
+<h1>Our Mission</h1>
+<p>Modern web and mobile applications have redefined our expectations for how easy software should be to use. Unfortunately, most software companies still spend the majority of their time focusing on just getting their app to work, not on meeting the needs of their users.</p>
+<p>Our mission is to radically reduce the time it takes to build apps. This is critical because designing useful, usable products is a numbers game. Developers and designers need to try many different solutions and evaluate them with users to see what works and what doesn't. The more design iterations you can do, the faster you can figure out what works and what doesn't. Then you can distill the remaining designs down to the solution that best satisfies the key workflows, information patterns, and interaction models needed by users to complete their work.</p>
+
+<h1>The People Behind ConcussionJS</h1>
+<h2>Ben Frenkel</h2>
+<p>
+Ben is the author and inventor of the Concussion engine. He is also a senior associate at McKinsey &amp; Co., and holds an MBA from MIT. He has 10 years of experience in building model driven systems specializing in cloud platforms.
+</p>
+<h2>Brian Jamieson</h2>
+<p>
+Brian has 15 years of enterprise UX experience in healthcare, financial services, human capital management, and software development. He has founded user experience teams in multiple organizations. He has a Ph.D. in cognitive/experimental psychology.
+</p>
+<h2>Brian Del Giudice</h2>
+<p>Brian has 12 years of design experience at software, marketing and advertising companies. He created the pixeless open source icon library, and has experience working at multiple start-ups.
+</p>			
+
+			</div>
+		</section>
+
 	</div>
 </section>
+
+<iframe id="synchSessionVariables"></iframe>
+<script src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="//use.typekit.net/bqr1qnl.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script src="js/ace.js"></script>
+<script src="js/mode-html.js"></script>
+<script src="js/theme-concussion.js"></script>
+<script src="js/cjs-utilities.js" type="text/javascript"></script>	
+<script src="js/loadEditorContent.js" type="text/javascript"></script>
+<script src="js/manageLogin.js"></script>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36886630-1']);
+  _gaq.push(['_setDomainName', 'concussionjs.com']);
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </body>
 </html>
