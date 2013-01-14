@@ -389,6 +389,7 @@ body > input[type="radio"] {
 ---------------------------------------------------------------------*/
 .ace_editor {
   font-family: "source-code-pro", Monaco, Consolas, "Courier New", monospace;
+  font-size: 14px;
 }
 .ace_gutter {
   border-radius: 5px 0 0 5px;
