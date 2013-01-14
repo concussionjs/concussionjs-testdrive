@@ -46,10 +46,11 @@ li {
   margin: 0;
 }
 pre {
+  position: relative;
   margin: 0 0 1.5rem;
   border-radius: 3px;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.35);
-  overflow-y: hidden;
+  overflow: hidden;
   background: rgba(0, 0, 0, 0.15);
   color: rgba(255, 255, 255, 0.5);
 }
@@ -394,11 +395,6 @@ body > input[type="radio"] {
 }
 .ace_scroller {
   border-radius: 0 5px 5px 0;
-}
-.snippet {
-  position: relative;
-  overflow-y: scroll;
-  width: 100%;
 }
 .small {
   height: 30px;
