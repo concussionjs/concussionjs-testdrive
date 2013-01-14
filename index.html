@@ -13,22 +13,6 @@
 	<script src="js/cjs-utilities.js" type="text/javascript"></script>	
 	<script src="js/loadEditorContent.js" type="text/javascript"></script>
 	<script src="js/manageLogin.js"></script>
-	<script src="js/main.js"></script>
-	<script type="text/javascript">
-
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-36886630-1']);
-	  _gaq.push(['_setDomainName', 'concussionjs.com']);
-	  _gaq.push(['_setSiteSpeedSampleRate', 100]);
-	  _gaq.push(['_trackPageview']);
-
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-
-	</script>
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 	<link rel="stylesheet" href="css/main.css">
 </head>
@@ -483,6 +467,69 @@ Brian has 15 years of enterprise UX experience in healthcare, financial services
 </section>
 
 <iframe id="synchSessionVariables"></iframe>
+<script>
+// Resize the editor and iframes when the browser resizes
+function getSizables() {
+	sizables = new Array();
+	sizables[0] = document.getElementById("editor");
+	sizables[1] = document.getElementById("contacts");
+	sizables[2] = document.getElementById("admin-app");
+	resizeSizables();
+}
 
+function resizeSizables() {
+	var parent;
+	for( var i=0; i<sizables.length; i++ ) {
+		parent = sizables[i].parentNode;
+		sizables[i].style.width = parent.offsetWidth -1 + "px";
+		sizables[i].style.height = parent.offsetHeight -2 + "px";
+	}
+}
+getSizables();
+window.onresize = resizeSizables;
+
+// Fix for iOS which doesn't fire events on lable taps
+var iPadLabels = function () {
+	function fix() {
+		var labels = document.getElementsByTagName('label'), 
+		target_id, 
+		el;
+		for (var i = 0; labels[i]; i++) {
+			if (labels[i].getAttribute('for')) {
+				labels[i].onclick = labelClick;
+			}
+		}
+	};
+	function labelClick() {
+		el = document.getElementById(this.getAttribute('for'));
+		if (['radio', 'checkbox'].indexOf(el.getAttribute('type')) != -1) {
+			el.setAttribute('selected', !el.getAttribute('selected'));
+		} else {
+			el.focus();
+		}
+	};
+	return {
+		fix: fix
+	}
+}();
+window.onload = function () {
+	iPadLabels.fix();
+	}
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36886630-1']);
+  _gaq.push(['_setDomainName', 'concussionjs.com']);
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </body>
 </html>
