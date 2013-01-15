@@ -55,8 +55,8 @@
 		
 		$(document).ready(function(){
 			//justDoIt=$(".justDoItContent");
-			aceEditorInit($(".editor"));
-			aceEditorInit($(".snippet"));
+			aceEditorInit($(".editor"),"ace/theme/concussion");
+			aceEditorInit($(".snippet"),"ace/theme/concussion-snippet");
 			myId=readCookie("sessionId");
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
@@ -144,21 +144,23 @@ function addSampleRecords(number,type,id)
 	}
 }
 
-function aceEditorInit(editors)
+function aceEditorInit(editors,themePath)
 {
 	console.log(editors.length);
 	for(i=0;i<editors.length;i++)
 	{
 		console.log(editors[i].id + " "+ editors[i].getAttribute("data-readonly"));
 		eval(editors[i].id + "=ace.edit(\"" + editors[i].id + "\");");
-		eval(editors[i].id + ".setTheme(\"ace/theme/concussion\");");
+		eval(editors[i].id + ".setTheme(\"" + themePath + "\");");
 		eval(editors[i].id + ".getSession().setMode(\"ace/mode/html\");");
 		eval(editors[i].id + ".setShowPrintMargin(false);");
 		eval(editors[i].id + ".setReadOnly(" + editors[i].getAttribute("data-readonly") + ");");
 		eval(editors[i].id + ".renderer.setShowGutter(" + editors[i].getAttribute("data-gutter") + ");");
+
 		//eval(editors[i].id + ".resize();");
 	}
 }
+
 function getPage(userId,filename,callback)
 {
 	synchSessionVariables(userId);
