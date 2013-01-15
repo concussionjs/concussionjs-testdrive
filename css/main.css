@@ -54,7 +54,8 @@ pre {
   background: rgba(0, 0, 0, 0.15);
   color: rgba(255, 255, 255, 0.5);
 }
-a:link, a:visited {
+a:link,
+a:visited {
   color: #6699cc;
   text-decoration: none;
 }
@@ -104,7 +105,8 @@ iframe {
   background: -webkit-linear-gradient(#0e1112, #272b2d);
   background: linear-gradient(#0e1112, #272b2d);
 }
-#masthead::before, #masthead::after {
+#masthead::before,
+#masthead::after {
   content: " ";
   display: table;
 }
@@ -727,9 +729,9 @@ body > input[type="radio"] {
 #editor {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100px;
-  height: 100px;
+  right: 0;
   overflow: hidden;
 }
 /* Needed to get the space between the panels */
@@ -892,7 +894,8 @@ body > input[type="radio"] {
   filter: alpha(opacity=70);
   opacity: 0.7;
 }
-.fb_dialog_vert_left, .fb_dialog_vert_right {
+.fb_dialog_vert_left,
+.fb_dialog_vert_right {
   width: 10px;
   height: 100%;
 }
@@ -903,7 +906,8 @@ body > input[type="radio"] {
   right: 0;
   margin-right: -10px;
 }
-.fb_dialog_horiz_top, .fb_dialog_horiz_bottom {
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom {
   width: 100%;
   height: 10px;
 }
@@ -1095,7 +1099,8 @@ body.fb_hidden {
   left: 50%;
   z-index: 4;
 }
-.fb_button_simple, .fb_button_simple_rtl {
+.fb_button_simple,
+.fb_button_simple_rtl {
   background-image: url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/r/eIpbnVKI9lR.png);
   background-repeat: no-repeat;
   cursor: pointer;
@@ -1118,7 +1123,8 @@ a.fb_button_simple_rtl:hover .fb_button_text,
 .fb_button_simple_rtl:hover .fb_button_text {
   text-decoration: underline;
 }
-.fb_button, .fb_button_rtl {
+.fb_button,
+.fb_button_rtl {
   background: #29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);
   background-repeat: no-repeat;
   cursor: pointer;
@@ -1127,7 +1133,8 @@ a.fb_button_simple_rtl:hover .fb_button_text,
   text-decoration: none;
   outline: none;
 }
-.fb_button .fb_button_text, .fb_button_rtl .fb_button_text {
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text {
   background: #5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);
   border-top: solid 1px #879ac0;
   border-bottom: solid 1px #1a356e;
@@ -1154,7 +1161,8 @@ a.fb_button_rtl:active .fb_button_text,
   background: #4f6aa3;
   text-shadow: none;
 }
-.fb_button_xlarge, .fb_button_xlarge_rtl {
+.fb_button_xlarge,
+.fb_button_xlarge_rtl {
   background-position: left -60px;
   font-size: 24px;
   line-height: 30px;
@@ -1176,7 +1184,8 @@ a.fb_button_xlarge:active {
 a.fb_button_xlarge_rtl:active {
   background-position: right -307px;
 }
-.fb_button_large, .fb_button_large_rtl {
+.fb_button_large,
+.fb_button_large_rtl {
   background-position: left -138px;
   font-size: 13px;
   line-height: 16px;
@@ -1197,7 +1206,8 @@ a.fb_button_large:active {
 a.fb_button_large_rtl:active {
   background-position: right -371px;
 }
-.fb_button_medium, .fb_button_medium_rtl {
+.fb_button_medium,
+.fb_button_medium_rtl {
   background-position: left -188px;
   font-size: 11px;
   line-height: 14px;
@@ -1208,14 +1218,16 @@ a.fb_button_medium:active {
 .fb_button_medium_rtl {
   background-position: right -396px;
 }
-.fb_button_text_rtl, .fb_button_medium_rtl .fb_button_text {
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text {
   padding: 2px 6px 3px 6px;
   margin-right: 22px;
 }
 a.fb_button_medium_rtl:active {
   background-position: right -418px;
 }
-.fb_button_small, .fb_button_small_rtl {
+.fb_button_small,
+.fb_button_small_rtl {
   background-position: left -232px;
   font-size: 10px;
   line-height: 10px;
@@ -1224,7 +1236,8 @@ a.fb_button_medium_rtl:active {
   padding: 2px 6px 3px;
   margin-left: 17px;
 }
-a.fb_button_small:active, .fb_button_small:active {
+a.fb_button_small:active,
+.fb_button_small:active {
   background-position: left -250px;
 }
 .fb_button_small_rtl {
@@ -1395,7 +1408,9 @@ a.fb_button_small_rtl:active {
   vertical-align: middle;
   margin: 0 6px 5px 0;
 }
-.fb_connect_bar div a, .fb_connect_bar span, .fb_connect_bar span a {
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a {
   color: #bac6da;
   font-size: 11px;
   text-decoration: none;
@@ -1434,7 +1449,8 @@ a.fb_button_small_rtl:active {
 .fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender.FB_Loader {
   margin-top: 0;
 }
-.fbpluginrecommendationsbarleft, .fbpluginrecommendationsbarright {
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright {
   position: fixed !important;
   bottom: 0;
   z-index: 999;
