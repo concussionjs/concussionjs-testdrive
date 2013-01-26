@@ -468,27 +468,6 @@ Brian has 15 years of enterprise UX experience in healthcare, financial services
 
 <iframe id="synchSessionVariables"></iframe>
 <script>
-// Resize the editor and iframes when the browser resizes
-var sizables;
-function getSizables() {
-	sizables = new Array();
-	sizables[0] = document.getElementById("editor");
-	//sizables[1] = document.getElementById("contacts");
-	sizables[1] = document.getElementById("admin-app");
-	resizeSizables();
-}
-
-function resizeSizables() {
-	var parent;
-	for( var i=0; i<sizables.length; i++ ) {
-		parent = sizables[i].parentNode;
-		sizables[i].style.width = parent.offsetWidth -1 + "px";
-		sizables[i].style.height = parent.offsetHeight -2 + "px";
-	}
-}
-getSizables();
-window.onresize = resizeSizables;
-
 // Fix for iOS which doesn't fire events on lable taps
 var iPadLabels = function () {
 	function fix() {
