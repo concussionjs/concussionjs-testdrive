@@ -292,24 +292,56 @@
 		<section id="gettingstarted" class="page">
 			<div class="page-body">
 
-<h1>Create an account</h1>
 
-<p>You can use Concussion as a hosted service, a locally deployable virtual appliance, and an Amazon Web Services (AWS) deployable image (AMI).</p>
 
-<h1>Concussion JS File</h1>
-<p>To start using Concussion you need to include the Concussion script in your HTML file.</p>
-<p>You can use the hosted version of the file:</p>
-<pre class="snippet small" id="hostedInclude" data-readonly="true" data-gutter="false">&lt;script src=“http://api.concussionjs.com/concussion.js”&gt;</pre>
-<p>Or download the file locally:</p>
-<p><a href="http://api.concussionjs.com/concussion.js"> Download</a></p>
 
-<h1>Virtual appliance download</h1>
-<p>Download virtual appliance to run a local copy of the Concussion platform.</p>
-<p><a href="https://s3.amazonaws.com/concussionjs/concussion-base-v0.3.ova">Download</a></p>
+				<section class="primary">
+					<h1>Try it out</h1>
+					<p>The easiest way to get started is to add the JS file to your HTML:</p>
+					<div class="cta">	
+						<span class="hosted-script">&lt;script src=“http://api.concussionjs.com/concussion.js”&gt;</span>
+						<span class="local-script">
+							<span class="title">concussion.js</span>
+							<span class="size">(23k)</span>
+						</span>
+					</div>
+					<p>Once you add your first Concussion data-bind you will see a ribbon added to the top left edge of your browser window. Clicking the ribbon brings you to your Concussion Admin consule where you can view and edit your data records.</p>				
+				</section>	
+				
+				<section class="secondary">
+					<h2>Create an account</h2>
+					<input placeholder="Username">
+					<input placeholder="Password">
+					<button>Sign up via Facebook</button>
+					<p>Create an account with your Facebook credentials to get more requests per minute.</p>
+				</section>	
 
-<h1>Amazon Web Servies</h1>
-<p>Search for our AWS AMI using the ID below to launch and run your own Concussion instance on AWS</p>
-<p>AMI ID:  ami-e9a32d80</p>
+				<section class="secondary">
+					<h2>Virtual appliance</h2>
+					<img src="img/virtual-appliance.svg">
+					<button>Download</button>
+					<p>You can also download the personal appliance to run a local copy of the Concussion platform.</p>
+				</section>						
+					
+				<section class="secondary last-child">
+					<h2>Amazon Web Services</h2>
+					<img src="img/amazon-web-services.svg">
+					<button>Launch AWS</button>
+					<p>Run your own Concussion instance on Amazon Web Services. <br>AMI ID: ami-e9a32d80.</p>
+				</section>
+				
+				<section class="primary">
+					<img class="sample-app" src="img/sample-app.png">	
+					<h2>Sample apps</h2>
+					<p>Check out this and other sample apps in the Concussion App Playground.</p>
+					<button>View sample apps</button>		
+				</section>	
+
+
+
+
+
+
 
 			</div>
 		</section>

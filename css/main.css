@@ -762,6 +762,146 @@ body > input[type="radio"] {
 }
 /* GETTING STARTED
 ---------------------------------------------------------------------*/
+
+
+
+/* styles added by briand */
+
+#gettingstarted section {
+	padding: 20px;
+	background-color:rgba(39,43,45,0.41);
+	border-color:rgba(63,66,67,0.41);
+	border-width:1px;
+	/* Firefox v1.0+ */
+	-moz-border-radius:7px;
+	/* Safari v3.0+ and by Chrome v0.2+ */
+	-webkit-border-radius:7px;
+	/* Firefox v4.0+ , Safari v5.0+ , Chrome v4.0+ , Opera v10.5+  and by IE v9.0+ */
+	border-radius:7px;
+	border-style:solid;
+	/* Firefox v3.5+ */
+	-moz-box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
+	/* Safari v3.0+ and by Chrome v0.2+ */
+	-webkit-box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
+	/* Firefox v4.0+ , Safari v5.1+ , Chrome v10.0+, IE v10+ and by Opera v10.5+ */
+	box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
+	-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#35ffffff,Positive=true)";
+	filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=1,Color=#35ffffff,Positive=true);
+}
+
+#gettingstarted section.primary {
+	width: 100%;
+	height: 260px;
+	margin: 20px 0;	
+}
+
+#gettingstarted section.secondary {
+	width: 237px;
+	margin-right: 20px;
+	height: 320px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+}
+
+#gettingstarted section.secondary.last-child {
+	margin-right: 0;
+
+}
+
+#gettingstarted button {
+	border: none;
+	border-radius: 3px;
+	padding: 10px;
+	margin: 10px 0;
+	color: #e1e1e1;
+	background: #6699cc;
+	font-size: 100%;
+}
+
+#gettingstarted section.secondary input {
+	width: 100%;
+	height: 26px;
+	margin-top: 10px;
+	font-size: 100%;
+}
+
+#gettingstarted section.secondary button {
+	width: 100%;
+	margin-top: 20px;
+}
+
+#gettingstarted .cta {
+	margin-bottom: 15px;
+	/* Firefox v3.6+ */
+	background-image:-moz-linear-gradient(50% 0% -90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%); 
+	/* safari v4.0+ and by Chrome v3.0+ */
+	background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(45,45,45)),color-stop(1, rgb(13,16,18)));
+	/* Chrome v10.0+ and by safari nightly build*/
+	background-image:-webkit-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
+	/* Opera v11.10+ */
+	background-image:-o-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
+	/* IE v10+ */
+	background-image:-ms-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
+	background-image:linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
+
+	height:44px;
+	border-color:rgb(83,123,160);
+	border-width:2px;
+	/* Firefox v1.0+ */
+	-moz-border-radius:4px;
+	/* Safari v3.0+ and by Chrome v0.2+ */
+	-webkit-border-radius:4px;
+	/* Firefox v4.0+ , Safari v5.0+ , Chrome v4.0+ , Opera v10.5+  and by IE v9.0+ */
+	border-radius:4px;
+	border-style:solid;
+	/* Firefox v3.5+ */
+	-moz-box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
+	/* Safari v3.0+ and by Chrome v0.2+ */
+	-webkit-box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
+	/* Firefox v4.0+ , Safari v5.1+ , Chrome v10.0+, IE v10+ and by Opera v10.5+ */
+	box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff2d2d2d,endColorstr=#ff0d1012,GradientType=0)
+		progid:DXImageTransform.Microsoft.Glow(Color=#ff649acc,Strength=6)";
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff2d2d2d,endColorstr=#ff0d1012,GradientType=0)
+		progid:DXImageTransform.Microsoft.Glow(Color=#ff649acc,Strength=6);
+}
+
+#gettingstarted .cta .hosted-script {
+	color: #6699cc;
+	float: left;
+	height: 100%;
+	padding: 10px;
+}
+
+#gettingstarted .cta .local-script {
+	background: #6699cc;
+	float: right;
+	height: 100%;
+	padding: 10px;
+}
+
+#gettingstarted .cta .local-script .title {
+	font-weight: bold;
+}
+
+#gettingstarted .cta .local-script .size {
+	color: #3B5E7D;
+}
+
+#gettingstarted section.secondary img {
+	height: 68px;
+}
+
+#gettingstarted img.sample-app {
+	float: right;
+}
+
+/* end styles added by briand */
+
+
+
+
 /* DOCUMENTATION
 ---------------------------------------------------------------------*/
 /* ABOUT
