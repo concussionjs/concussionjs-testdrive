@@ -32,7 +32,7 @@ justDoIt[1]="<!DOCTYPE html><html>\n\
 <script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
-  <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
+  <div id=\"contacts\" data-bind=\"foreach:contacts.read\">\n\
     <div class=\"vcard\">\n\
       <input class=\"fn\" data-bind=\"value:name\">\n\
       <input class=\"email\" data-bind=\"value:email\">\n\
@@ -47,15 +47,15 @@ justDoIt[2]="<!DOCTYPE html><html>\n\
 <script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
-  <form data-bind=\"submit:contacts_create\">\n\
+  <form data-bind=\"submit:contacts.create\">\n\
     <div class=\"new-contact\">\n\
-      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts_name\">\n\
-      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts_email\">\n\
-      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phone\">\n\
+      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts.name\">\n\
+      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts.email\">\n\
+      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts.phone\">\n\
       <button>Add record</button>\n\
     </div>\n\
   </form>\n\
-  <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
+  <div id=\"contacts\" data-bind=\"foreach:contacts.read\">\n\
     <div class=\"vcard\">\n\
       <input class=\"fn\" data-bind=\"value:name\">\n\
       <input class=\"email\" data-bind=\"value:email\">\n\
@@ -71,16 +71,16 @@ justDoIt[3]="<!DOCTYPE html><html>\n\
 <script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
-  <form data-bind=\"submit:contacts_create\">\n\
+  <form data-bind=\"submit:contacts.create\">\n\
     <div class=\"new-contact\">\n\
-      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts_name\">\n\
-      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts_email\">\n\
-      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phone\">\n\
-      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts_birthday\">\n\
+      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts.name\">\n\
+      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts.email\">\n\
+      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts.phone\">\n\
+      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts.birthday\">\n\
       <button>Add record</button>\n\
     </div>\n\
   </form>\n\
-  <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
+  <div id=\"contacts\" data-bind=\"foreach:contacts.read\">\n\
     <div class=\"vcard\">\n\
       <input class=\"fn\" data-bind=\"value:name\">\n\
       <input class=\"email\" data-bind=\"value:email\">\n\
@@ -96,16 +96,16 @@ justDoIt[4]="<!DOCTYPE html><html>\n\
 <script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
-  <form data-bind=\"submit:contacts_create\">\n\
+  <form data-bind=\"submit:contacts.create\">\n\
     <div class=\"new-contact\">\n\
-      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts_name\">\n\
-      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts_email\">\n\
-      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phone\">\n\
-      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts_birthday\">\n\
+      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts.name\">\n\
+      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts.email\">\n\
+      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts.phone\">\n\
+      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts.birthday\">\n\
       <button>Add record</button>\n\
     </div>\n\
   </form>\n\
-  <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
+  <div id=\"contacts\" data-bind=\"foreach:contacts.read\">\n\
     <div class=\"vcard\">\n\
       <input class=\"fn\" data-bind=\"value:name\">\n\
       <input class=\"email\" data-bind=\"value:email\">\n\
@@ -122,22 +122,22 @@ justDoIt[5]="<!DOCTYPE html><html>\n\
 <script src=\"http://<%=CJS_WEB_URL%>/concussion.js\"></script>\n\
 </head>\n\
 <body>\n\
-  <form data-bind=\"submit:contacts_create\">\n\
+  <form data-bind=\"submit:contacts.create\">\n\
     <div class=\"new-contact\">\n\
-      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts_name\">\n\
-      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts_email\">\n\
-      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts_phone\">\n\
-      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts_birthday\">\n\
+      <input class=\"fn\" placeholder=\"Contact Name\" data-bind=\"value:contacts.name\">\n\
+      <input class=\"email\" placeholder=\"Email Address\" data-bind=\"value:contacts.email\">\n\
+      <input class=\"phone\" placeholder=\"Phone Number\" data-bind=\"value:contacts.phone\">\n\
+      <input class=\"bday\" placeholder=\"Birthday\" data-bind=\"value:contacts.birthday\">\n\
       <button>Add record</button>\n\
     </div>\n\
   </form>\n\
-  <div id=\"contacts\" data-bind=\"foreach:contacts\">\n\
+  <div id=\"contacts\" data-bind=\"foreach:contacts.read\">\n\
     <div class=\"vcard\">\n\
       <input class=\"fn\" data-bind=\"value:name\">\n\
       <input class=\"email\" data-bind=\"value:email\">\n\
       <input class=\"tel\" data-bind=\"value:phone\">\n\
       <input class=\"bday\" data-bind=\"value:birthday\">\n\
-      <button data-bind=\"click:contacts_update\">Save</button><button class=\"secondary\" data-bind=\"click:contacts_delete\">Delete</button>\n\
+      <button data-bind=\"click:update\">Save</button><button class=\"secondary\" data-bind=\"click:remove\">Delete</button> \n\
     </div>\n\
   </div>\n\
 </body>\n\
