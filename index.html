@@ -350,24 +350,24 @@
 			<div class="page-body">
 
 <h1>Documentation</h1>
-<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and a just a little bit about database to get started.</p>
-
+<p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and few cutom HTML attributes.</p>
+<p>
+By adding the Concussion attributes described below to your HTML, you can tap into the Concussion API for persistence, security, reporting, and application administration.
+</p>
 <!-- Navigation -->				
-<h2>Navigation</h2>
+<a id="navigation" href="#"><h2>Navigation</h2></a>
 
 <ul>
-
 <li><a href="#create">Creating Data</a></li>
 <li><a href="#read">Reading Data</a></li>
 <li><a href="#update">Updating Data</a></li>
 <li><a href="#delete">Deleting Data</a></li>
-<li><a href="#knockout">Knockout</a></li>
 </ul>
 
 <!-- Creating Data Object -->
 <article>
-<h2>Creating Data</h2>
-<p>Create new entries in the database based on the children of the HTML element the data-bind is added to.</p>
+<h2><a href="#">Creating Data</a></h2>
+<p>Persisting records through the Concussion API's data layer</p>
 <p>Lets say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
 <pre id="help1" class="snippet medium" data-readonly="true" data-gutter="false">					
 &lt;form&gt;
@@ -377,96 +377,86 @@
  &lt;input type="submit"&gt;
 &lt;/form&gt;
 </pre>
-<p>Hook this static form up to a database by adding the following data-binds:</p>
+<p>Hook this static form up to the Concussion API:</p>
 <pre id="help2" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;form data-bind="submit:contacts-create"&gt;
- &lt;input data-bind="value:contacts_name"&gt;
- &lt;input data-bind="value:contacts_email"&gt;
- &lt;input data-bind="value:contacts_phone"&gt;
- &lt;input data-bind="submit:contacts-create" type="submit"&gt;
+&lt;form data-bind="submit:contacts.create"&gt;
+ &lt;input data-bind="value:contacts.name"&gt;
+ &lt;input data-bind="value:contacts.email"&gt;
+ &lt;input data-bind="value:contacts.phone"&gt;
+ &lt;input type="submit"&gt;
 &lt;/form&gt;
 </pre>
-<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+<p>Notice a data-bind attribute has been added to the parent form as well as the nested input fields. Concussion knows the input fields are part of the Contacts data object because they reference the object in the data-bind=“value:objectName.propertyName”</p>
 </article>
 
 <!-- Reading Data Object -->
 <article>
-<h2>Reading Data</h2>
-<p>Read existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<h2><a id="read" href="#navigation">Reading Data</a></h2>
+<p>Retrieve records through the Concussion API.</p>
+<p>Lets say you had previously persisted Contacts through the Concussion API, and wanted to display them. You could start off with the HTML below:</p>
 <pre id="help3" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;ul&gt;
- &lt;li&gt;Name&lt;/li&gt;
- &lt;li&gt;Email&lt;/li&gt;
- &lt;li&gt;Phone&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div&gt;
+ &lt;div&gt;Name&lt;/div&gt;
+ &lt;div&gt;Email&lt;/div&gt;
+ &lt;div&gt;Phone&lt;/div&gt;
+&lt;/div&gt;
 </pre>
-<p>Reading data of the database by adding the following data-binds:</p>
-<pre id="help4" class="snippet medium" data-readonly="true" data-gutter="false">&lt;ul data-bind="foreach:contacts"&gt;
- &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
- &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
- &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
-&lt;/ul&gt;</pre>
-<p>Notice a data-bind attribute has been added to the parent form as well as the child elements. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”</p>
+<p>And then add the below data-binds to bind the form to the retrieved records:</p>
+<pre id="help4" class="snippet medium" data-readonly="true" data-gutter="false">&lt;div data-bind="foreach:contacts.read"&gt;
+ &lt;div data-bind="text:name"&gt;&lt;/div&gt;
+ &lt;div data-bind="text:email"&gt;&lt;/div&gt;
+ &lt;div data-bind="text:phone"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>Notice that data-bind attributes have been added to the root &lt;div&gt; element as well as its child elements. Concussion knows the text fields are part of the Contacts data object because they are children of the root &lt;div&gt; element</p>
 </article>
 
 <!-- Updating Data Object -->
 <article>
-<h2>Updating Data</h2>
-<p>Updating existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<h2><a id="update" href="#navigation">Updating Data</a></h2>
+<p>Updating records through the Concussion API.</p>
+<p>Lets say you had previously persisted Contacts through the Concussion API, and now you want to update those records. You could start off with the HTMLM Below</p>
 <pre id="help5" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;form&gt;
- &lt;input placeholder="Name"&gt;
- &lt;input placeholder="Email"&gt;
- &lt;input placeholder="Phone"&gt;
- &lt;input type="submit"&gt;
-&lt;/form&gt;
+&lt;div&gt;
+ &lt;div&gt;Name&lt;/div&gt;
+ &lt;div&gt;Email&lt;/div&gt;
+ &lt;div&gt;Phone&lt;/div&gt;
+&lt;/div&gt;
 </pre>
-<p>Updating data in the database by adding the following data-binds:</p>
+<p>And then add the below data-binds:</p>
 <pre id="help6" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;form data-bind="submit:contacts-create"&gt;
- &lt;input data-bind="value:contacts_name"&gt;
- &lt;input data-bind="value:contacts_email"&gt;
- &lt;input data-bind="value:contacts_phone"&gt;
- &lt;input data-bind="submit:contacts-update" type="submit"&gt;
-&lt;/form&gt;
+&lt;div data-bind="foreach:contacts.read"&gt;
+ &lt;input data-bind="value:name"&gt;
+ &lt;input data-bind="value:email"&gt;
+ &lt;input data-bind="value:phone"&gt;
+ &lt;button data-bind="click:update"&gt;Update&lt;/button&gt;
+&lt;/div&gt;
 </pre>
-<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
 </article>
 
 <!-- Delete Object -->
 <article>
-<h2>Deleting Data</h2>
-<p>Deleting existing records outside of the database based on the children of the HTML element the data-bind is added to.</p>
-<p>Lets say you have an existing Contacts object in the database that has the following three fields: Name, Email Address, and Phone Number and you have the following HTML:</p>
+<h2><a id="delete" href="#navigation">Deleting Data</a></h2>
+<p>Delete records through Concussion API's data layer.</p>
+<p>Lets say you had previosly persisted Contacts through the Concussion API. You could retrieve the list of contacts by adding Concussion attributes as depicted below:</p>
 <pre id="help7" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;ul&gt;
- &lt;li&gt;Name&lt;/li&gt;
- &lt;li&gt;Email&lt;/li&gt;
- &lt;li&gt;Phone&lt;/li&gt;
-&lt;/ul&gt;
+&lt;div data-bind="foreach:contacts.read"&gt;
+ &lt;input data-bind="value:name"&gt;
+ &lt;input data-bind="value:email"&gt;
+ &lt;input data-bind="value:phone"&gt;
+&lt;/div&gt;
 </pre>
-<p>Deleting data of the database by adding the following data-binds:</p>
+<p>And add a delete button that calls the Concussion "remove" record function:</p>
 <pre id="help8" class="snippet medium" data-readonly="true" data-gutter="false">					
-&lt;ul data-bind="foreach:contacts"&gt;
- &lt;li data-bind="value:contacts_name"&gt;&lt;/li&gt;
- &lt;li data-bind="value:contacts_email"&gt;&lt;/li&gt;
- &lt;li data-bind="value:contacts_phone"&gt;&lt;/li&gt;
-  &lt;button data-bind="click:contacts-delete"&gt;Delete&lt;button&gt;
-&lt;/ul&gt;
+&lt;div data-bind="foreach:contacts.read"&gt;
+ &lt;input data-bind="value:name"&gt;
+ &lt;input data-bind="value:email"&gt;
+ &lt;input data-bind="value:phone"&gt;
+ &lt;button data-bind="click:remove"&gt;delete&lt;/button&gt;
+&lt;/div&gt;
 </pre>
-<p>Notice a data-bind attribute has been added to the parent form as well as the child inputs. ConcussionJS knows the input fields are part of the Contacts data object because they are (1) a child of the form and (2) because they reference the object in the data-bind=“value:objectName_value”.</p>
-</article>
 
-<!-- Knockout -->
-<article>
-<h2>Knockout</h2>
-<p>desc</p>
-"}
-P:"
-</article>	
-			</div>
+</article>
+	</div>
 		</section>
 
 		<section id="about" class="page">
