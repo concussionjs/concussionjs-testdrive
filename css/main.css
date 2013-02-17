@@ -313,18 +313,19 @@ body > input[type="radio"] {
   width: 100%;
   height: 100%;
   padding: 30px 0;
-  border: 1px solid #2a2d2e;
+  border: 1px solid #272b2d;
   border-radius: 7px;
-  background: #272b2d;
+  background: #1a1e1f;
 }
 .panel-nohead {
   position: relative;
   width: 100%;
   height: 100%;
+  margin-bottom: 10px;
   padding: 20px;
-  border: 1px solid #2a2d2e;
+  border: 1px solid #272b2d;
   border-radius: 7px;
-  background: #272b2d;
+  background: #1a1e1f;
 }
 .panel-header {
   position: absolute;
@@ -597,7 +598,6 @@ body > input[type="radio"] {
   height: 100%;
   overflow: auto;
   padding: 10px;
-  color: #888879;
 }
 /* Styling for the markup inside each step */
 #steps article h2 {
@@ -783,13 +783,12 @@ body > input[type="radio"] {
 ---------------------------------------------------------------------*/
 #tryitout {
   height: 260px;
-  margin: 0 0 10px;
 }
 #createanaccount {
   display: inline-block;
   width: 244px;
   height: 320px;
-  margin: 0 10px 10px 0;
+  margin-right: 10px;
   text-align: center;
   vertical-align: top;
 }
@@ -797,7 +796,7 @@ body > input[type="radio"] {
   display: inline-block;
   width: 244px;
   height: 320px;
-  margin: 0 10px 10px 0;
+  margin-right: 10px;
   text-align: center;
   vertical-align: top;
 }
@@ -805,13 +804,11 @@ body > input[type="radio"] {
   display: inline-block;
   width: 244px;
   height: 320px;
-  margin: 0 0 10px;
   text-align: center;
   vertical-align: top;
 }
 #sampleapps {
   height: 260px;
-  margin: 0 0 10px;
 }
 #sample-app {
   float: right;
@@ -856,136 +853,10 @@ body > input[type="radio"] {
 .size {
   color: #3B5E7D;
 }
-/*
-#gettingstarted section {
-	padding: 20px;
-	background-color:rgba(39,43,45,0.41);
-	border-color:rgba(63,66,67,0.41);
-	border-width:1px;
-
-	-moz-border-radius:7px;
-
-	-webkit-border-radius:7px;
-
-	border-radius:7px;
-	border-style:solid;
-
-	-moz-box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
-
-	-webkit-box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
-
-	box-shadow:0px 1px 0px rgba(255,255,255,0.21) ,inset 0px 1px 0px rgb(0,0,0);
-}
-
-#gettingstarted section.primary {
-	width: 100%;
-	height: 260px;
-	margin: 20px 0;	
-}
-
-#gettingstarted section.secondary {
-	width: 237px;
-	margin-right: 20px;
-	height: 320px;
-	display: inline-block;
-	text-align: center;
-	vertical-align: top;
-}
-
-#gettingstarted section.secondary.last-child {
-	margin-right: 0;
-
-}
-
-#gettingstarted button {
-	border: none;
-	border-radius: 3px;
-	padding: 10px;
-	margin: 10px 0;
-	color: #e1e1e1;
-	background: #6699cc;
-	font-size: 100%;
-}
-
-#gettingstarted section.secondary input {
-	width: 100%;
-	height: 26px;
-	margin-top: 10px;
-	font-size: 100%;
-}
-
-#gettingstarted section.secondary button {
-	width: 100%;
-	margin-top: 20px;
-}
-
-#gettingstarted .cta {
-	margin-bottom: 15px;
-	background-image:-moz-linear-gradient(50% 0% -90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%); 
-	background-image:-webkit-gradient(linear,50% 0%,50% 100%,color-stop(0, rgb(45,45,45)),color-stop(1, rgb(13,16,18)));
-	background-image:-webkit-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
-	background-image:-o-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
-	background-image:-ms-linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
-	background-image:linear-gradient(-90deg,rgb(45,45,45) 0%,rgb(13,16,18) 100%);
-
-	height:44px;
-	border-color:rgb(83,123,160);
-	border-width:2px;
-
-	-moz-border-radius:4px;
-
-	-webkit-border-radius:4px;
-
-	border-radius:4px;
-	border-style:solid;
-
-	-moz-box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
-
-	-webkit-box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
-
-	box-shadow:0px 0px 4px 2px rgba(100,154,204,0.33);
-}
-
-#gettingstarted .cta .hosted-script {
-	color: #6699cc;
-	float: left;
-	height: 100%;
-	padding: 10px;
-}
-
-#gettingstarted .cta .local-script {
-	background: #6699cc;
-	float: right;
-	height: 100%;
-	padding: 10px;
-}
-
-#gettingstarted .cta .local-script .title {
-	font-weight: bold;
-}
-
-#gettingstarted .cta .local-script .size {
-	color: #3B5E7D;
-}
-
-#gettingstarted section.secondary img {
-	height: 68px;
-}
-
-#gettingstarted img.sample-app {
-	float: right;
-}
-*/
 /* DOCUMENTATION
 ---------------------------------------------------------------------*/
 /* ABOUT
 ---------------------------------------------------------------------*/
-#mission {
-  margin: 0 0 10px;
-}
-#people {
-  margin: 0 0 10px;
-}
 /* FACEBOOK
 ---------------------------------------------------------------------*/
 .fb_hidden {

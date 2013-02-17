@@ -103,7 +103,7 @@
   		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/body&gt;
-&lt;/html&gt;</pre><br>
+&lt;/html&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="0">Just do it for me&raquo;</a></p>
 <p>You should see a sample contact appear in the preview.</p>
 <p class="continue" ><label for="step2" class="primary">Continue &raquo;</label></p>
@@ -121,7 +121,8 @@
 <pre class="snippet small" id="s2e1" data-readonly="true" data-gutter="false">&lt;script src="http://api.concussionjs.com/concussion.js"&gt;&lt;/script&gt;</pre>
 <p class="action"><a class="justDoIt" data-index="6" data-addContacts="true">Just do it for me&raquo;</a></p>
 <p>Next, replace the contacts div with the following markup, then press the refresh button in the preview.</p>
-<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">&lt;div id="contacts" data-bind="foreach:contacts.read"&gt;
+<pre class="snippet medium" id="s2e2" data-readonly="true" data-gutter="false">
+&lt;div id="contacts" data-bind="foreach:contacts.read"&gt;
 	&lt;div class="vcard"&gt;
 		&lt;input class="fn" data-bind="value:name"&gt;
 		&lt;input class="email" data-bind="value:email"&gt;
@@ -338,75 +339,33 @@
 						<a href="#" onclick="window.open('http://samples.concussionjs.com')"><button>View sample apps</button></a>
 					</div>
 				</section>
-
-<!--
-				<section class="primary">
-					<h1>Try it out</h1>
-					<p>The easiest way to get started is to add the JS file to your HTML:</p>
-					<div class="cta">	
-						<span class="hosted-script">&lt;script src=“http://api.concussionjs.com/concussion.js”&gt;</span>
-						<span class="local-script">
-							<span class="title">concussion.js</span>
-							<span class="size">(23k)</span>
-						</span>
-					</div>
-					<p>Once you add your first Concussion data-bind you will see a ribbon added to the top right edge of your browser window. Clicking the ribbon brings you to your Concussion Admin console where you can view and edit your data records.</p>
-				</section>	
-				
-				<section class="secondary">
-					<h2>Create an account</h2>
-					<img src="img/icons/icon-facebook.svg">
-					<button id="facebook-signup">Sign up via Facebook</button>
-					<p>Create an account with your Facebook credentials to get more requests per minute.</p>
-				</section>	
-
-				<section class="secondary">
-					<h2>Virtual appliance</h2>
-					<img src="img/virtual-appliance.svg">
-					<a href="https://s3.amazonaws.com/concussionjs/concussion-base-v0.3.ova"><button>Download</button></a>
-					<p>You can also download the personal appliance to run a local copy of the Concussion platform.</p>
-				</section>						
-					
-				<section class="secondary last-child">
-					<h2>Amazon Web Services</h2>
-					<img src="img/amazon-web-services.svg">
-					<a href="#" onclick="window.open('http://aws.amazon.com/console/')"><button >Launch AWS</button></a>
-					<p>Run your own Concussion instance on Amazon Web Services. <br>AMI ID: ami-e9a32d80.</p>
-				</section>
-				
-				<section class="primary">
-					<img class="sample-app" src="img/sample-app.png">	
-					<h2>Sample apps</h2>
-					<p>Check out this and other sample apps in the Concussion App Playground.</p>
-					<a href="#" onclick="window.open('http://samples.concussionjs.com')"><button>View sample apps</button></a>		
-				</section>	
-
--->
-
 			</div>
 		</section>
 
 		<section id="documentation" class="page">
 			<div class="page-body">
-
-<h1>Documentation</h1>
+				<section id="navsection" class="panel-nohead">
+					<div class="panel-body">
 <p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and few cutom HTML attributes.</p>
 <p>
 By adding the Concussion attributes described below to your HTML, you can tap into the Concussion API for persistence, security, reporting, and application administration.
 </p>
 <!-- Navigation -->				
 <a id="navigation" href="#"><h2>Navigation</h2></a>
-
 <ul>
 <li><a href="#create">Creating Data</a></li>
 <li><a href="#read">Reading Data</a></li>
 <li><a href="#update">Updating Data</a></li>
 <li><a href="#delete">Deleting Data</a></li>
 </ul>
+					</div>
+				</section>
 
 <!-- Creating Data Object -->
+				<section id="createsection" class="panel-nohead">
+					<div class="panel-body">
 <article>
-<h2><a href="#">Creating Data</a></h2>
+<h1><a href="#">Creating Data</a></h1>
 <p>Persisting data with the Concussion API</p>
 <p>Let's say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
 <pre id="help1" class="snippet medium" data-readonly="true" data-gutter="false">					
@@ -428,10 +387,14 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 </pre>
 <p>Notice a data-bind attribute has been added to the parent form as well as the nested input fields. Concussion knows the input fields are part of the Contacts data object because they reference the object in the data-bind=“value:objectName.propertyName”</p>
 </article>
+					</div>
+				</section>
 
 <!-- Reading Data Object -->
+				<section id="createsection" class="panel-nohead">
+					<div class="panel-body">
 <article>
-<h2><a id="read" href="#navigation">Reading Data</a></h2>
+<h1><a id="read" href="#navigation">Reading Data</a></h1>
 <p>Retrieve records through the Concussion API.</p>
 <p>Lets say you had previously persisted Contacts through the Concussion API, and wanted to display them. You could start off with the HTML below:</p>
 <pre id="help3" class="snippet medium" data-readonly="true" data-gutter="false">					
@@ -449,10 +412,14 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 &lt;/div&gt;</pre>
 <p>Notice that data-bind attributes have been added to the root &lt;div&gt; element as well as its child elements. Concussion knows the text fields are part of the Contacts data object because they are children of the root &lt;div&gt; element</p>
 </article>
+					</div>
+				</section>
 
 <!-- Updating Data Object -->
+				<section id="createsection" class="panel-nohead">
+					<div class="panel-body">
 <article>
-<h2><a id="update" href="#navigation">Updating Data</a></h2>
+<h1><a id="update" href="#navigation">Updating Data</a></h1>
 <p>Updating records through the Concussion API.</p>
 <p>Let's say you had previously persisted Contacts through the Concussion API, and now you want to update those records. You could start off with the HTML Below</p>
 <pre id="help5" class="snippet medium" data-readonly="true" data-gutter="false">					
@@ -472,10 +439,14 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 &lt;/div&gt;
 </pre>
 </article>
+					</div>
+				</section>
 
 <!-- Delete Object -->
+				<section id="createsection" class="panel-nohead">
+					<div class="panel-body">
 <article>
-<h2><a id="delete" href="#navigation">Deleting Data</a></h2>
+<h1><a id="delete" href="#navigation">Deleting Data</a></h1>
 <p>Delete records through Concussion API's data layer.</p>
 <p>Let's say you had previosly persisted Contacts through the Concussion API. You could retrieve the list of contacts by adding Concussion attributes as depicted below:</p>
 <pre id="help7" class="snippet medium" data-readonly="true" data-gutter="false">					
@@ -494,9 +465,10 @@ By adding the Concussion attributes described below to your HTML, you can tap in
  &lt;button data-bind="click:remove"&gt;delete&lt;/button&gt;
 &lt;/div&gt;
 </pre>
-
 </article>
-	</div>
+					</div>
+				</section>
+			</div>
 		</section>
 
 		<section id="about" class="page">
