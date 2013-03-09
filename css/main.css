@@ -267,16 +267,16 @@ iframe {
   background-image: url("../img/icons/icon-github-hover.svg");
 }
 #masthead-icon-settings {
-  background-image: url("../img/icons/icon-github.svg");
+  background-image: url("../img/icons/icon-settings.svg");
 }
 #masthead-icon-settings:hover {
-  background-image: url("../img/icons/icon-github-hover.svg");
+  background-image: url("../img/icons/icon-settings-hover.svg");
 }
 #masthead-icon-logout {
-  background-image: url("../img/icons/icon-github.svg");
+  background-image: url("../img/icons/icon-logout.svg");
 }
 #masthead-icon-logout:hover {
-  background-image: url("../img/icons/icon-github-hover.svg");
+  background-image: url("../img/icons/icon-logout-hover.svg");
 }
 .fb-login-button {
   display: inline-block;
