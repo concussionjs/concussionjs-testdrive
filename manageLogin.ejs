@@ -50,7 +50,7 @@
         // respond to clicks on the login and logout links
         $('#masthead-icon-facebook').click(function(){FB.login();});
         $('#facebook-signup').click(function(){FB.login();});
-        $('#auth-logoutlink').click(function(){FB.logout();}); 
+		$('#masthead-icon-logout').click(function(){FB.logout();});
       } 
 
 		
@@ -210,6 +210,7 @@ function getPage(userId,filename,callback)
 				//alert(result);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
+				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 				synchSessionVariables(myId);
 			}
 		});
