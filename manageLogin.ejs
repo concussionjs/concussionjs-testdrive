@@ -210,6 +210,7 @@ function getPage(userId,filename,callback)
 				//alert(result);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
+				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 				synchSessionVariables(myId);
 			}
 		});
