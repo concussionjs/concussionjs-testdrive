@@ -5,8 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="description=" content="ConcussionJS is the web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create.">
 	<script src="js/jquery-1.8.1.min.js"></script>
-	<script type="text/javascript" src="//use.typekit.net/bqr1qnl.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script src="//use.typekit.net/bqr1qnl.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<script src="js/jquery.colorbox-min.js"></script>
 	<script src="js/ace.js"></script>
 	<script src="js/mode-html.js"></script>
 	<script src="js/theme-concussion.js"></script>
@@ -15,6 +16,7 @@
 	<script src="js/manageLogin.js"></script>
 	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/colorbox.css">
 </head>
 </body>
 
@@ -37,12 +39,15 @@
 		<div id="menu-indicator"></div>
 	</nav>
 	<div id="auth-status">
-		<div id="auth-loggedout">
+		<div id="auth-loggedout" class="auth-hide">
 			Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><!--<a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>-->
 		</div>
-		<div id="auth-loggedin" class="auth-hide">
-			<span id="auth-displayname"></span>
+		<div id="auth-loggedin">
+			<span id="auth-displayname">Brian Jamieson</span><a href="#settings" class="masthead-icon" id="masthead-icon-settings" title="Settings"></a><a class="masthead-icon" id="masthead-icon-logout" title="Logout"></a>
+<!--
+			
 			<div id="auth-logoutlink" class="fb-login-button" data-width="200" data-max-rows="1"><a class="fb_button fb_button_medium"><span class="fb_button_text">Log Out</span></a></div>
+-->
 		</div>
 	</div>
 </section>
@@ -524,6 +529,29 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 	</div>
 </section>
 
+<!-- Settings Fragment -->
+<div id="settings-wrapper">
+<div id="settings">
+	<form id="settings-form">
+		<fieldset class="form-body">
+			<legend>Settings</legend>
+			<div>
+				<label>Form Label</label><input type="text" value="I am text">
+			</div>
+			<div>
+				<label>Form Label</label><select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>
+			</div>
+			<div>
+				<label>Form Label</label><textarea rows="3">I am the textarea</textarea>
+			</div>
+			<div>
+				<button class="primary">Save</button><button class="secondary">Cancel</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+</div>
+
 <iframe id="synchSessionVariables"></iframe>
 <script>
 // Fix for iOS which doesn't fire events on lable taps
@@ -569,5 +597,16 @@ window.onload = function () {
   })();
 
 </script>
+<script>
+// Colorbox Settings
+$("#masthead-icon-settings").colorbox(
+	{
+		opacity:0.65,
+		inline:true,
+		title:"Hey"
+	}
+);
+</script>
+
 </body>
 </html>

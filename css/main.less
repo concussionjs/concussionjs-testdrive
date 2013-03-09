@@ -56,7 +56,6 @@
 	transition: all 0.2s ease-in-out;
 }
 
-
 .page-transition() {
 	-webkit-transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); 
 	transition: all 300ms cubic-bezier(0.770, 0.000, 0.175, 1.000); /* easeInOutQuart */
@@ -307,9 +306,100 @@ iframe {
 	#masthead-icon-github         { background-image: url("../img/icons/icon-github.svg"); }
 	#masthead-icon-github:hover   { background-image: url("../img/icons/icon-github-hover.svg"); }
 
+	#masthead-icon-settings       { background-image: url("../img/icons/icon-github.svg"); }
+	#masthead-icon-settings:hover { background-image: url("../img/icons/icon-github-hover.svg"); }
+
+	#masthead-icon-logout         { background-image: url("../img/icons/icon-github.svg"); }
+	#masthead-icon-logout:hover   { background-image: url("../img/icons/icon-github-hover.svg"); }
+
 #auth-loggedin {}
 	.displayname{}
 	.fb-login-button { display: inline-block; }
+
+
+/* SETTINGS
+-------------------------------------------------------------------------*/
+#settings-wrapper {
+	display: none;
+}
+#settings {
+	width: 600px;
+	height: 330px;
+	padding: 20px;
+}
+
+
+/* FORM
+-------------------------------------------------------------------------*/
+.form-body {
+  margin: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+  padding: 0 20px;
+}
+
+.form-body > legend {
+  margin: 0 0 0 -5px;
+  padding: 0 5px;
+  font-size: .875em;
+  color: #666;
+}
+
+.form-body > div {
+  margin: 6px 0;
+}
+
+.form-body > div > label {
+  display: block;
+  padding: 6px 0 2px;
+  font-size: 0.875rem;
+  color: #666;
+  color: rgba(0,0,0,.5);
+}
+
+.form-body > input {
+  margin: 6px 0 20px 0;
+  height: 34px;
+  font-size: 1.2rem;
+  border: 1px solid rgba(0,0,0,.25);
+}
+
+.form-body input, 
+.form-body select,
+.form-body textarea {
+  width: 100%;
+  border: 1px solid #737373;
+  border-radius: 3px;
+  padding: .4em;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3), 0px 1px 0px rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+}
+
+.form-body input[type="checkbox"],
+.form-body input[type="radio"] {
+	width: inherit;
+}
+
+.form-body button {
+  min-width: 80px;
+  margin: 6px 12px 0 0;
+  border-radius: 3px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px;
+  background: none;
+  font-size: 1rem;
+  color: rgba(102, 153, 204, .85);
+}
+
+.form-body button:hover {
+	cursor: pointer;
+}
+
+.form-body .primary {
+  background: rgba(102, 153, 204, .85);
+  color: #fff;
+}
 
 
 /* PAGES
