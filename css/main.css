@@ -68,6 +68,13 @@ button {
   color: #e1e1e1;
   background: #6699cc;
 }
+button:hover {
+  cursor: pointer;
+}
+hr {
+  border: 1px solid #272b2d;
+  margin-bottom: 30px;
+}
 iframe {
   display: block;
   width: 100%;
@@ -901,12 +908,6 @@ body > input[type="radio"] {
   text-align: center;
   vertical-align: top;
 }
-#sampleapps {
-  height: 260px;
-}
-#sample-app {
-  float: right;
-}
 #createanaccount button,
 #virtualappliance button,
 #amazonwebservices button {
@@ -946,6 +947,23 @@ body > input[type="radio"] {
 }
 .size {
   color: #3B5E7D;
+}
+.sample-app.header {
+  height: 220px;
+}
+.sample-app {
+  height: 250px;
+}
+.sample-app * {
+  text-decoration: none;
+}
+.sample-app p {
+  color: #e1e1e1;
+}
+.sample-app img {
+  float: right;
+  width: 320px;
+  margin: 0 10px 0 30px;
 }
 /* DOCUMENTATION
 ---------------------------------------------------------------------*/
