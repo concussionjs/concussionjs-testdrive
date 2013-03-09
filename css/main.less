@@ -262,6 +262,9 @@ iframe {
 	#menu5:checked ~ #masthead label:nth-child(5) { color: @clickable; }
 	#menu5:checked ~ #masthead #menu-indicator    { left: 416px; }
 
+	#menu6:checked ~ #masthead label:nth-child(6) { color: @clickable; }
+	#menu6:checked ~ #masthead #menu-indicator    { left: 478px; }
+
 /* Authorization */
 #auth-status {
 	float: right;
@@ -323,11 +326,11 @@ body > input[type="radio"] {
 	overflow: hidden;
 }
 
-	/* The wrapper used to indent. Set the width equal to the number of steps * 100 */
+	/* The wrapper used to indent. Set the width equal to the number of pages * 100 */
 	#page-wrapper {
 		position: absolute;
-		width: 500%;
-		height: 100%;
+		width: 600%;
+		height: 100%; 
 		.page-transition;
 	}
 
@@ -337,10 +340,12 @@ body > input[type="radio"] {
 	#menu3:checked ~ #pages  #page-wrapper { margin-left: -200%; }
 	#menu4:checked ~ #pages  #page-wrapper { margin-left: -300%; }
 	#menu5:checked ~ #pages  #page-wrapper { margin-left: -400%; }
+	#menu6:checked ~ #pages  #page-wrapper { margin-left: -500%; }
 
+		/* Each page. Set the width equal to 100 / number of page */
 		.page {
 			float: left;
-			width: 20%;
+			width: 16.66667%;
 			height: 100%;
 			overflow: auto;
 			padding: 10px;
@@ -936,6 +941,13 @@ body > input[type="radio"] {
 /* ABOUT
 ---------------------------------------------------------------------*/
 #about {
+
+}
+
+
+/* ADMINCONSOLE
+---------------------------------------------------------------------*/
+#adminconsole {
 
 }
 
