@@ -208,6 +208,7 @@ function getPage(userId,filename,callback)
     		success: function(result) 
 			{	 
 				//alert(result);
+				console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ myId);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
