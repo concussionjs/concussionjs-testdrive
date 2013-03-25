@@ -397,7 +397,7 @@
 				<section class="panel-nohead">
 					<div class="panel-body">
 <article>
-<h1>Learn your thing</h1>
+<h1>Learning ConcussionJS</h1>
 <p>Concussionjs was built to minimize the work required to turn your HTML into a dynamic, database driven web application. Learning how to use Concussionjs is really simple, all you need to know is HTML and few cutom HTML attributes.</p>
 <p>
 By adding the Concussion attributes described below to your HTML, you can tap into the Concussion API for persistence, security, reporting, and application administration.
@@ -411,8 +411,23 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 					<div class="panel-body">
 <article>
 <h1>Managing Your Account</h1>
-<p>Here is how accounts work.</p>
-<p>Here is some more info.</p>
+<p>There are three types of user accounts:
+	<ul>
+		<li>Anonymous</li>
+		<li>Registered</li>
+		<li>Premium</li>
+	</ul>
+</p>
+<p>If you have not registered via Facebook yet, then you are likely operating as an Anonymous user. To protect against misuse, we put limits on the number of transaction and size of transactons:
+<ul>
+	<li>Anonymous users - 500/request/minute to anonymous users</li>
+	<li>Registered users - 2000/requests/minute to premium requstor</li>
+	<li>Premium users - 5000+/requests/minute</li>
+</ul>
+
+Note: An anonymous user should be able to do local testing without hitting the 500/transactions/minute throughput
+
+</p>
 </article>
 					</div>
 				</section>
@@ -420,7 +435,7 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 <!-- Creating Data Object -->
 				<section id="createsection" class="panel-nohead">
 					<div class="panel-body">
-<article>
+<artcle>
 <h1>Creating Data</h1>
 <p>Persisting data with the Concussion API</p>
 <p>Let's say you have a Contact form with three fields: Name, Email Address and Phone Number, something like this:</p>
@@ -531,14 +546,30 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 			<div class="page-body">
 				<section id="mission" class="panel-nohead">
 					<div class="panel-body">
-<h1>Why is it so cussing hard to build apps?</h1>
+<h1>Why is it so f***ing hard to build apps?</h1>
 <p>
-	We are awash in frameworks, patterns, libraries, architectures, and platforms. But it still takes teams of developers months to put together a basic application. The same problems get solved over and over again, because the current technologies only supply the tools to build the tools needed to get the work done.
+	We are awash in frameworks, patterns, libraries, architectures, and platforms. But it still takes teams of developers months to put together a basic application. Worse still, for beginners there is an almost impossible hurdle moving from writing HTML to building even the most basic database backed application. <!--Today's steep learning curve requires understanding how dozens of technologies fit together - HTML, templating languages, web servers, app servers, databases, etc.-->
 </p>
 
 <h2>Our mission</h2>
 <p>
-	ConcussionJS is an open-source effort to accelerate app development by creating a platform that makes the easy stuff easy and the hard stuff possible. We want to build a community of people who love finding sweet solutions to problems that keep cropping up. And as we integrate these solutions into the platform we will eventually create a discontinuity in productivity that will forever change the nature of software development.
+	We want to make building database backed web applications as simple and fast as possible. The short term goal is to enable people with just a rudimentary knowledge of HTML to build sophisticated, database backed applications.  
+	 <!--to use our platform within further able to instantly to create web applicationsis an open-source effort to create a platform that makes building database backed web applications as simple as possible. The ultimate goal is to change  And as we integrate these solutions into the platform we will eventually create a discontinuity in productivity that will forever change the nature of software development.-->
+</p>
+
+<h2>Our Product Vision</h2>
+<p>
+	We believe that to be a dominant, distruptive application development platform, ConcussionJS must be able to:
+	<ul>
+		<li>Run on-demand & on-premises</li>
+		<li>Operate on-line & off-line</li>
+		<li>Deploy as both a multi-tenant & single-tenant solution</li>
+		<li>Be installed as a linux package, virtual appliance, AWS image, OPscode's Chef recipe 
+		<li>Incrementally scale at all layers of the stack</li>
+		<li>Satisfy first time users & experts</li>
+		<li>Provide application QA, integrity verification, and remediation</li>
+		<li>Offer built-in analytics, dashboards, and performance management</li>
+	</ul>
 </p>
 
 <h2>Why it matters</h2>
@@ -563,7 +594,7 @@ By adding the Concussion attributes described below to your HTML, you can tap in
 </p>
 <h2>Brian Del Giudice</h2>
 <p>
-	Brian D. is the creative vision behind Concussion. He has 12 years of design experience at software, marketing and advertising companies. He created the pixeless open source icon library, and has experience working at multiple start-ups.
+	Brian D. is the Concussion creative director. He has 12 years of design experience at software, marketing and advertising companies. He created the pixeless open source icon library, and has experience working at multiple start-ups.
 </p>
 					</div>
 				</section>
