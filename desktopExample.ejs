@@ -1,0 +1,44 @@
+
+<html>
+	<head>
+		<script language="JavaScript" src="http://<%=CJS_WEB_URL%>/concussion.js"></script>
+        <script language="JavaScript" src="https://raw.github.com/guillaumepotier/Parsley.js/master/parsley.js"></script>
+    	<title>Contacts</title>
+    	<meta charset="utf-8">
+    	<link rel="stylesheet" href="http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css">
+	</head>
+	<body>
+        <form data-bind="submit:contacts.create" data-validate="parsley">
+        <div class="new-contact">
+			<input class="fn" name="fn" type="text" placeholder="Contact Names" data-bind="value:contacts.name" data-required="true">
+			<input class="tel" name="tel" type="text" placeholder="Phone Number" data-bind="value:contacts.phoneNumber" data-required="true">
+			<input class="email" name="email" type="text" placeholder="Email Address" data-bind="value:contacts.emailAddress" data-trigger="change" data-required="true" data-type="email">
+            <button type="submit" value="Save">Add record</button>    
+	    </div>
+        </form>
+	    <div id="contacts" data-bind="foreach:contacts.read">
+            <div class="vcard" onclick="selectVcard(this)">
+    			<input class="fn" data-bind="value:name">
+    			<input class="tel" data-bind="value:phoneNumber">
+                <input class="email" data-bind="value:emailAddress">
+                <button data-bind="click:update">Save</button><button class="secondary" data-bind="click:remove">Delete</button>
+    		</div>
+        </div>
+ </body>
+
+ <script>
+        function selectVcard(me)
+        {
+            $(".new-contact, .vcard").removeClass("selected");
+            $(me).addClass("selected");
+            event.stopPropagation();
+        }
+        
+        $(document).ready(function(){
+            $("body").on("click", function(event){
+               //alert("clicked body");
+                $(".new-contact, .vcard").removeClass("selected");
+            });
+        });
+     </script>
+</html>
