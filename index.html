@@ -4,7 +4,7 @@
 	<title>ConcussionJS</title>
 	<meta charset="utf-8">
 	<meta name="description=" content="ConcussionJS is the web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create.">
-	<script src="js/jquery-1.8.1.min.js"></script>
+	<script src="http://api.concussionjs.com/concussion.js"></script>
 	<script src="//use.typekit.net/bqr1qnl.js"></script>
 	<script>try{Typekit.load();}catch(e){}</script>
 	<script src="js/jquery.colorbox-min.js"></script>
@@ -626,17 +626,26 @@ Note: An anonymous user should be able to build and test an application without 
 <!-- Settings Fragment -->
 <div id="settings-wrapper">
 <div id="settings">
-	<form id="settings-form">
+	<form id="settings-form" data-bind="submit:users.create" data-cjs="{collection:users,location:localStorage, key:sessionId}">
 		<fieldset class="form-body">
 			<legend>Settings</legend>
 			<div>
-				<label>Form Label</label><input type="text" value="I am text">
+				<label>Domain name</label><input type="text" value="" data-bind="value:users.domain">
 			</div>
 			<div>
-				<label>Form Label</label><select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>
+				<label>First name</label><input type="text" value="" data-bind="value:users.firstname">
 			</div>
 			<div>
-				<label>Form Label</label><textarea rows="3">I am the textarea</textarea>
+				<label>Last name</label><input type="text" value="" data-bind="value:users.lastname">
+			</div>
+			<div>
+				<label>Company name</label><input type="text" value="" data-bind="value:users.companyname">
+			</div>
+			<div>
+				<label>Email address</label><input type="text" value="" data-bind="value:users.email">
+			</div>
+			<div>
+				<label>Description of site</label><textarea rows="3" data-bind="value:users.description">Your description here</textarea>
 			</div>
 			<div>
 				<button class="primary">Save</button><button class="secondary">Cancel</button>
