@@ -55,18 +55,13 @@
 
 		
 		$(document).ready(function(){
-			//justDoIt=$(".justDoItContent");
+
 			aceEditorInit($(".editor"),"ace/theme/concussion");
 			aceEditorInit($(".snippet"),"ace/theme/concussion-snippet");
 			myId=readCookie("sessionId");
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
-			//$("#addedBinds").click(addThreeContactRecords);
-
-			/*editor = ace.edit("editor");
-			editor.setTheme("ace/theme/concussion");
-			editor.getSession().setMode("ace/mode/html");
-			editor.setShowPrintMargin(false);*/
+	
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -221,3 +216,216 @@ function getPage(userId,filename,callback)
 	{
 		window.open("http://<%=CJS_WEB_URL%>/getpage/"+ myId + "/index");
 	}
+
+	var mvm;
+
+$(function() {
+
+	function fields(data)
+			{
+				//alert(data.type);
+				
+				var self = this;
+				self.name=ko.observable(data.name);					
+				self.type=ko.observable(data.type);			
+				self._id=ko.observable(data._id);
+					
+			}
+	// handle children
+	
+
+
+			var cjs_users = function(data)
+			{	
+				//alert(data);
+				var self = this;
+						if(!data)
+							return [];
+						if(data.domain)
+						{
+							self.domain=ko.observable(data.domain);
+						}
+						else
+						{
+							self.domain=ko.observable('');
+						}
+					
+						if(data.name)
+						{
+							self.name=ko.observable(data.name);
+						}
+						else
+						{
+							self.name=ko.observable('');
+						}
+					
+						if(data.companyname)
+						{
+							self.companyname=ko.observable(data.companyname);
+						}
+						else
+						{
+							self.companyname=ko.observable('');
+						}
+					
+						if(data.email)
+						{
+							self.email=ko.observable(data.email);
+						}
+						else
+						{
+							self.email=ko.observable('');
+						}
+
+						if(data.key)
+						{
+							self.key=ko.observable(data.key);
+						}
+						else
+						{
+							self.key=ko.observable('');
+						}
+					
+						this.remove = function() {
+    					   	$.ajax("http://<%=CJS_WEB_URL%>/delete/cjs_users/"+this.id(), {
+    					   		data: '',
+								type: "get", 
+								dataType: "text",
+								success: function(result)
+								{
+									$.getJSON("http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users", function(allData) {
+										var mapped = $.map([allData], function(item) { return new cjs_users(item) });
+										mvm.users.read(mapped);
+									});
+								}
+							});
+						}
+
+						this.update = function() {
+       						$.ajax("http://<%=CJS_WEB_URL%>/update/cjs_users/xxx/" + this.id() , {
+							data: ko.toJSON(this),
+							type: "post", dataType: "text",
+							success: function(result) 
+							{ 
+								$.getJSON("http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+myId, function(allData) {
+									var mapped = $.map([allData], function(item) { return new cjs_users(item) });
+									mvm.users.read(mapped);
+									alert("Save successful")
+								});
+        				   	}
+       						});
+    					}	
+						
+						self.id=ko.observable(data._id);
+						self.row=ko.observable("");
+						self.myForm = ko.observable("");
+					
+			}
+			
+		
+
+
+	function myViewModel()
+	{
+		var self = this;
+	
+		//self.users=ko.observableArray([]);
+		self.users_search_results=ko.observableArray([]);
+		//self.users(self.id_544447760_users_search_results);
+		self.users_search_term=ko.observable();							
+
+		
+	//setFormData
+		
+	users_reset_form = function(me)
+		{
+			//alert(me.first_name());
+	
+			self.users.domain("");
+	
+			self.users.name("");
+	
+			self.users.companyname("");
+	
+			self.users.email("");
+	
+		}
+
+	
+	//initial load
+	
+
+	
+
+	// create code
+	
+
+	self.users = {};
+	self.usersForm = ko.observable();
+
+    var usersCreateJSON = function(){
+	self.usersForm({
+		domain:self.users.domain,
+		
+		name:self.users.name,
+		
+		companyname:self.users.companyname,
+		email:self.users.email
+    	});
+	}
+    
+	self.users.getRecords = function(callback)
+	{
+		$.ajax(
+			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+myId,
+			dataType:"json",
+			data:'',
+			success:function(data){
+				//alert("success");
+				var mapped = $.map([data], function(item) { return new cjs_users(item) });
+				self.users.read(mapped);
+				//alert(mapped.length);
+				if(mapped.length==0)
+				{
+					//alert("mapped==0");
+					self.key=myId;
+					if(callback)
+						callback();
+					else
+						mvm.users.getRecords();				
+				}
+			}			
+		});
+	}
+
+    self.users.read=ko.observableArray([]);
+
+    self.users.domain=ko.observable("");
+		self.users.name=ko.observable("");
+		self.users.companyname=ko.observable("");
+		self.users.email=ko.observable("");
+		self.users.key=ko.observable("");
+    self.users.create = function() {
+    	var patt = new RegExp("usersForm","g");
+        usersCreateJSON();
+        $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + myId, {
+			data: ko.toJSON(self).replace(patt,"cjs_users","g"),
+			type: "post",
+			dataType: "text",
+			success: function(result) 
+			{
+				//alert("success " + myId);
+				mvm.users.getRecords(mvm.users.getRecords);
+				//users_reset_form();
+			}
+        });
+
+       
+    }
+	
+	}
+
+	mvm = new myViewModel();
+	ko.applyBindings(mvm);
+	mvm.users.getRecords(mvm.users.create);
+});
