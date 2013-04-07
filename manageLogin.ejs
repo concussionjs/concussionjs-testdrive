@@ -1,4 +1,5 @@
 		var myId="";
+		var userId="";
 		var editor;
 		 (function(d){
  		    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -30,12 +31,15 @@
             FB.api('/me', function(me){
          		//alert(JSON.stringify(me));
 				myId = me.id;
+				userId=me.id;
 				//alert(myId);
 				if (me.name) {
 					document.getElementById('auth-displayname').innerHTML = me.name;
 				}
 				createCookie("sessionId",myId,1);
+				createCookie("userId",myId,1);
 				getPage(myId,"index",submitFormData);
+				mvm.users.getRecords();
 				synchSessionVariables(myId);
             })
             document.getElementById('auth-loggedout').style.display = 'none';
@@ -59,6 +63,7 @@
 			aceEditorInit($(".editor"),"ace/theme/concussion");
 			aceEditorInit($(".snippet"),"ace/theme/concussion-snippet");
 			myId=readCookie("sessionId");
+			userId=readCookie("userId");
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
 	
@@ -376,8 +381,10 @@ $(function() {
     
 	self.users.getRecords = function(callback)
 	{
+		if(userId=="")
+			return;
 		$.ajax(
-			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+myId,
+			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+userId,
 			dataType:"json",
 			data:'',
 			success:function(data){
@@ -388,7 +395,7 @@ $(function() {
 				if(mapped.length==0)
 				{
 					//alert("mapped==0");
-					self.key=myId;
+					self.key=userId;
 					if(callback)
 						callback();
 					else
@@ -408,7 +415,7 @@ $(function() {
     self.users.create = function() {
     	var patt = new RegExp("usersForm","g");
         usersCreateJSON();
-        $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + myId, {
+        $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + userId, {
 			data: ko.toJSON(self).replace(patt,"cjs_users","g"),
 			type: "post",
 			dataType: "text",
