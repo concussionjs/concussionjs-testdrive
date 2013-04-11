@@ -288,7 +288,7 @@ iframe {
 }
 #settings {
   width: 600px;
-  height: 336px;
+  height: 385px;
   padding: 20px;
 }
 /* FORM
@@ -296,14 +296,13 @@ iframe {
 .form-body {
   margin: 0;
   border: none;
-  border-top: 1px solid #c9cbcd;
-  padding: 0 20px;
+  padding: 0 20px -10px;
 }
 .form-body > legend {
-  margin: 0 0 0 -5px;
-  padding: 0 5px;
-  font-size: 0.875rem;
-  color: #888879;
+  margin: 0;
+  padding: 0;
+  font-size: 1.28rem;
+  color: #8e999d;
 }
 .form-body div {
   margin: 6px 0;

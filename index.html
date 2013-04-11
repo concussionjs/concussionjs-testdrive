@@ -637,7 +637,7 @@ Note: An anonymous user should be able to build and test an application without 
 <div id="settings">
 	<div id="settings-form" data-bind="foreach:users.read" data-cjs="{collection:users,location:localStorage, key:sessionId}">
 		<fieldset class="form-body">
-			<legend>Settings - click off this dialogue box to cancel or close</legend>
+			<legend>Settings</legend>
 			<div>
 				<label>Domain name</label><input type="text" value="" data-bind="value:domain">
 			</div>
@@ -651,7 +651,7 @@ Note: An anonymous user should be able to build and test an application without 
 				<label>Email address</label><input type="text" value="" data-bind="value:email">
 			</div>
 			<div>
-				<button class="primary" data-bind="click:update">Save</button>
+				<button class="primary" data-bind="click:update">Save</button><button>Cancel</button>
 			</div>
 		</fieldset>
 	</div>
