@@ -182,6 +182,11 @@ function getPage(userId,filename,callback)
    	});
 }
 
+function openSample(link)
+{
+	window.open('http://<%=CJS_WEB_URL.replace("api","samples")%>' + link);
+}
+
 	function synchSessionVariables(id)
 	{
 		$("#synchSessionVariables").attr({"src":"http://<%=CJS_WEB_URL%>/setSessionVariables.html?sid="+ id});
