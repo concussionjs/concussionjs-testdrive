@@ -54,7 +54,19 @@
         // respond to clicks on the login and logout links
         $('#masthead-icon-facebook').click(function(){FB.login();});
         $('#facebook-signup').click(function(){FB.login();});
-		$('#masthead-icon-logout').click(function(){FB.logout();});
+		$('#masthead-icon-logout').click(function(){
+				FB.logout(); 
+				userId=""; 
+				createUUID(function(uuid)
+				{
+					createCookie("sessionId",uuid,1);
+					createCookie("userId","",1);
+					synchSessionVariables(uuid);
+					myId=readCookie("sessionId");
+					editor.getSession().setValue("");
+					submitFormData(readCookie("sessionId"));
+				});
+		});
       } 
 
 		
