@@ -194,9 +194,12 @@ function getPage(userId,filename,callback)
    	});
 }
 
-function openSample(link)
+function openPage(link, subDomain)
 {
-	window.open('http://<%=CJS_WEB_URL.replace("api","samples")%>' + link);
+	if(subDomain)
+		window.open('http://<%=CJS_WEB_URL%>'.replace("api",subDomain) + link);
+	else
+		window.open('http://<%=CJS_WEB_URL%>' + link);
 }
 
 	function synchSessionVariables(id)
