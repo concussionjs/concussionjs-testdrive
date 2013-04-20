@@ -339,6 +339,7 @@ $(function() {
 								});
         				   	}
        						});
+       						mvm.users.updateDomain(this.domain());
     					}	
 						
 						self.id=ko.observable(data._id);
@@ -432,6 +433,20 @@ $(function() {
 		self.users.companyname=ko.observable("");
 		self.users.email=ko.observable("");
 		self.users.key=ko.observable("");
+    
+    self.users.updateDomain = function(domain)
+    {
+    	 $.ajax("http://<%=CJS_WEB_URL%>/domains/add/registered/" + domain, {
+			success: function(result) 
+			{
+				//alert("success " + myId);
+				//mvm.users.getRecords(mvm.users.getRecords);
+				//users_reset_form();
+				console.log("domain " + domain + " was registered");
+			}
+        });
+    }
+
     self.users.create = function() {
     	var patt = new RegExp("usersForm","g");
         usersCreateJSON();
@@ -442,6 +457,7 @@ $(function() {
 			success: function(result) 
 			{
 				//alert("success " + myId);
+				mvm.users.updateDomain();
 				mvm.users.getRecords(mvm.users.getRecords);
 				//users_reset_form();
 			}
