@@ -1,7 +1,6 @@
 <!DOCTYPE html><html>
 <head><title>Contacts</title><meta charset="utf-8">
 	<link rel="stylesheet" href="css/contacts-style.css">
-	<script src="js/jquery-1.8.1.min.js"></script>
 </head>
 <body>
 	<div class="new-contact">
@@ -66,19 +65,5 @@
 			<button>Save</button><button>Delete</button>
 		</div>
 	</div>
-
-<script>
-
-	$(".new-contact, .vcard").on("click", function(event){
-		$(".new-contact, .vcard").removeClass("selected");
-		$(this).addClass("selected");
-		event.stopPropagation();
-	});
-
-	$("body").on("click", function(event){
-		$(".new-contact, .vcard").removeClass("selected");
-	});
-
-</script>
 </body>
 </html>

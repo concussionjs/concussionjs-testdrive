@@ -1,6 +1,7 @@
 		var myId="";
 		var userId="";
 		var editor;
+		var debug=false;
 		 (function(d){
  		    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
  		    if (d.getElementById(id)) {return;}
@@ -91,13 +92,15 @@
 
 			if(!myId)
 			{	
-				console.log("No authenticated user or session");
+				if(debug)
+					console.log("No authenticated user or session");
 				editor.getSession().setValue("");
 				submitFormData(readCookie("sessionId"));
 			}
 			else
 			{
-				console.log("myId:", myId);
+				if(debug)
+					console.log("myId:", myId);
 				getPage(myId,"index",submitFormData);
 			}
 
@@ -109,7 +112,8 @@
 
 function justSubmit()
 {
-	console.log("justSubmit()");
+	if(debug)
+		console.log("justSubmit()");
 	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', readCookie("sessionId")]);
 	
 	/*if(this.getAttribute("data-addContacts")=="true")
@@ -151,7 +155,8 @@ function addSampleRecords(number,type,id)
             type: "POST",
             success: function(result) 
 			{ 
-					console.log("record successfully added record " + i);	
+				if(debug)				
+					console.log("successfully added record " + i);	
 			}
         });
 	}
@@ -159,10 +164,12 @@ function addSampleRecords(number,type,id)
 
 function aceEditorInit(editors,themePath)
 {
-	console.log(editors.length);
+	if(debug)
+		console.log(editors.length);
 	for(i=0;i<editors.length;i++)
 	{
-		console.log(editors[i].id + " "+ editors[i].getAttribute("data-readonly"));
+		if(debug)
+			console.log(editors[i].id + " "+ editors[i].getAttribute("data-readonly"));
 		eval(editors[i].id + "=ace.edit(\"" + editors[i].id + "\");");
 		eval(editors[i].id + ".setTheme(\"" + themePath + "\");");
 		eval(editors[i].id + ".getSession().setMode(\"ace/mode/html\");");
@@ -228,7 +235,8 @@ function openPage(link, subDomain)
     		success: function(result) 
 			{	 
 				//alert(result);
-				console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ myId);
+				if(debug)
+					console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ myId);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
 				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
 				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
@@ -442,7 +450,8 @@ $(function() {
 				//alert("success " + myId);
 				//mvm.users.getRecords(mvm.users.getRecords);
 				//users_reset_form();
-				console.log("domain " + domain + " was registered");
+				if(debug)
+					console.log("domain " + domain + " was registered");
 			}
         });
     }
