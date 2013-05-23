@@ -8,6 +8,7 @@
     	<link rel="stylesheet" href="http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css">
 	</head>
 	<body>
+         <div data-cjs="securityType:facebook google,login:true,appName:simpleView,security:contacts.userId"> </div>
         <form data-bind="submit:contacts.create" data-validate="parsley">
         <div class="new-contact">
 			<input class="fn" name="fn" type="text" placeholder="Contact Names" data-bind="value:contacts.name" data-required="true">
