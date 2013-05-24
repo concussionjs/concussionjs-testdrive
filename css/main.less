@@ -279,7 +279,12 @@ iframe {
 
 	#menu6:checked ~ #masthead label:nth-child(6) { color: @clickable; }
 	#menu6:checked ~ #masthead #menu-indicator    { left: 478px; }
-
+	#menu7:checked ~ #masthead label:nth-child(7) {
+  		color: #6699cc;
+	}
+	#menu7:checked ~ #masthead #menu-indicator {
+  		left: 478px;
+	}
 /* Authorization */
 #auth-status {
 	float: right;
@@ -430,7 +435,7 @@ body > input[type="radio"] {
 	/* The wrapper used to indent. Set the width equal to the number of pages * 100 */
 	#page-wrapper {
 		position: absolute;
-		width: 600%;
+		width: 700%;
 		height: 100%; 
 		.page-transition;
 	}
@@ -442,11 +447,13 @@ body > input[type="radio"] {
 	#menu4:checked ~ #pages  #page-wrapper { margin-left: -300%; }
 	#menu5:checked ~ #pages  #page-wrapper { margin-left: -400%; }
 	#menu6:checked ~ #pages  #page-wrapper { margin-left: -500%; }
-
+	#menu7:checked ~ #pages #page-wrapper {
+  		margin-left: -600%;
+	}
 		/* Each page. Set the width equal to 100 / number of page */
 		.page {
 			float: left;
-			width: 16.66667%;
+			width: 14.28%;
 			height: 100%;
 			overflow: auto;
 			padding: 10px;

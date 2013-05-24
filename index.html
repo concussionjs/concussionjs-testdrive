@@ -28,7 +28,7 @@
 <input type="radio" name="menu-control" id="menu4">
 <input type="radio" name="menu-control" id="menu5">
 <input type="radio" name="menu-control" id="menu6">
-
+<input type="radio" name="menu-control" id="menu7">
 <section id="masthead">
 	<h1 id="logo">concussion<span>js</span></h1>
 	<nav id="main-menu">
@@ -38,6 +38,7 @@
 		<label for="menu4">Documentation</label>
 		<label for="menu5">About</label>
 		<label for="menu6">Admin</label>
+		<label for="menu7">Discuss</label>
 		<div id="menu-indicator"></div>
 	</nav>
 	<div id="auth-status">
@@ -642,7 +643,23 @@ Note: An anonymous user should be able to build and test an application without 
 				</div>
 			</section>			
 		</section>
+		<section id="discuss" class="page">
+			<div id="disqus_thread"></div>
+    		<script type="text/javascript">
+        		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        		var disqus_shortname = 'concussionjstestdrive'; // required: replace example with your forum shortname
 
+        		/* * * DON'T EDIT BELOW THIS LINE * * */
+        		(function() {
+            		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        		})();
+   		 	</script>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+		</section>
+		
 	</div>
 </section>
 
@@ -727,6 +744,5 @@ $("#masthead-icon-settings").colorbox(
 	}
 );
 </script>
-
 </body>
 </html>
