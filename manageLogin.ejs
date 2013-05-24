@@ -1,5 +1,3 @@
-		var myId="";
-		var userId="";
 		var editor;
 		var debug=false;
 		 (function(d){
@@ -30,18 +28,15 @@
           if (response.authResponse) {
             // user has auth'd your app and is logged into Facebook
             FB.api('/me', function(me){
-         		//alert(JSON.stringify(me));
-				myId = me.id;
-				userId=me.id;
-				//alert(myId);
+         		
 				if (me.name) {
 					document.getElementById('auth-displayname').innerHTML = me.name;
 				}
-				createCookie("sessionId",myId,1);
-				createCookie("userId",myId,1);
-				getPage(myId,"index",submitFormData);
+				//createCookie("sessionId",tenantId,1);
+				createCookie("tenantId",me.id,1);
+				getPage(readCookie("tenantId"),"index",submitFormData);
 				mvm.users.getRecords();
-				synchSessionVariables(myId);
+				synchSessionVariables(readCookie("tenantId"));
             })
             document.getElementById('auth-loggedout').style.display = 'none';
             document.getElementById('auth-loggedin').style.display = 'block';
@@ -57,16 +52,15 @@
         $('#facebook-signup').click(function(){FB.login();});
 		$('#masthead-icon-logout').click(function(){
 				FB.logout(); 
-				userId=""; 
-				createUUID(function(uuid)
-				{
-					createCookie("sessionId",uuid,1);
-					createCookie("userId","",1);
-					synchSessionVariables(uuid);
-					myId=readCookie("sessionId");
+				//userId=""; 
+				//createUUID(function(uuid)
+				//{
+					//createCookie("sessionId",uuid,1);
+					createCookie("tenantId","",1);
+					synchSessionVariables(readCookie("sessionId"));
 					editor.getSession().setValue("");
 					submitFormData(readCookie("sessionId"));
-				});
+				//});
 		});
       } 
 
@@ -75,8 +69,6 @@
 
 			aceEditorInit($(".editor"),"ace/theme/concussion");
 			aceEditorInit($(".snippet"),"ace/theme/concussion-snippet");
-			myId=readCookie("sessionId");
-			userId=readCookie("userId");
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
 	
@@ -86,11 +78,11 @@
 				createUUID(function(uuid)
 				{
 					createCookie("sessionId",uuid,1);
-					synchSessionVariables(uuid);
+					synchSessionVariables(readCookie("sessionId"));
 				});
 			}
 
-			if(!myId)
+			if(!readCookie("tenantId"))
 			{	
 				if(debug)
 					console.log("No authenticated user or session");
@@ -100,8 +92,8 @@
 			else
 			{
 				if(debug)
-					console.log("myId:", myId);
-				getPage(myId,"index",submitFormData);
+					console.log("tenantId:", readCookie("tenantId"));
+				getPage(readCookie("tenantId"),"index",submitFormData);
 			}
 
 			$("#panel-header-icon-refresh").click(function(event){
@@ -112,9 +104,13 @@
 
 function justSubmit()
 {
+	var id = readCookie("tenantId");
+	if(id=="")
+		id=readCookie("sessionId");
+
 	if(debug)
 		console.log("justSubmit()");
-	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', readCookie("sessionId")]);
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', id]);
 	
 	/*if(this.getAttribute("data-addContacts")=="true")
 	{
@@ -125,7 +121,10 @@ function justSubmit()
 
 function justDoItForMe()
 {
-	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', readCookie("sessionId")]);
+	var id = readCookie("tenantId");
+	if(id=="")
+		id=readCookie("sessionId");
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', id]);
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
 
 	submitFormData();
@@ -134,7 +133,10 @@ function justDoItForMe()
 
 function addThreeContactRecords()
 {
-	addSampleRecords(3,"contacts",readCookie("sessionId"));
+	var id = readCookie("tenantId");
+	if(id=="")
+		id=readCookie("sessionId");
+	addSampleRecords(3,"contacts",id);
 }
 
 function addSampleRecords(number,type,id)
@@ -181,16 +183,17 @@ function aceEditorInit(editors,themePath)
 	}
 }
 
-function getPage(userId,filename,callback)
+function getPage(id,filename,callback)
 {
-	synchSessionVariables(userId);
+	synchSessionVariables(id);
 	$.ajax({
 		//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-         url: "http://<%=CJS_WEB_URL%>/getEntryWhere/pages?id="+userId+"&name="+filename,
+         url: "http://<%=CJS_WEB_URL%>/getEntryWhere/pages?id="+id+"&name="+filename,
          type: "get", 
          dataType:"text",
          success: function(result) 
 		{ 
+			console.log("get page result " + result);
 			var obj = JSON.parse(result)
 			//alert(""+obj.html);
 			editor.getSession().setValue(obj.html);
@@ -218,36 +221,36 @@ function openPage(link, subDomain)
 	{
 		//alert($("#codeArea").attr("value"));
 		//alert(editor.getSession().getValue());
+		if(!(id) || id=="")
+			id=readCookie("tenantId");
+		if(!(id) || id=="")
+			id=readCookie("sessionId");
 		var page={};
-		if(id)
-		{
-			myId = id;
-		}
-		page.id = myId;
 		page.html = editor.getSession().getValue();
 		page.name="index"
+		page.id=id;
 		//alert(JSON.stringify(page));
 		$.ajax({
 			//url: "http://testdrive.shift.com/getMergedJSandHTML/"+sessionId,
-        	url: "http://<%=CJS_WEB_URL%>/updateWhere/pages?id="+myId,
+        	url: "http://<%=CJS_WEB_URL%>/updateWhere/pages?id="+id,
         	data: JSON.stringify(page),//$("#codeArea").value,
     		type: "post", 
     		success: function(result) 
 			{	 
 				//alert(result);
 				if(debug)
-					console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ myId);
-				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ myId + "/index"});
-				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
-				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ myId});
-				synchSessionVariables(myId);
+					console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ id);
+				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ id + "/index"});
+				$("#admin-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ id});
+				$("#admin-console-app").attr({"src":"http://<%=CJS_WEB_URL%>/admin.html?id="+ id});
+				synchSessionVariables(id);
 			}
 		});
 	}
 
 	function openUpPreviewWindow()
 	{
-		window.open("http://<%=CJS_WEB_URL%>/getpage/"+ myId + "/index");
+		window.open("http://<%=CJS_WEB_URL%>/getpage/"+ readCookie("tenantId") + "/index");
 	}
 
 	var mvm;
@@ -340,7 +343,7 @@ $(function() {
 							type: "post", dataType: "text",
 							success: function(result) 
 							{ 
-								$.getJSON("http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+myId, function(allData) {
+								$.getJSON("http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+readCookie("tenantId"), function(allData) {
 									var mapped = $.map([allData], function(item) { return new cjs_users(item) });
 									mvm.users.read(mapped);
 									alert("Save successful")
@@ -410,10 +413,10 @@ $(function() {
     
 	self.users.getRecords = function(callback)
 	{
-		if(userId=="")
+		if(readCookie("tenantId")=="")
 			return;
 		$.ajax(
-			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+userId,
+			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+readCookie("tenantId"),
 			dataType:"json",
 			data:'',
 			success:function(data){
@@ -424,7 +427,7 @@ $(function() {
 				if(mapped.length==0)
 				{
 					//alert("mapped==0");
-					self.key=userId;
+					self.key=readCookie("tenantId");
 					if(callback)
 						callback();
 					else
@@ -459,7 +462,7 @@ $(function() {
     self.users.create = function() {
     	var patt = new RegExp("usersForm","g");
         usersCreateJSON();
-        $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + userId, {
+        $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + readCookie("tenantId"), {
 			data: ko.toJSON(self).replace(patt,"cjs_users","g"),
 			type: "post",
 			dataType: "text",
