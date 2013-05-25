@@ -46,7 +46,7 @@
 			Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><!--<a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>-->
 		</div>
 		<div id="auth-loggedin" class="auth-hide">
-			<span id="auth-displayname">Brian Jamieson</span><a href="#settings" class="masthead-icon" id="masthead-icon-settings" title="Settings"></a><a class="masthead-icon" id="masthead-icon-logout" title="Logout"></a>
+			<span id="auth-displayname"></span><a href="#settings" class="masthead-icon" id="masthead-icon-settings" title="Settings"></a><a class="masthead-icon" id="masthead-icon-logout" title="Logout"></a>
 		</div>
 	</div>
 </section>
@@ -659,7 +659,7 @@ Note: An anonymous user should be able to build and test an application without 
     		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 		</section>
-		
+
 	</div>
 </section>
 
@@ -744,5 +744,16 @@ $("#masthead-icon-settings").colorbox(
 	}
 );
 </script>
+<script id="IntercomSettingsScriptTag">
+  window.intercomSettings = {
+    // TODO: The current logged in user's email address.
+    email: readCookie("email"),
+    // TODO: The current logged in user's sign-up date as a Unix timestamp.
+    created_at: readCookie("updated_time"),
+    app_id: "3f9bc4d96f39a42aed7406939b817412985b7698"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://api.intercom.io/api/js/library.js';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}};})()</script>
+
 </body>
 </html>

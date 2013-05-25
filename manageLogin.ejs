@@ -34,6 +34,8 @@
 				}
 				//createCookie("sessionId",tenantId,1);
 				createCookie("tenantId",me.id,1);
+				createCookie("email",me.email,1);
+				createCookie("updated_time",me.updated_time,1);
 				getPage(readCookie("tenantId"),"index",submitFormData);
 				mvm.users.getRecords();
 				synchSessionVariables(readCookie("tenantId"));
@@ -57,6 +59,8 @@
 				//{
 					//createCookie("sessionId",uuid,1);
 					createCookie("tenantId","",1);
+					createCookie("email","",1);
+					createCookie("updated_time","",1);
 					synchSessionVariables(readCookie("sessionId"));
 					editor.getSession().setValue("");
 					submitFormData(readCookie("sessionId"));
