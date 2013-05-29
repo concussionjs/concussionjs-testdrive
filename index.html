@@ -3,7 +3,7 @@
 <head>
 	<title>ConcussionJS - Alpha</title> 
 	<meta charset="utf-8">
-	<meta name="description=" content="ConcussionJS is the web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create. Built on top of NodeJS, MongoDB, Redis, Connect, KnockoutJS,  and available as a service, a self-installable bundle, a VM, and AWS image">
+	<meta name="description=" content="ConcussionJS is the web app platform for the impatient hacker. Concussion was built to minimize the work required to turn your HTML into a dynamic, database driven application. With Concussion, you focus on creating distinctive HTML, and the platform takes care of the rest - no proprietary javascript framework to learn, no data models to setup, no web services to create. Built on top of NodeJS, MongoDB, Redis, Connect, KnockoutJS, and available as a service, a self-installable bundle, a VM, and AWS image">
 	<script src="js/jquery-latest.js"></script>
 	<script src="js/knockout-latest.js"></script>
 	<script src="//use.typekit.net/bqr1qnl.js"></script>
@@ -32,13 +32,13 @@
 <section id="masthead">
 	<h1 id="logo">concussion<span>js</span> <span id="alphaIcon">alpha</span></h1>
 	<nav id="main-menu">
-		<label for="menu1">Tutorial</label>
-		<label for="menu2">How it works</label>
-		<label for="menu3">Getting started</label>
-		<label for="menu4">Documentation</label>
-		<label for="menu5">About</label>
-		<label for="menu6">Admin</label>
-		<label for="menu7">Discuss</label>
+		<label for="menu1" class="navigation" data-section="tutorial">Tutorial</label>
+		<label for="menu2" class="navigation" data-section="howitworks">How it works</label>
+		<label for="menu3" class="navigation" data-section="gettingstarted">Getting started</label>
+		<label for="menu4" class="navigation" data-section="documentation">Documentation</label>
+		<label for="menu5" class="navigation" data-section="about">About</label>
+		<label for="menu6" class="navigation" data-section="admin">Admin</label>
+		<label for="menu7" class="navigation" data-section="discuss">Discuss</label>
 		<div id="menu-indicator"></div>
 	</nav>
 	<div id="auth-status">
@@ -678,6 +678,9 @@ Note: An anonymous user should be able to build and test an application without 
 	<div id="settings-form" data-bind="foreach:users.read" data-cjs="{collection:users,location:localStorage, key:sessionId}">
 		<fieldset class="form-body">
 			<legend>Settings</legend>
+			<div>
+				<label>Your custom ConcussionJS link</label><input type="text" value="" data-bind="value:webLink()" disabled>	
+			</div>
 			<div>
 				<label>Domain name</label><input type="text" value="" data-bind="value:domain()">
 			</div>

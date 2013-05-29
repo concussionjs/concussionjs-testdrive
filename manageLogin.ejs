@@ -75,7 +75,7 @@
 			aceEditorInit($(".snippet"),"ace/theme/concussion-snippet");
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
-	
+			$(".navigation").click(navigation);
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -114,7 +114,7 @@ function justSubmit()
 
 	if(debug)
 		console.log("justSubmit()");
-	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', id]);
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustSubmit', id + "_" + (new Date())]);
 	
 	/*if(this.getAttribute("data-addContacts")=="true")
 	{
@@ -128,11 +128,21 @@ function justDoItForMe()
 	var id = readCookie("tenantId");
 	if(id=="")
 		id=readCookie("sessionId");
-	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', id]);
+	_gaq.push(['_trackEvent', 'TutorialAction', 'JustDoItForME', id + "_" + (new Date())]);
 	editor.getSession().setValue(justDoIt[this.getAttribute("data-index")]);
 
 	submitFormData();
 
+}
+
+function navigation()
+{
+	var id = readCookie("tenantId");
+	if(id=="")
+		id=readCookie("sessionId");
+	_gaq.push(['_trackEvent', 'Navigation', this.getAttribute("data-section"), id + "_" + (new Date())]);
+	
+	console.log(this.getAttribute("data-section"));
 }
 
 function addThreeContactRecords()
@@ -289,7 +299,7 @@ $(function() {
 						{
 							self.domain=ko.observable('');
 						}
-					
+
 						if(data.name)
 						{
 							self.name=ko.observable(data.name);
@@ -320,6 +330,7 @@ $(function() {
 						if(data.key)
 						{
 							self.key=ko.observable(data.key);
+							self.webLink=ko.observable('http://<%=CJS_WEB_URL%>/customLink/' + self.key() + '.js');
 						}
 						else
 						{
