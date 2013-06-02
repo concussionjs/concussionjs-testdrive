@@ -208,10 +208,13 @@ function getPage(id,filename,callback)
          success: function(result) 
 		{ 
 			console.log("get page result " + result);
-			var obj = JSON.parse(result)
-			//alert(""+obj.html);
-			editor.getSession().setValue(obj.html);
-			editor.resize();
+			if(result)
+			{
+				var obj = JSON.parse(result)
+				//alert(""+obj.html);
+				editor.getSession().setValue(obj.html);
+				editor.resize();
+			}
 			if(callback)
 				callback();
 		}
@@ -432,6 +435,7 @@ $(function() {
 			return;
 		$.ajax(
 			{url:"http://<%=CJS_WEB_URL%>/getEntryWhere/cjs_users/?key="+readCookie("tenantId"),
+			async: false,
 			dataType:"json",
 			data:'',
 			success:function(data){
@@ -444,9 +448,7 @@ $(function() {
 					//alert("mapped==0");
 					self.key=readCookie("tenantId");
 					if(callback)
-						callback();
-					else
-						mvm.users.getRecords();				
+						callback();	
 				}
 			}			
 		});
@@ -477,6 +479,7 @@ $(function() {
     self.users.create = function() {
     	var patt = new RegExp("usersForm","g");
         usersCreateJSON();
+        console.log("inside create");
         $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + readCookie("tenantId"), {
 			data: ko.toJSON(self).replace(patt,"cjs_users","g"),
 			type: "post",
@@ -485,7 +488,11 @@ $(function() {
 			{
 				//alert("success " + myId);
 				mvm.users.updateDomain();
-				mvm.users.getRecords(mvm.users.getRecords);
+				setTimeout(function(){
+					mvm.users.getRecords();	
+				},1000);
+				
+
 				//users_reset_form();
 			}
         });
@@ -497,5 +504,158 @@ $(function() {
 
 	mvm = new myViewModel();
 	ko.applyBindings(mvm);
-	mvm.users.getRecords(mvm.users.create);
 });
+
+
+/*
+google login
+*/		
+
+function appendLoggedOut()
+{
+  var div = document.createElement('div');
+  div.setAttribute('id','auth-loggedout');
+  document.getElementById('auth-status').appendChild(div);
+}
+
+function appendLoggedIn()
+{
+  var div = document.createElement('div');
+  var span = document.createElement('span');
+  var a = document.createElement('a');
+    
+  div.setAttribute('id','auth-loggedin');
+  div.setAttribute('class','auth-hide');        
+  span.setAttribute('id','auth-displayname');
+
+  a.setAttribute('class','masthead-icon');
+  a.setAttribute('id','masthead-icon-logout');
+  a.setAttribute('title','Logout');
+  div.appendChild(span);
+  div.appendChild(a);
+
+  document.getElementById('auth-status').appendChild(div);
+}
+
+function appendGoogle()
+{
+  var gSignInWrapper = document.createElement('span');
+  var customBtn = document.createElement('span');
+  var g = document.createElement('a');
+
+  gSignInWrapper.setAttribute('id','gSignInWrapper');
+
+  customBtn.setAttribute('id','customBtn');
+  customBtn.setAttribute('class','customGPlusSignIn');
+
+  g.setAttribute('class','masthead-icon');
+  g.setAttribute('id','masthead-icon-google');
+  g.setAttribute('title','Google');
+
+  customBtn.appendChild(g);
+  gSignInWrapper.appendChild(customBtn);
+
+  $('auth-loggedout').append(gSignInWrapper);
+}
+
+function appendStatus()
+{
+  var div = document.createElement('div');
+  div.setAttribute('id','auth-status');
+  document.getElementsByTagName('body')[0].appendChild(div);
+}
+
+(function() {
+       var po = document.createElement('script'); 
+       po.type = 'text/javascript'; 
+       po.async = true;
+       po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+       var s = document.getElementsByTagName('script')[0]; 
+       s.parentNode.insertBefore(po, s);
+ })();
+var userId;
+var accessToken;
+
+ function render() {
+    gapi.signin.render('customBtn', {
+      'callback': 'signinCallback',
+      'clientid': '895398398018.apps.googleusercontent.com',
+      'cookiepolicy': 'single_host_origin',
+      'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+      'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.profile'
+    });
+  }
+
+function signinCallback(authResult) {
+	if (authResult['error'])
+	{
+		console.log('there was an error logging in');
+	}
+	else
+	{
+		$('#masthead-icon-logout').click(googleLogout);
+		document.getElementById('auth-loggedout').style.display = 'none';
+		document.getElementById('auth-loggedin').style.display = 'block';
+		accessToken = authResult['access_token'];
+		gapi.auth.setToken(authResult);
+		setUserIdLoadRecords(); 
+		console.log('after cjs createcookie');
+	}
+}
+
+function setUserIdLoadRecords(){
+    
+    gapi.client.load('oauth2', 'v2', function() {
+    	  if(gapi.client.oauth2)
+          {	
+          	var request = gapi.client.oauth2.userinfo.get();
+          	request.execute(setUserIdCallback);
+          }
+    });
+}
+
+function setUserIdCallback(obj)
+{
+    if (obj['id']) {
+     userId = obj['id'];
+    }
+    console.log(JSON.stringify(obj));
+    if (obj['name']) {
+		document.getElementById('auth-displayname').innerHTML = obj['name'];
+	}
+   	createCookie("tenantId",obj['id'],1);
+	createCookie("email",obj['email'],1);
+	//createCookie("updated_time",me.updated_time,1);
+	getPage(readCookie("tenantId"),"index",submitFormData);
+	mvm.users.getRecords(mvm.users.create);
+	synchSessionVariables(readCookie("tenantId"));
+}
+
+function disconnectUser(accessToken) {
+  var revokeUrl = 'https://accounts.google.com/o/oauth2/revoke?token=' + accessToken;
+  $.ajax({
+    type: 'GET',
+    url: revokeUrl,
+    async: false,
+    contentType: 'application/json',
+    dataType: 'jsonp',
+    success: function(nullResponse) {
+     	document.getElementById('auth-loggedout').style.display = 'block';
+		document.getElementById('auth-loggedin').style.display = 'none';
+    },
+    error: function(e) { 
+		console.log(e);
+    }
+  });
+}
+
+var googleLogout= function(){
+	disconnectUser(accessToken);
+	createCookie("tenantId","",1);
+	createCookie("email","",1);
+	createCookie("updated_time","",1);
+	synchSessionVariables(readCookie("sessionId"));
+	editor.getSession().setValue("");
+	submitFormData(readCookie("sessionId"));
+	$('#masthead-icon-logout').unbind('click');
+}

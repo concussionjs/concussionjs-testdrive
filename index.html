@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/colorbox.css">
 </head>
-</body>
+<body>
 
 <input type="radio" name="menu-control" id="menu1" checked>
 <input type="radio" name="menu-control" id="menu2">
@@ -44,6 +44,11 @@
 	<div id="auth-status">
 		<div id="auth-loggedout">
 			Login via <a class="masthead-icon" id="masthead-icon-facebook" title="Facebook"></a><!--<a class="masthead-icon" id="masthead-icon-twitter" title="Twitter"></a><a class="masthead-icon" id="masthead-icon-github" title="GitHub"></a>-->
+			<span id="gSignInWrapper">
+				<span id="customBtn" class="customGPlusSignIn">
+					<a class="masthead-icon" id="masthead-icon-google" title="Google"></a>
+				</span>
+			</span>
 		</div>
 		<div id="auth-loggedin" class="auth-hide">
 			<span id="auth-displayname"></span><a href="#settings" class="masthead-icon" id="masthead-icon-settings" title="Settings"></a><a class="masthead-icon" id="masthead-icon-logout" title="Logout"></a>

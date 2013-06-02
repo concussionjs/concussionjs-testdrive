@@ -271,6 +271,12 @@ iframe {
 #masthead-icon-facebook:hover {
   background-image: url("../img/icons/icon-facebook-hover.svg");
 }
+#masthead-icon-google {
+  background-image: url("../img/icons/icon-google.svg");
+}
+#masthead-icon-google:hover {
+  background-image: url("../img/icons/icon-google-hover.svg");
+}
 #masthead-icon-twitter {
   background-image: url("../img/icons/icon-twitter.svg");
 }
