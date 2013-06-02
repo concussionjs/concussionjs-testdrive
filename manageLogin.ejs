@@ -425,7 +425,8 @@ $(function() {
 		name:self.users.name,
 		
 		companyname:self.users.companyname,
-		email:self.users.email
+		email:self.users.email,
+		key:self.users.key
     	});
 	}
     
@@ -461,7 +462,7 @@ $(function() {
 		self.users.companyname=ko.observable("");
 		self.users.email=ko.observable("");
 		self.users.key=ko.observable("");
-    
+    	self.users.webLink=ko.observable("");
     self.users.updateDomain = function(domain)
     {
     	 $.ajax("http://<%=CJS_WEB_URL%>/domains/add/registered/" + domain, {
@@ -481,13 +482,14 @@ $(function() {
         usersCreateJSON();
         console.log("inside create");
         $.ajax("http://<%=CJS_WEB_URL%>/create/cjs_users/" + readCookie("tenantId"), {
-			data: ko.toJSON(self).replace(patt,"cjs_users","g"),
+			//data: "{\"cjs_users\":" + ko.toJSON(mvm.usersForm()) + "}",
+			data: ko.toJSON(self).replace(patt,"cjs_users"),
 			type: "post",
 			dataType: "text",
 			success: function(result) 
 			{
 				//alert("success " + myId);
-				mvm.users.updateDomain();
+				// mvm.users.updateDomain();
 				setTimeout(function(){
 					mvm.users.getRecords();	
 				},1000);
@@ -626,6 +628,7 @@ function setUserIdCallback(obj)
    	createCookie("tenantId",obj['id'],1);
 	createCookie("email",obj['email'],1);
 	//createCookie("updated_time",me.updated_time,1);
+	mvm.users.key(obj['id']);
 	getPage(readCookie("tenantId"),"index",submitFormData);
 	mvm.users.getRecords(mvm.users.create);
 	synchSessionVariables(readCookie("tenantId"));
