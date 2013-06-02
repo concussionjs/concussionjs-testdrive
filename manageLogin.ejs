@@ -36,8 +36,9 @@
 				createCookie("tenantId",me.id,1);
 				createCookie("email",me.email,1);
 				createCookie("updated_time",me.updated_time,1);
+				mvm.users.key(me.id);
 				getPage(readCookie("tenantId"),"index",submitFormData);
-				mvm.users.getRecords();
+				mvm.users.getRecords(mvm.users.create);
 				synchSessionVariables(readCookie("tenantId"));
             })
             document.getElementById('auth-loggedout').style.display = 'none';
