@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <style>
+    
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
+form {
+  margin-left: 100px;
+}
+    
+    </style>
+    <script type="text/javascript" src="http://<%=CJS_WEB_URL%>/customLink/115723408282005601229.js"></script> 
+  </head>
+  <body>
+    <div data-cjs="securityType:facebook google,security:contacts.userId"></div>
+    <form data-bind="submit:icon.create">
+        <input id="file" type="file" placeholder="Upload file..." data-bind="value:icon.location"> <br>
+        <input type="submit" value="Upload">
+    </form>
+    
+    <hr>
+    
+    <!--<input type="search" data-bind="search:icon, searchResults:#icons">-->
+    
+    <div id="icons" data-bind="foreach:icon.read">
+      <img class="icon" data-bind="attr:{src:location()}">
+      <span data-bind="value:tags"></span>
+    </div>
+
+  </body>
+</html>
