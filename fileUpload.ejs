@@ -2,10 +2,24 @@
 <html> 
   <head> 
     <style>
+
+#icons{
+  position: relative;
+  float:left;
+}    
     
 .icon {
   width: 100px;
   height: 100px;
+}
+
+.iconWrapper{
+  padding: 2px;
+}
+
+div{
+  position: relative;
+  float:left;
 }
 
 form {
@@ -27,8 +41,10 @@ form {
     <!--<input type="search" data-bind="search:icon, searchResults:#icons">-->
     
     <div id="icons" data-bind="foreach:icon.read">
-      <img class="icon" data-bind="attr:{src:location()}">
-      <span data-bind="value:tags"></span>
+      <div class="iconWrapper">
+        <img class="icon" data-bind="attr:{src:location(),id:id()}">
+        <span data-bind="value:tags"></span>
+      </div>
     </div>
 
   </body>
