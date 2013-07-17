@@ -6,9 +6,15 @@
     	<title>Contacts</title>
     	<meta charset="utf-8">
     	<link rel="stylesheet" href="http://<%=CJS_WEB_URL.replace("api","testdrive")%>/css/contacts-style.css">
-	</head>
+	    <style>
+            #search{
+                color:black;
+            }
+        </style>
+    </head>
 	<body>
-         <div data-cjs="securityType:facebook google,security:contacts.userId"> </div>
+        <input type="search" id="search" data-cjs="search:contacts,players">
+         <div data-cjs="securityType:facebook google;security:contacts.userId"> </div>
         <form data-bind="submit:contacts.create" data-validate="parsley">
         <div class="new-contact">
 			<input class="fn" name="fn" type="text" placeholder="Contact Names" data-bind="value:contacts.name" data-required="true">
@@ -17,6 +23,14 @@
             <button type="submit" value="Save">Add record</button>    
 	    </div>
         </form>
+        <form data-bind="submit:players.create">
+        <div class="new-contact">
+            <input class="fn" name="fn" type="text" placeholder="Player first name" data-bind="value:players.firstName">
+            <input class="tel" name="tel" type="text" placeholder="Player last name" data-bind="value:players.lastName">
+            <input class="email" name="email" type="text" placeholder="Player email address" data-bind="value:players.emailAddress">
+            <button type="submit" value="Save">Add players</button>    
+        </div>
+        </form>
 	    <div id="contacts" data-bind="foreach:contacts.read">
             <div class="vcard" onclick="selectVcard(this)">
     			<input class="fn" data-bind="value:name">
@@ -24,6 +38,14 @@
                 <input class="email" data-bind="value:emailAddress">
                 <button data-bind="click:update">Save</button><button class="secondary" data-bind="click:remove">Delete</button>
     		</div>
+        </div>
+        <div id="contacts" data-bind="foreach:players.read">
+            <div class="vcard" onclick="selectVcard(this)">
+                <input class="fn" data-bind="value:firstName">
+                <input class="tel" data-bind="value:lastName">
+                <input class="email" data-bind="value:emailAddress">
+                <button data-bind="click:update">Save</button><button class="secondary" data-bind="click:remove">Delete</button>
+            </div>
         </div>
  </body>
 

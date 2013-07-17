@@ -32,7 +32,6 @@
 				if (me.name) {
 					document.getElementById('auth-displayname').innerHTML = me.name;
 				}
-				//createCookie("sessionId",tenantId,1);
 				createCookie("tenantId",me.id,1);
 				createCookie("email",me.email,1);
 				createCookie("updated_time",me.updated_time,1);
@@ -255,7 +254,6 @@ function openPage(link, subDomain)
     		type: "post", 
     		success: function(result) 
 			{	 
-				//alert(result);
 				if(debug)
 					console.log("http://<%=CJS_WEB_URL%>/admin.html?id="+ id);
 				$("#preview").attr({"src":"http://<%=CJS_WEB_URL%>/getPage/"+ id + "/index"});

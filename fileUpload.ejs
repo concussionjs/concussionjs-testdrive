@@ -30,7 +30,8 @@ form {
     <script type="text/javascript" src="http://<%=CJS_WEB_URL%>/customLink/115723408282005601229.js"></script> 
   </head>
   <body>
-    <div data-cjs="securityType:facebook,security:contacts.userId"></div>
+    <input type="search" id="search" data-cjs="search:icon">
+    <div data-cjs="securityType:facebook;security:contacts.userId"></div>
     <form data-bind="submit:icon.create">
         <input id="file" type="file" placeholder="Upload file..." data-bind="value:icon.location"> <br>
         <input type="submit" value="Upload">
