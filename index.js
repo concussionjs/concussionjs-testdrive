@@ -8,7 +8,7 @@ var qs = require('querystring');
 var http = require('http');
 var util = require('util');
 var URLPrefix=process.env.CJS_WEB_URL;
-var files2Localize=[{templateFileName:__dirname + "/desktopExample.ejs",outputFileName:__dirname + "/desktopExample.htm"},{templateFileName:__dirname + "/manageLogin.ejs",outputFileName:__dirname + "/js/manageLogin.js"},{templateFileName:__dirname + "/loadEditorContent.ejs",outputFileName:__dirname + "/js/loadEditorContent.js"}];
+var files2Localize=[{templateFileName:__dirname + "/desktopExample.ejs",outputFileName:__dirname + "/desktopExample.htm"},{templateFileName:__dirname + "/manageLogin.ejs",outputFileName:__dirname + "/js/manageLogin.js"},{templateFileName:__dirname + "/loadEditorContent.ejs",outputFileName:__dirname + "/js/loadEditorContent.js"},{templateFileName:__dirname + "/fileUpload.ejs",outputFileName:__dirname + "/fileUpload.htm"}];
 var s = settings();
 
 objects = [];

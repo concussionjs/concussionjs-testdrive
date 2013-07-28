@@ -699,8 +699,12 @@ Note: An anonymous user should be able to build and test an application without 
 				<label>Email address</label><input type="text" value="" data-bind="value:email">
 			</div>
 			<div>
-				<button class="primary" data-bind="click:update">Save</button><button>Cancel</button>
+				<label>File upload</label><input type="file" style="color:black">
 			</div>
+			<div>
+				<button class="primary" data-bind="click:update">Save</button><button onclick="uploadForm();">Upload</button>
+			</div>
+
 		</fieldset>
 	</div>
 </div>

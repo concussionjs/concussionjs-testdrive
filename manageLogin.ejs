@@ -302,6 +302,15 @@ $(function() {
 							self.domain=ko.observable('');
 						}
 
+						if(data.lastFile)
+						{
+							self.lastFile=ko.observable(data.lastFile);
+						}
+						else
+						{
+							self.lastFile=ko.observable('');
+						}
+
 						if(data.name)
 						{
 							self.name=ko.observable(data.name);
@@ -402,6 +411,8 @@ $(function() {
 			self.users.companyname("");
 	
 			self.users.email("");
+
+			self.users.lastFile("");
 	
 		}
 
@@ -425,7 +436,8 @@ $(function() {
 		
 		companyname:self.users.companyname,
 		email:self.users.email,
-		key:self.users.key
+		key:self.users.key,
+		lastFile:self.users.lastFile
     	});
 	}
     
@@ -462,6 +474,8 @@ $(function() {
 		self.users.email=ko.observable("");
 		self.users.key=ko.observable("");
     	self.users.webLink=ko.observable("");
+    	self.users.lastFile=ko.observable("");
+
     self.users.updateDomain = function(domain)
     {
     	 $.ajax("http://<%=CJS_WEB_URL%>/domains/add/registered/" + domain, {
@@ -660,4 +674,67 @@ var googleLogout= function(){
 	editor.getSession().setValue("");
 	submitFormData(readCookie("sessionId"));
 	$('#masthead-icon-logout').unbind('click');
+}
+
+var uploadForm = function()
+{
+	//alert('inside uploadForm')
+	
+	
+	
+	
+	createDNS("<%=CJS_WEB_URL%>".replace("api",readCookie("tenantId").replace("local-","")),function(data){
+		console.log("<%=CJS_WEB_URL%>".replace("api",readCookie("tenantId")).replace("local-",""));
+		var data = new FormData();
+		if($("input:file") && $("input:file").length>0)
+    	{
+			$.each($("input:file")[0].files, function(i, file) {
+				data.append('file-'+i, file);
+			});
+		}
+		$.ajax({
+			url: 'http://<%=CJS_WEB_URL%>/upload/' + readCookie("tenantId"),
+			async:true,
+			data: data,
+			cache: false,
+			contentType: false,
+			processData: false,
+			type: 'POST',
+			success: function(result){
+				alert("File upload completed");	
+			}
+		});
+	});
+}
+
+var checkIfDNSExists = function(dnsName,callback)
+{
+	$.get('http://<%=CJS_WEB_URL%>/getDNSNames/'+dnsName, function(data){
+		callback(JSON.parse(data).ResourceRecordSets.length > 0 && JSON.parse(data).ResourceRecordSets[0].Name==dnsName+"." );
+	});
+
+	return;
+}
+
+var createDNS = function(dnsName, callback)
+{
+	checkIfDNSExists(dnsName,function(doesExist){
+		if(!doesExist)
+		{
+			$.get('http://<%=CJS_WEB_URL%>/createbucket/'+dnsName, function(data){
+				console.log(data);
+				$.get('http://<%=CJS_WEB_URL%>/enablewebconfig/'+dnsName, function(data){
+					console.log(data);
+					$.get('http://<%=CJS_WEB_URL%>/adddns/'+dnsName, function(data){
+						console.log(data);
+						callback("success");
+					});
+				});
+			});
+		}
+		else
+		{
+			callback("exists");
+		}
+	});
 }
