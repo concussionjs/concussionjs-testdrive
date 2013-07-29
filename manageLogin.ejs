@@ -342,6 +342,7 @@ $(function() {
 						{
 							self.key=ko.observable(data.key);
 							self.webLink=ko.observable('http://<%=CJS_WEB_URL%>/customLink/' + self.key() + '.js');
+							self.webURL=ko.observable('http://' + '<%=CJS_WEB_URL%>'.replace('api',self.key()).replace("local-",""));
 						}
 						else
 						{
@@ -411,8 +412,6 @@ $(function() {
 			self.users.companyname("");
 	
 			self.users.email("");
-
-			self.users.lastFile("");
 	
 		}
 
@@ -436,8 +435,7 @@ $(function() {
 		
 		companyname:self.users.companyname,
 		email:self.users.email,
-		key:self.users.key,
-		lastFile:self.users.lastFile
+		key:self.users.key
     	});
 	}
     
@@ -474,7 +472,7 @@ $(function() {
 		self.users.email=ko.observable("");
 		self.users.key=ko.observable("");
     	self.users.webLink=ko.observable("");
-    	self.users.lastFile=ko.observable("");
+    	self.users.webURL=ko.observable("");
 
     self.users.updateDomain = function(domain)
     {
