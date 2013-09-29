@@ -50,10 +50,10 @@
         });
 
         // respond to clicks on the login and logout links
-        $('#masthead-icon-facebook').click(function(){FB.login();});
-  		$('#facebook-link').click(function(){FB.login();});
-  		$('#facebook-link2').click(function(){FB.login();});
-        $('#facebook-signup').click(function(){FB.login();});
+        $('#masthead-icon-facebook').click(function(){trackSignUpLogin("facebook");FB.login();});
+  		$('#facebook-link').click(function(){trackSignUpLogin("facebook");FB.login();});
+  		$('#facebook-link2').click(function(){trackSignUpLogin("facebook");FB.login();});
+        $('#facebook-signup').click(function(){trackSignUpLogin("facebook");FB.login();});
 		$('#masthead-icon-logout').click(function(){
 				FB.logout(); 
 				//userId=""; 
@@ -78,6 +78,7 @@
 			$(".justDoIt").click(justDoItForMe);
 			$(".continue").click(justSubmit);
 			$(".navigation").click(navigation);
+
 			if(!readCookie("sessionId"))
 			{
 				//alert("inside no cookie");
@@ -145,6 +146,14 @@ function navigation()
 	_gaq.push(['_trackEvent', 'Navigation', this.getAttribute("data-section"), id + "_" + (new Date())]);
 	
 	console.log(this.getAttribute("data-section"));
+}
+
+function trackSignUpLogin(authenticationType)
+{
+	var id = readCookie("tenantId");
+	if(id=="")
+		id=readCookie("sessionId");
+	_gaq.push(['_trackEvent', 'signup', authenticationType, id + "_" + (new Date())]);
 }
 
 function addThreeContactRecords()
@@ -608,6 +617,7 @@ function signinCallback(authResult) {
 	}
 	else
 	{
+		trackSignUpLogin("google");
 		$('#masthead-icon-logout').click(googleLogout);
 		document.getElementById('auth-loggedout').style.display = 'none';
 		document.getElementById('auth-loggedin').style.display = 'block';
