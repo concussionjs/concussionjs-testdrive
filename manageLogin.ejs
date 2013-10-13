@@ -51,10 +51,10 @@
 
         // respond to clicks on the login and logout links
         $('#masthead-icon-facebook').click(function(){trackSignUpLogin("facebook");FB.login();});
-        $('#VM').click(function(){trackEvent("download","VM",readCookie("id") + "_" + (new Date())])});
-        $('Debian').click(function(){trackEvent("download","Debian",readCookie("id") + "_" + (new Date())])});
-        $('Bootstrap').click(function(){trackEvent("example","bootstrap",readCookie("id") + "_" + (new Date())])});
-        $('Foundation').click(function(){trackEvent("example","foundation",readCookie("id") + "_" + (new Date())])});
+        $('#VM').click(function(){trackEvent("download","VM",readCookie("id") + "_" + (new Date()));});
+        $('#Debian').click(function(){trackEvent("download","Debian",readCookie("id") + "_" + (new Date()));});
+        $('#bootstrap').click(function(){trackEvent("example","bootstrap",readCookie("id") + "_" + (new Date()));});
+        $('#foundation').click(function(){trackEvent("example","foundation",readCookie("id") + "_" + (new Date()));});
   		$('#facebook-link').click(function(){trackSignUpLogin("facebook");FB.login();});
   		$('#facebook-link2').click(function(){trackSignUpLogin("facebook");FB.login();});
         $('#facebook-signup').click(function(){trackSignUpLogin("facebook");FB.login();});
@@ -147,14 +147,14 @@ function navigation()
 	var id = readCookie("tenantId");
 	if(id=="")
 		id=readCookie("sessionId");
-	trackEvent('Navigation', this.getAttribute("data-section"), readCookie("id") + "_" + (new Date())]);
+	trackEvent('Navigation', this.getAttribute("data-section"), readCookie("id") + "_" + (new Date()));
 	
 	console.log(this.getAttribute("data-section"));
 }
 
 function trackEvent(category,type,label)
 {
-	_gaq.push(['_trackEvent', category, type, label);
+	_gaq.push(['_trackEvent', category, type, label]);
 }
 
 function trackSignUpLogin(authenticationType)
@@ -162,7 +162,7 @@ function trackSignUpLogin(authenticationType)
 	var id = readCookie("tenantId");
 	if(id=="")
 		id=readCookie("sessionId");
-	trackEvent('signup', authenticationType, readCookie("id") + "_" + (new Date())]);
+	trackEvent('signup', authenticationType, readCookie("id") + "_" + (new Date()));
 }
 
 
