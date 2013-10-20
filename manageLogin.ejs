@@ -288,7 +288,12 @@ function openPage(link, subDomain)
 
 	function openUpPreviewWindow()
 	{
-		window.open("http://<%=CJS_WEB_URL%>/getpage/"+ readCookie("tenantId") + "/index");
+		var id;
+		if(!(id) || id=="")
+			id=readCookie("tenantId");
+		if(!(id) || id=="")
+			id=readCookie("sessionId");
+		window.open("http://<%=CJS_WEB_URL%>/getpage/"+ id + "/index");
 	}
 
 	var mvm;
